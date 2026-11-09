@@ -1,114 +1,388 @@
 {
- "en-desktop": {
-  "overflow_px": 0,
-  "overflowing_elems": [],
-  "inter_loaded": true,
-  "console_errors": [],
-  "axe_violations": {
-   "initial": [],
-   "result_shown": [],
-   "myths_open": []
+ "date": "2026-11-09",
+ "server": "python3 -m http.server 8765 (local)",
+ "summary": {
+  "lighthouse_a11y_min": 100,
+  "lighthouse_runs": 12,
+  "axe_violation_nodes_total": 0,
+  "axe_runs": 32,
+  "console_errors_total": 0,
+  "horizontal_scroll": false,
+  "links_checked": 32,
+  "links_failed": [],
+  "print_pdf_pages": {
+   "submission/print/checklist-en.pdf": 1,
+   "submission/print/checklist-es.pdf": 1,
+   "submission/print/flyer-en.pdf": 1,
+   "submission/print/flyer-es.pdf": 1,
+   "submission/Chung_CSL2_Educational_Project.pdf": 1
   },
-  "h1_count": 1,
-  "broken_internal_anchors": [],
-  "menu": null,
-  "checker": {
-   "child/4/52000": "result show good :: Your child is likely eligible for free Medi-Cal.",
-   "child/4/95000": "result show maybe :: Your child may qualify for low-cost coverage.",
-   "child/4/120000": "result show other :: Your income looks higher than the Medi-Cal limit for kids.",
-   "pregnant/2/25000": "result show good :: Pregnant people can get full Medi-Cal, including dental.",
-   "pregnant/2/90000": "result show good :: Pregnant people can get full Medi-Cal, including dental.",
-   "adult/1/20000": "result show good :: You may be eligible for Medi-Cal based on income.",
-   "adult/1/30000": "result show other :: Your income looks higher than the Medi-Cal limit for adults.",
-   "senior/2/20000": "result show maybe :: Older adults use different Medi-Cal rules.",
-   "empty": "Please answer all three questions."
+  "em_dash_count": {
+   "index.html": 0,
+   "es/index.html": 0,
+   "checklist.html": 0,
+   "flyer.html": 0,
+   "es/checklist.html": 0,
+   "es/flyer.html": 0
   }
  },
- "en-mobile": {
-  "overflow_px": 0,
-  "overflowing_elems": [],
-  "inter_loaded": true,
-  "console_errors": [],
-  "axe_violations": {
-   "initial": [],
-   "menu_open": [],
-   "result_shown": [],
-   "myths_open": []
+ "lighthouse_accessibility": {
+  "checklist-en-desktop": {
+   "accessibility": 100,
+   "url": "http://localhost:8765/checklist.html",
+   "lighthouse": "13.6.0"
   },
-  "h1_count": 1,
-  "broken_internal_anchors": [],
-  "menu": {
-   "expanded": "true",
-   "visible_links": 9,
-   "closed_after_click": true,
-   "scrolled_to_check": 64
+  "checklist-en-mobile": {
+   "accessibility": 100,
+   "url": "http://localhost:8765/checklist.html",
+   "lighthouse": "13.6.0"
   },
-  "checker": {
-   "child/4/52000": "result show good :: Your child is likely eligible for free Medi-Cal.",
-   "child/4/95000": "result show maybe :: Your child may qualify for low-cost coverage.",
-   "child/4/120000": "result show other :: Your income looks higher than the Medi-Cal limit for kids.",
-   "pregnant/2/25000": "result show good :: Pregnant people can get full Medi-Cal, including dental.",
-   "pregnant/2/90000": "result show good :: Pregnant people can get full Medi-Cal, including dental.",
-   "adult/1/20000": "result show good :: You may be eligible for Medi-Cal based on income.",
-   "adult/1/30000": "result show other :: Your income looks higher than the Medi-Cal limit for adults.",
-   "senior/2/20000": "result show maybe :: Older adults use different Medi-Cal rules.",
-   "empty": "Please answer all three questions."
+  "checklist-es-desktop": {
+   "accessibility": 100,
+   "url": "http://localhost:8765/es/checklist.html",
+   "lighthouse": "13.6.0"
+  },
+  "checklist-es-mobile": {
+   "accessibility": 100,
+   "url": "http://localhost:8765/es/checklist.html",
+   "lighthouse": "13.6.0"
+  },
+  "en-desktop": {
+   "accessibility": 100,
+   "url": "http://localhost:8765/",
+   "lighthouse": "13.6.0"
+  },
+  "en-mobile": {
+   "accessibility": 100,
+   "url": "http://localhost:8765/",
+   "lighthouse": "13.6.0"
+  },
+  "es-desktop": {
+   "accessibility": 100,
+   "url": "http://localhost:8765/es/",
+   "lighthouse": "13.6.0"
+  },
+  "es-mobile": {
+   "accessibility": 100,
+   "url": "http://localhost:8765/es/",
+   "lighthouse": "13.6.0"
+  },
+  "flyer-en-desktop": {
+   "accessibility": 100,
+   "url": "http://localhost:8765/flyer.html",
+   "lighthouse": "13.6.0"
+  },
+  "flyer-en-mobile": {
+   "accessibility": 100,
+   "url": "http://localhost:8765/flyer.html",
+   "lighthouse": "13.6.0"
+  },
+  "flyer-es-desktop": {
+   "accessibility": 100,
+   "url": "http://localhost:8765/es/flyer.html",
+   "lighthouse": "13.6.0"
+  },
+  "flyer-es-mobile": {
+   "accessibility": 100,
+   "url": "http://localhost:8765/es/flyer.html",
+   "lighthouse": "13.6.0"
   }
  },
- "es-desktop": {
-  "overflow_px": 0,
-  "overflowing_elems": [],
-  "inter_loaded": true,
-  "console_errors": [],
-  "axe_violations": {
-   "initial": [],
-   "result_shown": [],
-   "myths_open": []
+ "axe": {
+  "engine": "axe-core 4.14.0",
+  "states": "initial, flow step 3 (county + size picked), plan result card shown, kid tooth selected, adult tooth selected, first myth flipped, 2026 callout opened; at 1440x900 and 390x844, EN + ES; print pages initial",
+  "violation_nodes": {
+   "en-1440": {
+    "initial": 0,
+    "flow-step3": 0,
+    "plan": 0,
+    "tooth-kid": 0,
+    "tooth-adult": 0,
+    "myth-flipped": 0,
+    "callout-open": 0
+   },
+   "en-390": {
+    "initial": 0,
+    "flow-step3": 0,
+    "plan": 0,
+    "tooth-kid": 0,
+    "tooth-adult": 0,
+    "myth-flipped": 0,
+    "callout-open": 0
+   },
+   "es-1440": {
+    "initial": 0,
+    "flow-step3": 0,
+    "plan": 0,
+    "tooth-kid": 0,
+    "tooth-adult": 0,
+    "myth-flipped": 0,
+    "callout-open": 0
+   },
+   "es-390": {
+    "initial": 0,
+    "flow-step3": 0,
+    "plan": 0,
+    "tooth-kid": 0,
+    "tooth-adult": 0,
+    "myth-flipped": 0,
+    "callout-open": 0
+   },
+   "print-en": {
+    "initial": 0
+   },
+   "print-es": {
+    "initial": 0
+   },
+   "print-en-flyer": {
+    "initial": 0
+   },
+   "print-es-flyer": {
+    "initial": 0
+   }
   },
-  "h1_count": 1,
-  "broken_internal_anchors": [],
-  "menu": null,
-  "checker": {
-   "child/4/52000": "result show good :: Es probable que su hijo califique para Medi-Cal gratis.",
-   "child/4/95000": "result show maybe :: Su hijo podría calificar para cobertura de bajo costo.",
-   "child/4/120000": "result show other :: Su ingreso parece ser mayor que el límite de Medi-Cal para niños.",
-   "pregnant/2/25000": "result show good :: Las personas embarazadas pueden recibir Medi-Cal completo, incluido el dental.",
-   "pregnant/2/90000": "result show good :: Las personas embarazadas pueden recibir Medi-Cal completo, incluido el dental.",
-   "adult/1/20000": "result show good :: Podría calificar para Medi-Cal según su ingreso.",
-   "adult/1/30000": "result show other :: Su ingreso parece ser mayor que el límite de Medi-Cal para adultos.",
-   "senior/2/20000": "result show maybe :: Los adultos mayores tienen otras reglas de Medi-Cal.",
-   "empty": "Por favor conteste las tres preguntas."
+  "shots_note": "full-page shots saved as JPEG (390 ones downscaled to 1.5x) to keep the repo small"
+ },
+ "console_errors": {
+  "en-1440": [],
+  "en-390": [],
+  "es-1440": [],
+  "es-390": [],
+  "print-en": [],
+  "print-es": [],
+  "print-en-flyer": [],
+  "print-es-flyer": []
+ },
+ "scroll_width": {
+  "en-1440": {
+   "viewport": 1440,
+   "initial": 1440,
+   "plan": 1440,
+   "end": 1440
+  },
+  "en-390": {
+   "viewport": 390,
+   "initial": 390,
+   "plan": 390,
+   "end": 390
+  },
+  "es-1440": {
+   "viewport": 1440,
+   "initial": 1440,
+   "plan": 1440,
+   "end": 1440
+  },
+  "es-390": {
+   "viewport": 390,
+   "initial": 390,
+   "plan": 390,
+   "end": 390
   }
  },
- "es-mobile": {
-  "overflow_px": 0,
-  "overflowing_elems": [],
-  "inter_loaded": true,
-  "console_errors": [],
-  "axe_violations": {
-   "initial": [],
-   "menu_open": [],
-   "result_shown": [],
-   "myths_open": []
+ "links": [
+  {
+   "url": "https://211la.org/",
+   "curl": 200,
+   "status": "ok"
   },
-  "h1_count": 1,
-  "broken_internal_anchors": [],
-  "menu": {
-   "expanded": "true",
-   "visible_links": 9,
-   "closed_after_click": true,
-   "scrolled_to_check": 64
+  {
+   "url": "https://aspe.hhs.gov/topics/poverty-economic-mobility/poverty-guidelines",
+   "curl": 200,
+   "status": "ok"
   },
-  "checker": {
-   "child/4/52000": "result show good :: Es probable que su hijo califique para Medi-Cal gratis.",
-   "child/4/95000": "result show maybe :: Su hijo podría calificar para cobertura de bajo costo.",
-   "child/4/120000": "result show other :: Su ingreso parece ser mayor que el límite de Medi-Cal para niños.",
-   "pregnant/2/25000": "result show good :: Las personas embarazadas pueden recibir Medi-Cal completo, incluido el dental.",
-   "pregnant/2/90000": "result show good :: Las personas embarazadas pueden recibir Medi-Cal completo, incluido el dental.",
-   "adult/1/20000": "result show good :: Podría calificar para Medi-Cal según su ingreso.",
-   "adult/1/30000": "result show other :: Su ingreso parece ser mayor que el límite de Medi-Cal para adultos.",
-   "senior/2/20000": "result show maybe :: Los adultos mayores tienen otras reglas de Medi-Cal.",
-   "empty": "Por favor conteste las tres preguntas."
+  {
+   "url": "https://benefitscal.com/",
+   "curl": 200,
+   "status": "ok"
+  },
+  {
+   "url": "https://dpss.lacounty.gov/en/health.html",
+   "curl": 200,
+   "status": "ok"
+  },
+  {
+   "url": "https://dpss.lacounty.gov/en/resources/contact.html",
+   "curl": 200,
+   "status": "ok"
+  },
+  {
+   "url": "https://findahealthcenter.hrsa.gov/",
+   "curl": 200,
+   "status": "ok"
+  },
+  {
+   "url": "https://healthconsumer.org/medi-cal-changes-and-what-you-need-to-know/",
+   "curl": 200,
+   "status": "ok"
+  },
+  {
+   "url": "https://inlandsocaluw.org/211",
+   "curl": 200,
+   "status": "ok"
+  },
+  {
+   "url": "https://joshuarchung2-pixel.github.io/csl2-medicaid-site/",
+   "curl": 404,
+   "status": "expected: site not published yet (pending publish)"
+  },
+  {
+   "url": "https://odphp.health.gov/healthypeople/priority-areas/social-determinants-health",
+   "curl": 200,
+   "status": "ok"
+  },
+  {
+   "url": "https://rivcodpss.org/medi-cal",
+   "curl": 403,
+   "status": "ok (headed browser)",
+   "note": "200 in headed Chromium (title: Medi-Cal | Riverside County Department of Public Social Services); curl gets 403 bot wall"
+  },
+  {
+   "url": "https://smilecalifornia.org/covered-services/",
+   "curl": 200,
+   "status": "ok"
+  },
+  {
+   "url": "https://smilecalifornia.org/covered-services/adults/",
+   "curl": 200,
+   "status": "ok"
+  },
+  {
+   "url": "https://smilecalifornia.org/covered-services/kids/",
+   "curl": 200,
+   "status": "ok"
+  },
+  {
+   "url": "https://smilecalifornia.org/covered-services/teens/",
+   "curl": 200,
+   "status": "ok"
+  },
+  {
+   "url": "https://smilecalifornia.org/find-a-dentist/",
+   "curl": 200,
+   "status": "ok"
+  },
+  {
+   "url": "https://wp.sbcounty.gov/tad/",
+   "curl": 200,
+   "status": "ok"
+  },
+  {
+   "url": "https://www.cdc.gov/oral-health/data-research/facts-stats/index.html",
+   "curl": 403,
+   "status": "ok (headed browser)",
+   "note": "200 in headed Chromium (title: Oral Health Facts | Oral Health | CDC); curl gets 403 bot wall"
+  },
+  {
+   "url": "https://www.coveredca.com/",
+   "curl": 200,
+   "status": "ok"
+  },
+  {
+   "url": "https://www.coveredca.com/support/contact-us/",
+   "curl": 200,
+   "status": "ok"
+  },
+  {
+   "url": "https://www.dhcs.ca.gov/immigration-status-and-changes-to-medi-cal-eligibility/",
+   "curl": 200,
+   "status": "ok"
+  },
+  {
+   "url": "https://www.dhcs.ca.gov/medi-cal/apply/",
+   "curl": 200,
+   "status": "ok"
+  },
+  {
+   "url": "https://www.dhcs.ca.gov/medi-cal/benefits/",
+   "curl": 200,
+   "status": "ok"
+  },
+  {
+   "url": "https://www.dhcs.ca.gov/medi-cal/contact/find-a-county-office/",
+   "curl": 200,
+   "status": "ok"
+  },
+  {
+   "url": "https://www.dhcs.ca.gov/medi-cal/help/",
+   "curl": 200,
+   "status": "ok"
+  },
+  {
+   "url": "https://www.dhcs.ca.gov/medi-cal/qualify/qualify-for-medi-cal-eligibility-chart/",
+   "curl": 200,
+   "status": "ok"
+  },
+  {
+   "url": "https://www.dhcs.ca.gov/medi-cal/updates/medi-cal-changes/",
+   "curl": 200,
+   "status": "ok"
+  },
+  {
+   "url": "https://www.dhcs.ca.gov/newsroom-office-of-communications/statement-from-the-department-of-health-care-services-on-the-federal-use-of-medi-cal-data-and-member-privacy/",
+   "curl": 200,
+   "status": "ok"
+  },
+  {
+   "url": "https://www.dhcs.ca.gov/wp-content/uploads/2025/10/HACCP-FPL-Chart.pdf",
+   "curl": 200,
+   "status": "ok"
+  },
+  {
+   "url": "https://www.sachealth.org/",
+   "curl": 200,
+   "status": "ok"
+  },
+  {
+   "url": "https://www.sachealth.org/services/dental",
+   "curl": 200,
+   "status": "ok"
+  },
+  {
+   "url": "https://www.westernuhealth.com/pomona/services/dental/",
+   "curl": 200,
+   "status": "ok"
   }
+ ],
+ "word_count": {
+  "method_rendered": "document.body.innerText on first load at 1440 (what a visitor sees before any tap)",
+  "rendered": {
+   "before_be1033d en": {
+    "rendered_words": 1972,
+    "rendered_words_excl_references": 1522
+   },
+   "before_be1033d es/": {
+    "rendered_words": 2241,
+    "rendered_words_excl_references": 1782
+   },
+   "after en": {
+    "rendered_words": 1500,
+    "rendered_words_excl_references": 1050
+   },
+   "after es/": {
+    "rendered_words": 1651,
+    "rendered_words_excl_references": 1192
+   }
+  },
+  "method_source": "all text in index.html with script/style/head/svg stripped, including hidden result-card variants, tooth panels and myth backs",
+  "source": {
+   "index.html": {
+    "before_be1033d": 2168,
+    "after": 2598
+   },
+   "es/index.html": {
+    "before_be1033d": 2462,
+    "after": 2898
+   }
+  }
+ },
+ "proofs": {
+  "best_5": [
+   "submission/proofs/v3/best-1-desktop-hero.png",
+   "submission/proofs/v3/best-2-mobile-result-card.png",
+   "submission/proofs/v3/best-3-tooth-map.png",
+   "submission/proofs/v3/best-4-myths.png",
+   "submission/proofs/v3/best-5-print-checklist.png"
+  ],
+  "all_states": "submission/proofs/v3/{en,es}-{1440,390}-{hero,flow-step3,result-card,tooth-kid,tooth-adult,myths,apply}.png, *-full.jpg, print-checklist-{en,es}.png"
  }
 }

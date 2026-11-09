@@ -105,7 +105,7 @@ a:hover { color: var(--accent-strong); text-decoration-thickness: 2px; }
 .link-btn:hover { color: var(--accent-strong); text-decoration: underline; text-underline-offset: 3px; }
 
 /* ---------- Header ---------- */
-.site-header { position: sticky; top: 0; z-index: 50; background: rgba(255, 255, 255, .96); border-bottom: 1px solid var(--line); }
+.site-header { position: sticky; top: 0; z-index: 50; background: #fff; border-bottom: 1px solid var(--line); }
 .header-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; column-gap: var(--s2); }
 .brand { display: flex; align-items: center; gap: var(--s1); min-height: 56px; color: var(--ink); font-weight: 700; font-size: 1rem; text-decoration: none; letter-spacing: -0.01em; }
 .brand:hover { color: var(--ink); }
