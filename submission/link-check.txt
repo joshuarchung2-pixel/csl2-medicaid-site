@@ -1,6 +1,7 @@
 200 | ok | https://211la.org/
 200 | ok | https://aspe.hhs.gov/topics/poverty-economic-mobility/poverty-guidelines
 200 | ok | https://benefitscal.com/
+200 | ok | https://dental.dhcs.ca.gov/MCD_documents/members/member_handbook_english.pdf
 200 | ok | https://dpss.lacounty.gov/en/health.html
 200 | ok | https://dpss.lacounty.gov/en/resources/contact.html
 200 | ok | https://findahealthcenter.hrsa.gov/
@@ -8,14 +9,14 @@
 200 | ok | https://inlandsocaluw.org/211
 404 | expected: site not published yet (pending publish) | https://joshuarchung2-pixel.github.io/csl2-medicaid-site/
 200 | ok | https://odphp.health.gov/healthypeople/priority-areas/social-determinants-health
-403 | ok (headed browser) | https://rivcodpss.org/medi-cal | 200 in headed Chromium (title: Medi-Cal | Riverside County Department of Public Social Services); curl gets 403 bot wall
+403 | ok (headed browser 200; curl gets 403 bot wall) | https://rivcodpss.org/medi-cal
 200 | ok | https://smilecalifornia.org/covered-services/
 200 | ok | https://smilecalifornia.org/covered-services/adults/
 200 | ok | https://smilecalifornia.org/covered-services/kids/
 200 | ok | https://smilecalifornia.org/covered-services/teens/
 200 | ok | https://smilecalifornia.org/find-a-dentist/
 200 | ok | https://wp.sbcounty.gov/tad/
-403 | ok (headed browser) | https://www.cdc.gov/oral-health/data-research/facts-stats/index.html | 200 in headed Chromium (title: Oral Health Facts | Oral Health | CDC); curl gets 403 bot wall
+403 | ok (headed browser 200; curl gets 403 bot wall) | https://www.cdc.gov/oral-health/data-research/facts-stats/index.html
 200 | ok | https://www.coveredca.com/
 200 | ok | https://www.coveredca.com/support/contact-us/
 200 | ok | https://www.dhcs.ca.gov/immigration-status-and-changes-to-medi-cal-eligibility/

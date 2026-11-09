@@ -1,14 +1,15 @@
 {
  "date": "2026-11-09",
+ "version": "v4",
  "server": "python3 -m http.server 8765 (local)",
  "summary": {
   "lighthouse_a11y_min": 100,
   "lighthouse_runs": 12,
   "axe_violation_nodes_total": 0,
-  "axe_runs": 32,
+  "axe_runs": 44,
   "console_errors_total": 0,
   "horizontal_scroll": false,
-  "links_checked": 32,
+  "links_checked": 33,
   "links_failed": [],
   "print_pdf_pages": {
    "submission/print/checklist-en.pdf": 1,
@@ -89,95 +90,106 @@
   }
  },
  "axe": {
-  "engine": "axe-core 4.14.0",
-  "states": "initial, flow step 3 (county + size picked), plan result card shown, kid tooth selected, adult tooth selected, first myth flipped, 2026 callout opened; at 1440x900 and 390x844, EN + ES; print pages initial",
+  "engine": "axe-core (elite node_modules), tags wcag2a/aa, wcag21a/aa, wcag22aa, best-practice",
+  "states": "initial, each tooth stage (none/primary/mixed/adult/edentulous) with a tooth or gum tapped, slider moved 10 steps by keyboard, first myth flipped, 2026 callout opened; 1440x900 and 390x844, EN + ES; checklist/flyer EN/ES initial at both widths",
   "violation_nodes": {
    "en-1440": {
     "initial": 0,
-    "flow-step3": 0,
-    "plan": 0,
-    "tooth-kid": 0,
-    "tooth-adult": 0,
+    "stage-none": 0,
+    "stage-primary": 0,
+    "stage-mixed": 0,
+    "stage-adult": 0,
+    "stage-edentulous": 0,
+    "slider-moved": 0,
     "myth-flipped": 0,
     "callout-open": 0
    },
    "en-390": {
     "initial": 0,
-    "flow-step3": 0,
-    "plan": 0,
-    "tooth-kid": 0,
-    "tooth-adult": 0,
+    "stage-none": 0,
+    "stage-primary": 0,
+    "stage-mixed": 0,
+    "stage-adult": 0,
+    "stage-edentulous": 0,
+    "slider-moved": 0,
     "myth-flipped": 0,
     "callout-open": 0
    },
    "es-1440": {
     "initial": 0,
-    "flow-step3": 0,
-    "plan": 0,
-    "tooth-kid": 0,
-    "tooth-adult": 0,
+    "stage-none": 0,
+    "stage-primary": 0,
+    "stage-mixed": 0,
+    "stage-adult": 0,
+    "stage-edentulous": 0,
+    "slider-moved": 0,
     "myth-flipped": 0,
     "callout-open": 0
    },
    "es-390": {
     "initial": 0,
-    "flow-step3": 0,
-    "plan": 0,
-    "tooth-kid": 0,
-    "tooth-adult": 0,
+    "stage-none": 0,
+    "stage-primary": 0,
+    "stage-mixed": 0,
+    "stage-adult": 0,
+    "stage-edentulous": 0,
+    "slider-moved": 0,
     "myth-flipped": 0,
     "callout-open": 0
    },
-   "print-en": {
+   "checklist.html-1440": {
     "initial": 0
    },
-   "print-es": {
+   "checklist.html-390": {
     "initial": 0
    },
-   "print-en-flyer": {
+   "es-checklist.html-1440": {
     "initial": 0
    },
-   "print-es-flyer": {
+   "es-checklist.html-390": {
+    "initial": 0
+   },
+   "flyer.html-1440": {
+    "initial": 0
+   },
+   "flyer.html-390": {
+    "initial": 0
+   },
+   "es-flyer.html-1440": {
+    "initial": 0
+   },
+   "es-flyer.html-390": {
     "initial": 0
    }
-  },
-  "shots_note": "full-page shots saved as JPEG (390 ones downscaled to 1.5x) to keep the repo small"
+  }
  },
  "console_errors": {
   "en-1440": [],
   "en-390": [],
   "es-1440": [],
   "es-390": [],
-  "print-en": [],
-  "print-es": [],
-  "print-en-flyer": [],
-  "print-es-flyer": []
+  "checklist.html-1440": [],
+  "checklist.html-390": [],
+  "es-checklist.html-1440": [],
+  "es-checklist.html-390": [],
+  "flyer.html-1440": [],
+  "flyer.html-390": [],
+  "es-flyer.html-1440": [],
+  "es-flyer.html-390": []
  },
  "scroll_width": {
-  "en-1440": {
-   "viewport": 1440,
-   "initial": 1440,
-   "plan": 1440,
-   "end": 1440
-  },
-  "en-390": {
-   "viewport": 390,
-   "initial": 390,
-   "plan": 390,
-   "end": 390
-  },
-  "es-1440": {
-   "viewport": 1440,
-   "initial": 1440,
-   "plan": 1440,
-   "end": 1440
-  },
-  "es-390": {
-   "viewport": 390,
-   "initial": 390,
-   "plan": 390,
-   "end": 390
-  }
+  "en-1440": 1440,
+  "en-390": 390,
+  "es-1440": 1440,
+  "es-390": 390,
+  "checklist.html-1440": 1440,
+  "checklist.html-390": 390,
+  "es-checklist.html-1440": 1440,
+  "es-checklist.html-390": 390,
+  "flyer.html-1440": 1440,
+  "flyer.html-390": 390,
+  "es-flyer.html-1440": 1440,
+  "es-flyer.html-390": 390
  },
  "links": [
   {
@@ -192,6 +204,11 @@
   },
   {
    "url": "https://benefitscal.com/",
+   "curl": 200,
+   "status": "ok"
+  },
+  {
+   "url": "https://dental.dhcs.ca.gov/MCD_documents/members/member_handbook_english.pdf",
    "curl": 200,
    "status": "ok"
   },
@@ -233,8 +250,7 @@
   {
    "url": "https://rivcodpss.org/medi-cal",
    "curl": 403,
-   "status": "ok (headed browser)",
-   "note": "200 in headed Chromium (title: Medi-Cal | Riverside County Department of Public Social Services); curl gets 403 bot wall"
+   "status": "ok (headed browser 200; curl gets 403 bot wall)"
   },
   {
    "url": "https://smilecalifornia.org/covered-services/",
@@ -269,8 +285,7 @@
   {
    "url": "https://www.cdc.gov/oral-health/data-research/facts-stats/index.html",
    "curl": 403,
-   "status": "ok (headed browser)",
-   "note": "200 in headed Chromium (title: Oral Health Facts | Oral Health | CDC); curl gets 403 bot wall"
+   "status": "ok (headed browser 200; curl gets 403 bot wall)"
   },
   {
    "url": "https://www.coveredca.com/",
@@ -343,46 +358,18 @@
    "status": "ok"
   }
  ],
- "word_count": {
-  "method_rendered": "document.body.innerText on first load at 1440 (what a visitor sees before any tap)",
-  "rendered": {
-   "before_be1033d en": {
-    "rendered_words": 1972,
-    "rendered_words_excl_references": 1522
-   },
-   "before_be1033d es/": {
-    "rendered_words": 2241,
-    "rendered_words_excl_references": 1782
-   },
-   "after en": {
-    "rendered_words": 1500,
-    "rendered_words_excl_references": 1050
-   },
-   "after es/": {
-    "rendered_words": 1651,
-    "rendered_words_excl_references": 1192
-   }
-  },
-  "method_source": "all text in index.html with script/style/head/svg stripped, including hidden result-card variants, tooth panels and myth backs",
-  "source": {
-   "index.html": {
-    "before_be1033d": 2168,
-    "after": 2598
-   },
-   "es/index.html": {
-    "before_be1033d": 2462,
-    "after": 2898
-   }
-  }
- },
- "proofs": {
-  "best_5": [
-   "submission/proofs/v3/best-1-desktop-hero.png",
-   "submission/proofs/v3/best-2-mobile-result-card.png",
-   "submission/proofs/v3/best-3-tooth-map.png",
-   "submission/proofs/v3/best-4-myths.png",
-   "submission/proofs/v3/best-5-print-checklist.png"
-  ],
-  "all_states": "submission/proofs/v3/{en,es}-{1440,390}-{hero,flow-step3,result-card,tooth-kid,tooth-adult,myths,apply}.png, *-full.jpg, print-checklist-{en,es}.png"
- }
+ "proofs": [
+  "submission/proofs/v4/hero-1440.png",
+  "submission/proofs/v4/hero-390.png",
+  "submission/proofs/v4/references-1440.png",
+  "submission/proofs/v4/references-390.png",
+  "submission/proofs/v4/tooth-adult-1440.png",
+  "submission/proofs/v4/tooth-adult-390.png",
+  "submission/proofs/v4/tooth-edentulous-1440.png",
+  "submission/proofs/v4/tooth-edentulous-390.png",
+  "submission/proofs/v4/tooth-mixed-1440.png",
+  "submission/proofs/v4/tooth-mixed-390.png",
+  "submission/proofs/v4/tooth-primary-1440.png",
+  "submission/proofs/v4/tooth-primary-390.png"
+ ]
 }
