@@ -198,6 +198,29 @@ html:not(.js) .flow-hint { display: none; }
 .tile.pick[aria-pressed="true"]::before { border-color: var(--accent); background: var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='square'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/14px no-repeat; }
 .step-nav { display: flex; justify-content: space-between; align-items: center; gap: var(--s2); margin-top: var(--s3); }
 .step-nav .btn { margin-left: auto; }
+
+/* County map (step 1): 58 California counties, outlined, fill tints on hover/focus */
+.county-map { display: grid; gap: var(--s1); }
+.map-label { min-height: 28px; margin: 0; font-weight: 600; font-size: var(--t-ui); line-height: 28px; color: var(--muted); }
+.map-label.on { color: var(--ink); }
+.map-box { position: relative; width: 100%; max-width: 380px; margin: 0 auto; }
+.ca-map { display: block; width: 100%; height: auto; overflow: visible; -webkit-tap-highlight-color: transparent; }
+.ca-map .cty { fill: #fff; stroke: var(--gray-4); stroke-width: 1; stroke-linejoin: round; vector-effect: non-scaling-stroke; cursor: pointer; transition: fill .15s ease; outline: none; }
+.ca-map .cty:hover, .ca-map .cty:focus-visible, .ca-map .cty.chosen { fill: var(--accent-tint); }
+.ca-map .hl { fill: none; pointer-events: none; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.ca-map .hl-hover { stroke: var(--accent); stroke-width: 1.5; }
+.ca-map .hl-hover.kbd { stroke: var(--ink); stroke-width: 3; }
+.ca-map .hl-sel { stroke: var(--accent); stroke-width: 2.5; }
+.map-tip { position: absolute; left: 0; top: 0; z-index: 2; padding: 4px var(--s1); background: var(--ink); color: #fff; font-size: var(--t-sm); font-weight: 600; line-height: 1.3; white-space: nowrap; pointer-events: none; }
+@media (hover: none) { .map-tip { display: none; } }
+.county-list { margin-top: var(--s1); }
+.county-list summary { display: inline-flex; align-items: center; min-height: 44px; color: var(--ink); font-weight: 600; font-size: var(--t-ui); text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 3px; cursor: pointer; }
+.county-opts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px var(--s1); margin-top: var(--s1); }
+@media (min-width: 560px) { .county-opts { grid-template-columns: repeat(3, 1fr); } }
+.county-opt { min-height: 40px; padding: 0 var(--s1); border: 1px solid transparent; border-radius: var(--r); background: none; color: var(--ink); font: 500 var(--t-ui)/1.2 var(--sans); text-align: left; cursor: pointer; }
+.county-opt:hover { background: var(--accent-tint); }
+.county-opt.chosen { border-color: var(--accent); background: var(--accent-tint); font-weight: 600; }
+@media (prefers-reduced-motion: reduce) { .ca-map .cty { transition: none; } }
 .flow-error { margin: var(--s2) 0 0; color: #a3271f; font-weight: 600; font-size: var(--t-ui); }
 .flow-error:empty { display: none; }
 .privacy { display: flex; gap: var(--s1); align-items: center; margin: var(--s3) 0 0; padding-top: var(--s2); border-top: 1px solid var(--gray-3); font-size: var(--t-sm); color: var(--muted); }

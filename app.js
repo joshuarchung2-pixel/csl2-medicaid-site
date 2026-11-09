@@ -22,7 +22,7 @@
   var progressText = progress.textContent; // "Step 1 of 3" / "Paso 1 de 3"
   var plan = document.getElementById("plan");
   var err = document.getElementById("flow-error");
-  var state = { county: null, size: null };
+  var state = { county: null, countyName: null, size: null };
 
   function go(n) {
     steps.forEach(function (s) { s.hidden = Number(s.dataset.step) !== n; });
@@ -42,10 +42,76 @@
     group.forEach(function (b) { b.classList.toggle("chosen", b === btn); });
   }
 
-  var countyBtns = flow.querySelectorAll(".step [data-county]");
-  countyBtns.forEach(function (b) {
-    b.addEventListener("click", function () { state.county = b.dataset.county; mark(countyBtns, b); go(2); });
+  // Step 1: California county map (58 paths) plus a list fallback. LA, Riverside and
+  // San Bernardino have their own results; any other county is "other" and keeps its name.
+  var cmap = flow.querySelector(".county-map");
+  var countyEls = flow.querySelectorAll(".step [data-county]");
+  var svg = cmap.querySelector(".ca-map");
+  var mapLabel = cmap.querySelector(".map-label");
+  var tip = cmap.querySelector(".map-tip");
+  var box = cmap.querySelector(".map-box");
+  var hlHover = svg.querySelector(".hl-hover");
+  var hlSel = svg.querySelector(".hl-sel");
+  var lastPointer = "mouse";
+  var hot = null; // county path under the pointer
+  var foc = null; // county path with keyboard focus
+  var picked = null; // chosen county path
+
+  function nameOf(el) { return cmap.dataset.label.replace("{name}", el.dataset.name); }
+  function pathFor(name) { return svg.querySelector('.cty[data-name="' + name + '"]'); }
+  function paint() {
+    var kf = foc && foc.matches(":focus-visible") ? foc : null;
+    var show = kf || hot || picked;
+    mapLabel.textContent = show ? nameOf(show) : mapLabel.dataset.idle;
+    mapLabel.classList.toggle("on", !!show);
+    var ring = kf || hot;
+    hlHover.setAttribute("d", ring && (ring !== picked || kf) ? ring.getAttribute("d") : "");
+    hlHover.classList.toggle("kbd", !!kf);
+    hlSel.setAttribute("d", picked ? picked.getAttribute("d") : "");
+  }
+  function pickCounty(el) {
+    var p = pathFor(el.dataset.name);
+    state.county = el.dataset.county;
+    state.countyName = el.dataset.name;
+    picked = p;
+    countyEls.forEach(function (c) { c.classList.toggle("chosen", c.dataset.name === el.dataset.name); });
+    paint();
+    // A tap shows the name first; mouse, keyboard and the list move on right away, like the old tiles.
+    if (lastPointer === "touch" && el.classList.contains("cty")) setTimeout(function () { go(2); }, 450);
+    else go(2);
+  }
+  svg.addEventListener("pointerdown", function (e) { lastPointer = e.pointerType || "mouse"; });
+  cmap.querySelector(".county-list").addEventListener("pointerdown", function () { lastPointer = "mouse"; });
+  svg.addEventListener("pointerover", function (e) {
+    var p = e.target.closest(".cty");
+    if (!p || e.pointerType === "touch") return;
+    hot = p; tip.textContent = nameOf(p); tip.hidden = false; paint();
   });
+  svg.addEventListener("pointermove", function (e) {
+    if (tip.hidden || e.pointerType === "touch") return;
+    var r = box.getBoundingClientRect();
+    var x = Math.min(e.clientX - r.left + 14, r.width - tip.offsetWidth);
+    var y = e.clientY - r.top - tip.offsetHeight - 10;
+    tip.style.transform = "translate(" + Math.max(0, x) + "px," + Math.max(0, y) + "px)";
+  });
+  svg.addEventListener("pointerout", function (e) {
+    var p = e.target.closest(".cty");
+    if (!p || (e.relatedTarget && e.relatedTarget.closest && e.relatedTarget.closest(".cty") === p)) return;
+    if (hot === p) hot = null;
+    tip.hidden = true; paint();
+  });
+  svg.addEventListener("focusin", function (e) { var p = e.target.closest(".cty"); if (p) { foc = p; paint(); } });
+  svg.addEventListener("focusout", function () { foc = null; tip.hidden = true; paint(); });
+  svg.addEventListener("click", function (e) { var p = e.target.closest(".cty"); if (p) pickCounty(p); });
+  svg.addEventListener("keydown", function (e) {
+    var p = e.target.closest(".cty");
+    if (!p || (e.key !== "Enter" && e.key !== " " && e.key !== "Spacebar")) return;
+    e.preventDefault(); lastPointer = "keyboard"; pickCounty(p);
+  });
+  cmap.querySelectorAll(".county-opt").forEach(function (b) {
+    b.addEventListener("click", function () { pickCounty(b); });
+  });
+  function resetCounty() { picked = null; hot = null; foc = null; tip.hidden = true; paint(); }
   var sizeBtns = flow.querySelectorAll(".step [data-size]");
   sizeBtns.forEach(function (b) {
     b.addEventListener("click", function () { state.size = Number(b.dataset.size); mark(sizeBtns, b); go(3); });
@@ -79,12 +145,19 @@
     plan.querySelectorAll("[data-county], [data-county-name]").forEach(function (el) {
       el.hidden = (el.dataset.county || el.dataset.countyName) !== state.county;
     });
+    var otherName = plan.querySelector('[data-county-name="other"]');
+    if (otherName) {
+      if (!otherName.dataset.base) otherName.dataset.base = otherName.textContent;
+      otherName.textContent = state.county === "other" && state.countyName
+        ? otherName.dataset.tpl.replace("{name}", state.countyName) : otherName.dataset.base;
+    }
     go(4);
   });
 
   plan.querySelector("[data-restart]").addEventListener("click", function () {
-    state = { county: null, size: null };
+    state = { county: null, countyName: null, size: null };
     flow.querySelectorAll(".chosen").forEach(function (b) { b.classList.remove("chosen"); });
+    resetCounty();
     whoBtns.forEach(function (b) { b.setAttribute("aria-pressed", "false"); });
     go(1);
   });

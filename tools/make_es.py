@@ -1,10 +1,11 @@
 """Builds es/index.html from index.html by exact phrase replacement.
 Every English phrase must be found, so the two pages keep the same structure.
-Run after editing index.html, then run make_mouths.py."""
+Run after editing index.html, then run make_mouths.py and make_map.py."""
 import re, pathlib
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 s = (ROOT / "index.html").read_text()
 s = re.sub(r"<!--MOUTH:(\w+)-->.*?<!--/MOUTH:\1-->", r"<!--MOUTH:\1--><!--/MOUTH:\1-->", s, flags=re.S)
+s = re.sub(r"<!--MAP-->.*?<!--/MAP-->", "<!--MAP--><!--/MAP-->", s, flags=re.S)
 
 R = [
 ('<html lang="en">', '<html lang="es">'),
@@ -36,8 +37,6 @@ R = [
 ('data-done="All set">Step 1 of 3</p>', 'data-done="Listo">Paso 1 de 3</p>'),
 ('<p class="flow-hint">Tap an answer to start. It takes about a minute.</p>', '<p class="flow-hint">Toque una respuesta para empezar. Toma como un minuto.</p>'),
 ('<legend tabindex="-1">Which county do you live in?</legend>', '<legend tabindex="-1">¿En qué condado vive?</legend>'),
-('data-county="la">Los Angeles</button>', 'data-county="la">Los Ángeles</button>'),
-('data-county="other">Another county</button>', 'data-county="other">Otro condado</button>'),
 ('<legend tabindex="-1">How many people live in your home? Count yourself.</legend>', '<legend tabindex="-1">¿Cuántas personas viven en su hogar? Cuéntese usted.</legend>'),
 ('<use href="#i-left"/></svg>Back</button></div>', '<use href="#i-left"/></svg>Atrás</button></div>'),
 ('<use href="#i-left"/></svg>Back</button>\n', '<use href="#i-left"/></svg>Atrás</button>\n'),
@@ -52,8 +51,8 @@ R = [
 ('<button type="button" class="btn" data-finish>See my plan', '<button type="button" class="btn" data-finish>Ver mi plan'),
 ('<!-- Result card. All text lives here; app.js only shows the right parts and fills in numbers. -->', '<!-- Tarjeta de resultado. Todo el texto está aquí; app.js solo muestra las partes y llena los números. -->'),
 ('tabindex="-1">Your plan</h2>', 'tabindex="-1">Su plan</h2>'),
-('<p class="plan-sub">Home of <span data-fill="size"></span> in <span data-county-name="la">Los Angeles County</span><span data-county-name="riv">Riverside County</span><span data-county-name="sb">San Bernardino County</span><span data-county-name="other">California</span></p>',
- '<p class="plan-sub">Hogar de <span data-fill="size"></span> en <span data-county-name="la">el condado de Los Ángeles</span><span data-county-name="riv">el condado de Riverside</span><span data-county-name="sb">el condado de San Bernardino</span><span data-county-name="other">California</span></p>'),
+('<p class="plan-sub">Home of <span data-fill="size"></span> in <span data-county-name="la">Los Angeles County</span><span data-county-name="riv">Riverside County</span><span data-county-name="sb">San Bernardino County</span><span data-county-name="other" data-tpl="{name} County">California</span></p>',
+ '<p class="plan-sub">Hogar de <span data-fill="size"></span> en <span data-county-name="la">el condado de Los Ángeles</span><span data-county-name="riv">el condado de Riverside</span><span data-county-name="sb">el condado de San Bernardino</span><span data-county-name="other" data-tpl="el condado de {name}">California</span></p>'),
 ('<h3>Can you get Medi-Cal?</h3>', '<h3>¿Puede tener Medi-Cal?</h3>'),
 ('Children under 19 can likely get free Medi-Cal if your family earns about <strong data-fill="kid266"></strong> a year or less, before taxes. Up to about <strong data-fill="kid322"></strong>, children may get low-cost coverage for a small monthly fee. Their immigration status does not matter.',
  'Es probable que los niños menores de 19 años puedan tener Medi-Cal gratis si su familia gana unos <strong data-fill="kid266"></strong> al año o menos, antes de impuestos. Hasta unos <strong data-fill="kid322"></strong>, los niños podrían tener cobertura de bajo costo por una pequeña cuota mensual. Su estatus migratorio no importa.'),
