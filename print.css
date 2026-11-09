@@ -1,11 +1,11 @@
 /* Printable pages (fridge checklist, clinic flyer). Same tokens as styles.css; each page fits one US Letter sheet. */
 @font-face { font-family: "Inter"; font-weight: 400 700; font-display: swap; src: url("fonts/inter-latin.woff2") format("woff2"); }
-@font-face { font-family: "Fraunces"; font-weight: 400 700; font-display: swap; src: url("fonts/fraunces-latin.woff2") format("woff2"); }
+@font-face { font-family: "Source Serif 4"; font-weight: 400 700; font-display: swap; src: url("fonts/sourceserif4-latin.woff2") format("woff2"); }
 :root {
   --ink: #0f172a; --text: #334155; --muted: #4b5568; --line: #e3e7ee; --line-strong: #8a93a3;
   --accent: #1f4fbf; --accent-soft: #eef3fd; --accent-line: #c9d6f4;
   --warm: #ec8f4a; --warm-strong: #9a3f0c; --warm-soft: #fdf4eb; --warm-line: #f2cfae;
-  --display: "Fraunces", Georgia, serif; --sans: "Inter", system-ui, Arial, sans-serif;
+  --display: "Source Serif 4", Georgia, serif; --sans: "Inter", system-ui, Arial, sans-serif;
 }
 @page { size: Letter; margin: 0; }
 * { box-sizing: border-box; }
