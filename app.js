@@ -1,3 +1,30 @@
+/* Compact section menu for phones. Without JS the section links show as a scrolling row. */
+(function () {
+  "use strict";
+  var btn = document.querySelector(".menu-btn");
+  var nav = document.getElementById("site-nav");
+  if (!btn || !nav) return;
+  function setOpen(open) {
+    nav.classList.toggle("open", open);
+    btn.setAttribute("aria-expanded", open ? "true" : "false");
+  }
+  btn.addEventListener("click", function () {
+    setOpen(btn.getAttribute("aria-expanded") !== "true");
+  });
+  nav.addEventListener("click", function (e) {
+    if (e.target.closest("a")) setOpen(false);
+  });
+  nav.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") { setOpen(false); btn.focus(); }
+  });
+  btn.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") setOpen(false);
+  });
+  document.addEventListener("click", function (e) {
+    if (nav.classList.contains("open") && !nav.contains(e.target) && !btn.contains(e.target)) setOpen(false);
+  });
+})();
+
 /* "Am I likely eligible?" self-check.
    Runs entirely in the browser. Nothing is stored, logged, or sent anywhere. */
 (function () {
