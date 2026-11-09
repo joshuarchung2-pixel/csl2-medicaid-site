@@ -1,0 +1,62 @@
+{
+ "en-desktop": {
+  "overflow_px": 0,
+  "console_errors": [],
+  "axe": [],
+  "h1_count": 1,
+  "checker": {
+   "child/4/95000": "Your child may qualify for low-cost coverage.",
+   "child/4/120000": "Your income looks higher than the Medi-Cal limit for kids.",
+   "pregnant/2/25000": "Pregnant people can get full Medi-Cal, including dental.",
+   "adult/1/20000": "You may be eligible for Medi-Cal based on income.",
+   "adult/1/30000": "Your income looks higher than the Medi-Cal limit for adults.",
+   "senior/2/20000": "Older adults use different Medi-Cal rules.",
+   "child/4/52000": "Your child is likely eligible for free Medi-Cal."
+  }
+ },
+ "en-mobile": {
+  "overflow_px": 0,
+  "console_errors": [],
+  "axe": [],
+  "h1_count": 1,
+  "checker": {
+   "child/4/95000": "Your child may qualify for low-cost coverage.",
+   "child/4/120000": "Your income looks higher than the Medi-Cal limit for kids.",
+   "pregnant/2/25000": "Pregnant people can get full Medi-Cal, including dental.",
+   "adult/1/20000": "You may be eligible for Medi-Cal based on income.",
+   "adult/1/30000": "Your income looks higher than the Medi-Cal limit for adults.",
+   "senior/2/20000": "Older adults use different Medi-Cal rules.",
+   "child/4/52000": "Your child is likely eligible for free Medi-Cal."
+  }
+ },
+ "es-desktop": {
+  "overflow_px": 0,
+  "console_errors": [],
+  "axe": [],
+  "h1_count": 1,
+  "checker": {
+   "child/4/95000": "Su hijo podría calificar para cobertura de bajo costo.",
+   "child/4/120000": "Su ingreso parece ser mayor que el límite de Medi-Cal para niños.",
+   "pregnant/2/25000": "Las personas embarazadas pueden recibir Medi-Cal completo, incluido el dental.",
+   "adult/1/20000": "Podría calificar para Medi-Cal según su ingreso.",
+   "adult/1/30000": "Su ingreso parece ser mayor que el límite de Medi-Cal para adultos.",
+   "senior/2/20000": "Los adultos mayores tienen otras reglas de Medi-Cal.",
+   "child/4/52000": "Es probable que su hijo califique para Medi-Cal gratis."
+  }
+ },
+ "es-mobile": {
+  "overflow_px": 0,
+  "console_errors": [],
+  "axe": [],
+  "h1_count": 1,
+  "checker": {
+   "child/4/95000": "Su hijo podría calificar para cobertura de bajo costo.",
+   "child/4/120000": "Su ingreso parece ser mayor que el límite de Medi-Cal para niños.",
+   "pregnant/2/25000": "Las personas embarazadas pueden recibir Medi-Cal completo, incluido el dental.",
+   "adult/1/20000": "Podría calificar para Medi-Cal según su ingreso.",
+   "adult/1/30000": "Su ingreso parece ser mayor que el límite de Medi-Cal para adultos.",
+   "senior/2/20000": "Los adultos mayores tienen otras reglas de Medi-Cal.",
+   "child/4/52000": "Es probable que su hijo califique para Medi-Cal gratis."
+  }
+ }
+}

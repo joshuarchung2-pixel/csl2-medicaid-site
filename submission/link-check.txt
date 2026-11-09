@@ -1,0 +1,33 @@
+200 | ok | https://211la.org/ | Home | 211LA
+200 | ok | https://aspe.hhs.gov/topics/poverty-economic-mobility/poverty-guidelines | Poverty Guidelines | ASPE
+200 | ok | https://benefitscal.com/ | Home | BenefitsCal. Together, we benefit.
+200 | ok | https://dpss.lacounty.gov/en/health.html | Health Care
+200 | ok | https://dpss.lacounty.gov/en/resources/contact.html | Contact Us
+200 | ok | https://findahealthcenter.hrsa.gov/ | Find a Health Center
+200 | ok | https://healthconsumer.org/medi-cal-changes-and-what-you-need-to-know/ | Medi-Cal Changes and What You Need to Know - Health Consumer
+200 | ok | https://inlandsocaluw.org/211 | Inland SoCal 211: Serving Riverside & San Bernardino Countie
+200 | ok | https://odphp.health.gov/healthypeople/priority-areas/social-determinants-health | Social Determinants of Health - Healthy People 2030 | odphp.
+200 | ok | https://rivcodpss.org/medi-cal | Medi-Cal | Riverside County Department of Public Social Serv
+200 | ok | https://smilecalifornia.org/covered-services/ | Covered Services | Smile California
+200 | ok | https://smilecalifornia.org/covered-services/adults/ | Adults (21-54) | Smile California
+200 | ok | https://smilecalifornia.org/covered-services/kids/ | Kids (4-12) | Smile California
+200 | ok | https://smilecalifornia.org/covered-services/teens/ | Teens (13-20) | Smile California
+200 | ok | https://smilecalifornia.org/find-a-dentist/ | Find A Dentist | Smile California
+200 | ok | https://sonriecalifornia.org/ | Sonríe California | Programa Medi-Cal Dental
+200 | ok | https://wp.sbcounty.gov/tad/ | Transitional Assistance Department – Transitional Assistance
+200 | ok | https://www.cdc.gov/oral-health/data-research/facts-stats/index.html | Oral Health Facts | Oral Health | CDC
+200 | ok | https://www.coveredca.com/ | The Official Site of California's Health Insurance Marketpla
+200 | ok | https://www.coveredca.com/support/contact-us/ | Get Help | Covered California
+200 | ok | https://www.dhcs.ca.gov/immigration-status-and-changes-to-medi-cal-eligibility/ | Immigration Status and Changes to Medi-Cal Eligibility | DHC
+200 | ok | https://www.dhcs.ca.gov/medi-cal/apply/ | Apply | Medi-Cal
+200 | ok | https://www.dhcs.ca.gov/medi-cal/benefits/ | Benefits | Medi-Cal
+200 | ok | https://www.dhcs.ca.gov/medi-cal/contact/find-a-county-office/ | Find a County Office | Medi-Cal
+200 | ok | https://www.dhcs.ca.gov/medi-cal/help/ | Help | Medi-Cal
+200 | ok | https://www.dhcs.ca.gov/medi-cal/qualify/qualify-for-medi-cal-eligibility-chart/ | Eligibility by Federal Poverty Level | DHCS
+200 | ok | https://www.dhcs.ca.gov/medi-cal/updates/medi-cal-changes/ | Medi-Cal Changes | Medi-Cal
+200 | ok | https://www.dhcs.ca.gov/newsroom-office-of-communications/statement-from-the-department-of-health-care-services-on-the-federal-use-of-medi-cal-data-and-member-privacy/ | STATEMENT FROM THE DEPARTMENT OF HEALTH CARE SERVICES ON THE
+200 | ok | https://www.dhcs.ca.gov/wp-content/uploads/2025/10/HACCP-FPL-Chart.pdf | 
+200 | ok | https://www.sachealth.org/ | Expert Care at SAC Health - Patient Centered Clinics | Calif
+200 | ok | https://www.sachealth.org/services/dental | Adult & Pediatric Dental | SAC Health | Patient Centered Cli
+200 | ok | https://www.westernuhealth.com/pomona/services/dental/ | Dental Care Services | WesternU Health | Pomona
+TOTAL 32 BAD 0
