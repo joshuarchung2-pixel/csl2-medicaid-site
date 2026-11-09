@@ -96,8 +96,10 @@
   var root = document.getElementById("teeth");
   if (!root) return;
   var range = document.getElementById("age");
-  var out = document.getElementById("age-out");
-  var labels = out.dataset.labels.split("|");
+  var num = document.getElementById("age-num");
+  var unit = document.getElementById("age-unit");
+  var labels = range.dataset.labels.split("|");
+  var units = unit.dataset.units.split("|");
   var segs = root.querySelectorAll("[data-stage]");
   var views = root.querySelectorAll("[data-mouth-view]");
   var panels = root.querySelectorAll(".panel");
@@ -137,10 +139,12 @@
     if (focus) tooth.focus();
   }
 
-  function applyAge() {
+  // typing: leave the box alone while someone is typing in it
+  function applyAge(typing) {
     var i = Number(range.value);
     var text = label(i);
-    out.textContent = text;
+    if (!typing) num.value = String(i <= 1 ? 0 : i === MAX ? 90 : i - 1);
+    unit.textContent = i === 0 ? units[0] : i === 1 ? units[1] : i === MAX ? units[3] : units[2];
     range.setAttribute("aria-valuetext", text);
     var g = groupFor(years(i));
     aged.forEach(function (el) { el.classList.toggle("age-on", el.dataset.ages.split(" ").indexOf(g) !== -1); });
@@ -154,13 +158,33 @@
     showPanel(name + "-intro");
   }
 
-  function onAge() {
+  function onAge(typing) {
     var i = Number(range.value);
-    applyAge();
+    applyAge(typing === true);
     if (!(stage === "edentulous" && i >= FIT.edentulous[0])) setStage(stageFor(years(i)));
   }
 
   range.addEventListener("input", onAge);
+  // Typed age: digits only. 0 = under 1 year, 90 or more = 90+.
+  num.addEventListener("beforeinput", function (e) { if (e.data && /\D/.test(e.data)) e.preventDefault(); });
+  num.addEventListener("input", function () {
+    var v = num.value.replace(/\D/g, "").slice(0, 3);
+    if (v !== num.value) num.value = v;
+    if (v === "") return;
+    var n = Number(v), cur = Number(range.value);
+    range.value = String(n === 0 ? (cur <= 1 ? cur : 0) : n >= 90 ? MAX : n + 1);
+    onAge(true);
+  });
+  num.addEventListener("change", function () { applyAge(); });
+  num.addEventListener("blur", function () { applyAge(); });
+  num.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") { e.preventDefault(); applyAge(); num.select(); }
+    else if (e.key === "ArrowUp" || e.key === "ArrowDown") {
+      e.preventDefault();
+      range.value = String(Math.min(MAX, Math.max(0, Number(range.value) + (e.key === "ArrowUp" ? 1 : -1))));
+      onAge();
+    }
+  });
   root.querySelectorAll("[data-age-step]").forEach(function (b) {
     b.addEventListener("click", function () {
       range.value = String(Math.min(MAX, Math.max(0, Number(range.value) + Number(b.dataset.ageStep))));

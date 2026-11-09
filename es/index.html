@@ -60,7 +60,6 @@
 <section id="check" class="hero" aria-labelledby="hero-h">
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <p class="eyebrow">Para familias de California sin seguro médico</p>
       <h1 id="hero-h">Sus hijos pueden recibir atención dental con Medi-Cal.</h1>
       <p class="lead">Medi-Cal es el plan de salud gratis o de bajo costo de California, y trae atención dental. Muchas familias que trabajan califican. Conteste 3 preguntas rápidas para ver su siguiente paso.</p>
       <ul class="facts">
@@ -75,6 +74,7 @@
         <p class="flow-title">Encuentre su siguiente paso</p>
         <p class="flow-progress" id="flow-progress" aria-live="polite" data-done="Listo">Paso 1 de 3</p>
       </div>
+      <p class="flow-hint">Toque una respuesta para empezar. Toma como un minuto.</p>
       <div class="flow-bar" aria-hidden="true"><span></span><span></span><span></span></div>
 
       <fieldset class="step" data-step="1">
@@ -198,14 +198,16 @@
     </div>
     <div class="sdoh">
       <p class="sdoh-lead">Este proyecto trata de dos <strong>determinantes sociales de la salud</strong>, las condiciones de los lugares donde vivimos y trabajamos que afectan nuestra salud. <a class="cite" id="c-odphp-1" href="#ref-odphp">(ODPHP, n.d.)</a></p>
-      <ul class="tags" aria-label="Determinantes sociales de la salud que se abordan">
-        <li>Estabilidad económica</li>
-        <li>Acceso a la atención médica y su calidad</li>
+      <ul class="sdoh-pairs" aria-label="Determinantes sociales de la salud que se abordan">
+        <li class="sdoh-pair">
+          <p class="sdoh-tag"><span class="sdoh-n" aria-hidden="true">1</span>Estabilidad económica</p>
+          <div class="stat"><p class="stat-num">25% <span>vs.</span> 10%</p><p>Niños de 6 a 9 años con caries sin tratar, de hogares con menos ingresos comparados con hogares con más ingresos. <a class="cite" id="c-cdc-1" href="#ref-cdc">(CDC, 2024)</a></p></div>
+        </li>
+        <li class="sdoh-pair">
+          <p class="sdoh-tag"><span class="sdoh-n" aria-hidden="true">2</span>Acceso a la atención médica y su calidad</p>
+          <div class="stat"><p class="stat-num">34M</p><p>Horas de clase que se pierden cada año en EE. UU. por atención dental de emergencia. <a class="cite" id="c-cdc-2" href="#ref-cdc">(CDC, 2024)</a></p></div>
+        </li>
       </ul>
-      <div class="stats">
-        <div class="stat"><p class="stat-num">25% <span>vs.</span> 10%</p><p>Niños de 6 a 9 años con caries sin tratar, de hogares con menos ingresos comparados con hogares con más ingresos. <a class="cite" id="c-cdc-1" href="#ref-cdc">(CDC, 2024)</a></p></div>
-        <div class="stat"><p class="stat-num">34M</p><p>Horas de clase que se pierden cada año en EE. UU. por atención dental de emergencia. <a class="cite" id="c-cdc-2" href="#ref-cdc">(CDC, 2024)</a></p></div>
-      </div>
       <p class="small">Medi-Cal ayuda con los obstáculos. Es gratis o de bajo costo y cubre el transporte a citas de Medi-Cal para quienes lo necesitan. <a class="cite" id="c-dhcs-benefits-1" href="#ref-dhcs-benefits">(DHCS, n.d.-c)</a> La solicitud en papel viene en 12 idiomas. <a class="cite" id="c-dhcs-apply-5" href="#ref-dhcs-apply">(DHCS, n.d.-a)</a> Si le pagan en efectivo, es posible que pueda declarar sus ingresos usted mismo. <a class="cite" id="c-dhcs-help-3" href="#ref-dhcs-help">(DHCS, n.d.-e)</a></p>
     </div>
   </div>
@@ -221,14 +223,17 @@
     <div class="teeth" id="teeth">
       <div class="mouth-controls">
         <div class="age-ctl">
-          <label class="ctl-label" for="age">Edad del paciente</label>
-          <output class="age-out" id="age-out" for="age" aria-hidden="true" data-labels="Edad: menos de 6 meses|Edad: de 6 a 11 meses|Edad: {n}|Edad: 90+">Edad: 7</output>
+          <label class="ctl-label" for="age-num">Edad del paciente</label>
+          <div class="age-field">
+            <input type="text" class="age-num" id="age-num" inputmode="numeric" pattern="[0-9]*" maxlength="3" autocomplete="off" spellcheck="false" value="7" aria-describedby="age-unit">
+            <span class="age-unit" id="age-unit" data-units="años (menos de 6 meses)|años (de 6 a 11 meses)|años|años o más">años</span>
+          </div>
           <div class="age-row">
             <button type="button" class="age-step" data-age-step="-1" aria-label="Menor" aria-controls="age"><svg class="ic" aria-hidden="true"><use href="#i-minus"/></svg></button>
-            <input type="range" class="age-range" id="age" min="0" max="91" step="1" value="8" aria-valuetext="Edad: 7">
+            <input type="range" class="age-range" id="age" min="0" max="91" step="1" value="8" aria-label="Barra de edad" aria-valuetext="Edad: 7" data-labels="Edad: menos de 6 meses|Edad: de 6 a 11 meses|Edad: {n}|Edad: 90+">
             <button type="button" class="age-step" data-age-step="1" aria-label="Mayor" aria-controls="age"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button>
           </div>
-          <p class="age-note">Las edades son aproximadas. A cada niño le salen los dientes a su propio ritmo.</p>
+          <p class="age-note">Escriba una edad o use la barra. Las edades son aproximadas. A cada niño le salen los dientes a su propio ritmo.</p>
         </div>
         <div class="stage-ctl">
           <p class="ctl-label" id="stage-l">Dientes en la boca</p>
