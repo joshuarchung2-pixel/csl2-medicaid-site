@@ -1,167 +1,183 @@
-/* Compact section menu for phones. Without JS the section links show as a scrolling row. */
-(function () {
-  "use strict";
-  var btn = document.querySelector(".menu-btn");
-  var nav = document.getElementById("site-nav");
-  if (!btn || !nav) return;
-  function setOpen(open) {
-    nav.classList.toggle("open", open);
-    btn.setAttribute("aria-expanded", open ? "true" : "false");
-  }
-  btn.addEventListener("click", function () {
-    setOpen(btn.getAttribute("aria-expanded") !== "true");
-  });
-  nav.addEventListener("click", function (e) {
-    if (e.target.closest("a")) setOpen(false);
-  });
-  nav.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") { setOpen(false); btn.focus(); }
-  });
-  btn.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") setOpen(false);
-  });
-  document.addEventListener("click", function (e) {
-    if (nav.classList.contains("open") && !nav.contains(e.target) && !btn.contains(e.target)) setOpen(false);
-  });
-})();
+/* Smiles Start with Medi-Cal. All page text lives in the HTML (English and Spanish);
+   this file only shows and hides parts of it and fills in numbers.
+   Nothing is stored (no cookies, no localStorage) and nothing is sent anywhere. */
 
-/* "Am I likely eligible?" self-check.
-   Runs entirely in the browser. Nothing is stored, logged, or sent anywhere. */
+/* ---------- Guided flow: county, household size, who needs coverage ---------- */
 (function () {
   "use strict";
+  var flow = document.getElementById("flow");
+  if (!flow) return;
 
   // 2026 HHS poverty guidelines, 48 states + DC (ASPE, 2026).
   var FPL = [15960, 21640, 27320, 33000, 38680, 44360, 50040, 55720];
   var FPL_EXTRA = 5680;
-  // DHCS published 138% FPL yearly limits, household sizes 1-12 (DHCS, n.d.-b).
+  // DHCS published 138% FPL yearly limits, household sizes 1 to 12 (DHCS, n.d.-b).
   var ADULT_138 = [22025, 29863, 37702, 45540, 53378, 61217, 69055, 76894, 84732, 92570, 100409, 108247];
+  function fpl(n) { return n <= 8 ? FPL[n - 1] : FPL[7] + FPL_EXTRA * (n - 8); }
+  function money(v) { return "$" + Math.round(v).toLocaleString("en-US"); }
 
-  function fpl(n) {
-    return n <= 8 ? FPL[n - 1] : FPL[7] + FPL_EXTRA * (n - 8);
+  var steps = flow.querySelectorAll(".step");
+  var bar = flow.querySelectorAll(".flow-bar span");
+  var progress = document.getElementById("flow-progress");
+  var progressText = progress.textContent; // "Step 1 of 3" / "Paso 1 de 3"
+  var plan = document.getElementById("plan");
+  var err = document.getElementById("flow-error");
+  var state = { county: null, size: null };
+
+  function go(n) {
+    steps.forEach(function (s) { s.hidden = Number(s.dataset.step) !== n; });
+    plan.hidden = n !== 4;
+    flow.classList.toggle("done", n === 4);
+    bar.forEach(function (b, i) { b.classList.toggle("on", i < n); });
+    progress.textContent = n === 4 ? progress.dataset.done : progressText.replace("1", String(n));
+    var target = n === 4 ? document.getElementById("plan-h") : flow.querySelector('.step[data-step="' + n + '"] legend');
+    if (target) target.focus({ preventScroll: n !== 4 });
+    if (n === 4 && plan.scrollIntoView) {
+      var top = plan.getBoundingClientRect().top;
+      if (top < 0 || top > window.innerHeight * 0.6) plan.scrollIntoView({ block: "start", behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+    }
   }
 
-  var lang = (document.documentElement.lang || "en").slice(0, 2);
-  var money = function (v) {
-    return "$" + Math.round(v).toLocaleString("en-US");
-  };
+  function mark(group, btn) {
+    group.forEach(function (b) { b.classList.toggle("chosen", b === btn); });
+  }
 
-  var T = {
-    en: {
-      need: "Please answer all three questions.",
-      childGoodH: "Your child is likely eligible for free Medi-Cal.",
-      childGood: function (lim) {
-        return "Children under 19 can get full Medi-Cal with dental care when family income is at or below about " + lim + " a year for your household size. A child's immigration status does not matter.";
-      },
-      childMaybeH: "Your child may qualify for low-cost coverage.",
-      childMaybe: function (lo, hi) {
-        return "Your income is above " + lo + " but at or below about " + hi + ". Many children in this range can get coverage with medical, dental, and vision care for a small monthly premium. Apply to find out.";
-      },
-      childOverH: "Your income looks higher than the Medi-Cal limit for kids.",
-      childOver: "You can still apply. Medi-Cal counts income in special ways, and Covered California may help pay for a health plan.",
-      pregH: "Pregnant people can get full Medi-Cal, including dental.",
-      pregLow: function (lim) {
-        return "Your income is at or below " + lim + ", so you are likely eligible. ";
-      },
-      preg: "Pregnancy coverage does not depend on immigration status, and it lasts during pregnancy and for one year after. Pregnancy has its own income rules, so apply even if your income is higher.",
-      adultGoodH: "You may be eligible for Medi-Cal based on income.",
-      adultGood: function (lim) {
-        return "Adults 19 to 64 can qualify with income at or below " + lim + " a year for your household size.";
-      },
-      adultOverH: "Your income looks higher than the Medi-Cal limit for adults.",
-      adultOver: "Covered California can help you find a lower-cost health plan, and your children may still qualify for Medi-Cal at your income. Check again with \"My child\" selected.",
-      adultFreeze: "Since January 1, 2026, most adults 19 and older without a qualifying immigration status cannot newly sign up for full Medi-Cal. They can still get emergency and pregnancy care.",
-      seniorH: "Older adults use different Medi-Cal rules.",
-      senior: "Since January 1, 2026, Medi-Cal counts assets for adults 65 and older (limit: $130,000 for one person, plus $65,000 for each extra person). Call your county office to talk through your situation.",
-      foot: "This is only an estimate, not a decision. The county makes the final decision when you apply."
-    },
-    es: {
-      need: "Por favor conteste las tres preguntas.",
-      childGoodH: "Es probable que su hijo califique para Medi-Cal gratis.",
-      childGood: function (lim) {
-        return "Los niños menores de 19 años pueden recibir Medi-Cal completo con servicios dentales si el ingreso familiar es de aproximadamente " + lim + " al año o menos para el tamaño de su hogar. El estatus migratorio del niño no importa.";
-      },
-      childMaybeH: "Su hijo podría calificar para cobertura de bajo costo.",
-      childMaybe: function (lo, hi) {
-        return "Su ingreso es mayor de " + lo + " pero de aproximadamente " + hi + " o menos. Muchos niños en este rango pueden recibir cobertura médica, dental y de la vista por una pequeña cuota mensual. Presente una solicitud para saberlo.";
-      },
-      childOverH: "Su ingreso parece ser mayor que el límite de Medi-Cal para niños.",
-      childOver: "Aun así puede presentar una solicitud. Medi-Cal cuenta el ingreso de maneras especiales, y Covered California puede ayudarle a pagar un plan de salud.",
-      pregH: "Las personas embarazadas pueden recibir Medi-Cal completo, incluido el dental.",
-      pregLow: function (lim) {
-        return "Su ingreso es de " + lim + " o menos, así que es probable que califique. ";
-      },
-      preg: "La cobertura durante el embarazo no depende del estatus migratorio y dura todo el embarazo y un año después. El embarazo tiene sus propias reglas de ingreso, así que presente una solicitud aunque su ingreso sea más alto.",
-      adultGoodH: "Podría calificar para Medi-Cal según su ingreso.",
-      adultGood: function (lim) {
-        return "Los adultos de 19 a 64 años pueden calificar con un ingreso de " + lim + " al año o menos para el tamaño de su hogar.";
-      },
-      adultOverH: "Su ingreso parece ser mayor que el límite de Medi-Cal para adultos.",
-      adultOver: "Covered California puede ayudarle a encontrar un plan de salud de menor costo, y sus hijos aún podrían calificar para Medi-Cal con su ingreso. Vuelva a revisar eligiendo \"Mi hijo o hija\".",
-      adultFreeze: "Desde el 1 de enero de 2026, la mayoría de los adultos de 19 años o más sin un estatus migratorio que califique no pueden inscribirse por primera vez en Medi-Cal completo. Todavía pueden recibir atención de emergencia y del embarazo.",
-      seniorH: "Los adultos mayores tienen otras reglas de Medi-Cal.",
-      senior: "Desde el 1 de enero de 2026, Medi-Cal cuenta los bienes de los adultos de 65 años o más (límite: $130,000 para una persona, más $65,000 por cada persona adicional). Llame a la oficina de su condado para hablar de su situación.",
-      foot: "Esto es solo un cálculo aproximado, no una decisión. El condado toma la decisión final cuando usted presenta su solicitud."
-    }
-  };
-  var t = T[lang] || T.en;
-
-  var form = document.getElementById("checker");
-  if (!form) return;
-  var out = document.getElementById("result");
-
-  function show(kind, heading, body) {
-    out.className = "result show " + kind;
-    out.innerHTML = "";
-    var h = document.createElement("h3");
-    h.textContent = heading;
-    out.appendChild(h);
-    body.forEach(function (txt) {
-      var p = document.createElement("p");
-      p.textContent = txt;
-      out.appendChild(p);
+  var countyBtns = flow.querySelectorAll(".step [data-county]");
+  countyBtns.forEach(function (b) {
+    b.addEventListener("click", function () { state.county = b.dataset.county; mark(countyBtns, b); go(2); });
+  });
+  var sizeBtns = flow.querySelectorAll(".step [data-size]");
+  sizeBtns.forEach(function (b) {
+    b.addEventListener("click", function () { state.size = Number(b.dataset.size); mark(sizeBtns, b); go(3); });
+  });
+  var whoBtns = flow.querySelectorAll(".step [data-who]");
+  whoBtns.forEach(function (b) {
+    b.addEventListener("click", function () {
+      b.setAttribute("aria-pressed", b.getAttribute("aria-pressed") === "true" ? "false" : "true");
+      err.textContent = "";
     });
-    var f = document.createElement("p");
-    f.className = "hint";
-    f.textContent = t.foot;
-    out.appendChild(f);
-    out.focus();
-  }
-
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    var who = form.querySelector('input[name="who"]:checked');
-    var size = parseInt(form.size.value, 10);
-    var income = parseFloat(String(form.income.value).replace(/[^0-9.]/g, ""));
-    if (!who || !size || isNaN(income)) {
-      out.className = "result show other";
-      out.textContent = t.need;
-      out.focus();
-      return;
-    }
-    var base = fpl(size);
-    var adult = ADULT_138[size - 1];
-    switch (who.value) {
-      case "child":
-        var c266 = base * 2.66, c322 = base * 3.22;
-        if (income <= c266) show("good", t.childGoodH, [t.childGood(money(c266))]);
-        else if (income <= c322) show("maybe", t.childMaybeH, [t.childMaybe(money(c266), money(c322))]);
-        else show("other", t.childOverH, [t.childOver]);
-        break;
-      case "pregnant":
-        show("good", t.pregH, [(income <= adult ? t.pregLow(money(adult)) : "") + t.preg]);
-        break;
-      case "adult":
-        if (income <= adult) show("good", t.adultGoodH, [t.adultGood(money(adult)), t.adultFreeze]);
-        else show("other", t.adultOverH, [t.adultOver]);
-        break;
-      case "senior":
-        show("maybe", t.seniorH, [t.senior]);
-        break;
-    }
+  });
+  flow.querySelectorAll("[data-back]").forEach(function (b) {
+    b.addEventListener("click", function () { go(Number(b.closest(".step").dataset.step) - 1); });
   });
 
-  form.addEventListener("reset", function () {
-    out.className = "result";
-    out.textContent = "";
+  flow.querySelector("[data-finish]").addEventListener("click", function () {
+    var who = {};
+    whoBtns.forEach(function (b) { if (b.getAttribute("aria-pressed") === "true") who[b.dataset.who] = true; });
+    if (!Object.keys(who).length) { err.textContent = err.dataset.msg; return; }
+    who.kids = who.baby || who.kid || who.teen;
+
+    var n = state.size;
+    plan.querySelectorAll("[data-fill]").forEach(function (el) {
+      var k = el.dataset.fill;
+      el.textContent = k === "size" ? String(n)
+        : k === "kid266" ? money(fpl(n) * 2.66)
+        : k === "kid322" ? money(fpl(n) * 3.22)
+        : money(ADULT_138[n - 1]);
+    });
+    plan.querySelectorAll("[data-show]").forEach(function (el) { el.hidden = !who[el.dataset.show]; });
+    plan.querySelectorAll("[data-county], [data-county-name]").forEach(function (el) {
+      el.hidden = (el.dataset.county || el.dataset.countyName) !== state.county;
+    });
+    go(4);
+  });
+
+  plan.querySelector("[data-restart]").addEventListener("click", function () {
+    state = { county: null, size: null };
+    flow.querySelectorAll(".chosen").forEach(function (b) { b.classList.remove("chosen"); });
+    whoBtns.forEach(function (b) { b.setAttribute("aria-pressed", "false"); });
+    go(1);
+  });
+})();
+
+/* ---------- Tap a tooth ---------- */
+(function () {
+  "use strict";
+  var root = document.getElementById("teeth");
+  if (!root) return;
+  var panels = root.querySelectorAll(".panel");
+  var segs = root.querySelectorAll("[data-mouth]");
+  var views = root.querySelectorAll("[data-mouth-view]");
+
+  function showPanel(name) {
+    panels.forEach(function (p) { p.hidden = p.dataset.panel !== name; });
+  }
+  function teethOf(view) { return Array.prototype.slice.call(view.querySelectorAll(".tooth")); }
+
+  function select(tooth, focus) {
+    var view = tooth.closest("[data-mouth-view]");
+    var all = teethOf(view);
+    all.forEach(function (t) {
+      var on = t === tooth;
+      t.setAttribute("aria-checked", on ? "true" : "false");
+      t.setAttribute("tabindex", on ? "0" : "-1");
+      t.classList.toggle("same", !on && t.dataset.group === tooth.dataset.group);
+    });
+    showPanel(tooth.dataset.group);
+    if (focus) tooth.focus();
+  }
+
+  function clear(view) {
+    var all = teethOf(view);
+    all.forEach(function (t, i) {
+      t.setAttribute("aria-checked", "false");
+      t.setAttribute("tabindex", i === 0 ? "0" : "-1");
+      t.classList.remove("same");
+    });
+  }
+
+  function setMouth(name) {
+    segs.forEach(function (s) { s.setAttribute("aria-pressed", s.dataset.mouth === name ? "true" : "false"); });
+    views.forEach(function (v) { v.hidden = v.dataset.mouthView !== name; clear(v); });
+    showPanel(name + "-intro");
+  }
+
+  segs.forEach(function (s) { s.addEventListener("click", function () { setMouth(s.dataset.mouth); }); });
+
+  views.forEach(function (view) {
+    var all = teethOf(view);
+    all.forEach(function (t, i) {
+      t.addEventListener("click", function () { select(t, false); });
+      t.addEventListener("keydown", function (e) {
+        var k = e.key, j = i;
+        if (k === "ArrowRight" || k === "ArrowDown") j = (i + 1) % all.length;
+        else if (k === "ArrowLeft" || k === "ArrowUp") j = (i - 1 + all.length) % all.length;
+        else if (k === "Home") j = 0;
+        else if (k === "End") j = all.length - 1;
+        else if (k === " " || k === "Enter") { e.preventDefault(); select(t, false); return; }
+        else return;
+        e.preventDefault();
+        select(all[j], true);
+      });
+    });
+  });
+
+  root.querySelectorAll("[data-panel-btn]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      views.forEach(function (v) { if (!v.hidden) clear(v); });
+      showPanel(b.dataset.panelBtn);
+    });
+  });
+
+  setMouth("kid");
+})();
+
+/* ---------- Flip cards ---------- */
+(function () {
+  "use strict";
+  document.querySelectorAll(".flip").forEach(function (card) {
+    var front = card.querySelector(".front");
+    var back = card.querySelector(".back");
+    function set(flipped) {
+      card.classList.toggle("flipped", flipped);
+      front.inert = flipped;
+      back.inert = !flipped;
+      (flipped ? back.querySelector("p[tabindex]") : front.querySelector(".flip-btn")).focus({ preventScroll: true });
+    }
+    back.inert = true;
+    card.addEventListener("click", function (e) {
+      if (e.target.closest("a")) return;
+      set(!card.classList.contains("flipped"));
+    });
   });
 })();

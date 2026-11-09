@@ -4,359 +4,478 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sonrisas con Medi-Cal</title>
-<meta name="description" content="Guía en lenguaje sencillo para familias de California sin seguro médico: quién puede recibir Medi-Cal, qué servicios dentales cubre, cómo presentar una solicitud y dónde encontrar ayuda gratis.">
+<meta name="description" content="Una guía sencilla para familias de California sin seguro médico. Conteste 3 preguntas para ver si sus hijos pueden tener Medi-Cal, qué servicios dentales cubre y dónde encontrar ayuda.">
 <script>document.documentElement.classList.add("js");</script>
+<link rel="preload" href="../fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../styles.css">
 <link rel="alternate" hreflang="en" href="../index.html">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='%231F4FBF' d='M18 6c-8 0-14 7-14 16 0 9 4 14 6 22 2 9 4 16 9 16 6 0 5-14 13-14s7 14 13 14c5 0 7-7 9-16 2-8 6-13 6-22 0-9-6-16-14-16-6 0-9 3-14 3S24 6 18 6z'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231F4FBF' stroke-width='2' stroke-linejoin='round'%3E%3Cpath d='M7 3C4.8 3 3 4.8 3 7.5c0 2.4 1 3.8 1.6 6 .6 2.5 1 6.5 2.9 6.5 1.7 0 1.6-4.5 4.5-4.5s2.8 4.5 4.5 4.5c1.9 0 2.3-4 2.9-6.5.6-2.2 1.6-3.6 1.6-6C21 4.8 19.2 3 17 3c-1.8 0-3 1-5 1S8.8 3 7 3z'/%3E%3C/svg%3E">
 </head>
 <body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-tooth" viewBox="0 0 24 24"><path d="M7 3C4.8 3 3 4.8 3 7.5c0 2.4 1 3.8 1.6 6 .6 2.5 1 6.5 2.9 6.5 1.7 0 1.6-4.5 4.5-4.5s2.8 4.5 4.5 4.5c1.9 0 2.3-4 2.9-6.5.6-2.2 1.6-3.6 1.6-6C21 4.8 19.2 3 17 3c-1.8 0-3 1-5 1S8.8 3 7 3z"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="i-print" viewBox="0 0 24 24"><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 9V3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6"/><rect x="6" y="14" width="12" height="8" rx="1"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></symbol>
+  <symbol id="i-reset" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-qr" viewBox="0 0 24 24"><rect width="5" height="5" x="3" y="3" rx="1"/><rect width="5" height="5" x="16" y="3" rx="1"/><rect width="5" height="5" x="3" y="16" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3"/><path d="M21 21v.01"/><path d="M12 7v3a2 2 0 0 1-2 2H7"/><path d="M3 12h.01"/><path d="M12 3h.01"/><path d="M12 16v.01"/><path d="M16 12h1"/><path d="M21 12v.01"/><path d="M12 21v-1"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></symbol>
+  <symbol id="i-building" viewBox="0 0 24 24"><path d="M10 12h4"/><path d="M10 8h4"/><path d="M14 21v-3a2 2 0 0 0-4 0v3"/><path d="M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2"/><path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"/></symbol>
+  <symbol id="i-steth" viewBox="0 0 24 24"><path d="M11 2v2"/><path d="M5 2v2"/><path d="M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1"/><path d="M8 15a6 6 0 0 0 12 0v-3"/><circle cx="20" cy="10" r="2"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><path d="M8 2v3"/><path d="M16 2v3"/><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></symbol>
+</svg>
+
 <a class="skip" href="#main">Saltar al contenido principal</a>
 
 <header class="site-header">
   <div class="wrap header-row">
     <a class="brand" href="#top">
-      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round" d="M18 6c-8 0-14 7-14 16 0 9 4 14 6 22 2 9 4 16 9 16 6 0 5-14 13-14s7 14 13 14c5 0 7-7 9-16 2-8 6-13 6-22 0-9-6-16-14-16-6 0-9 3-14 3S24 6 18 6z"/></svg>
-      <span class="brand-name">Sonrisas con <span class="nowrap">Medi-Cal</span></span>
+      <svg class="ic brand-mark" aria-hidden="true"><use href="#i-tooth"/></svg>
+      <span>Sonrisas con <span class="nowrap">Medi-Cal</span></span>
     </a>
-    <div class="header-actions">
-      <a class="lang" href="../index.html" hreflang="en" lang="en">English</a>
-      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Menú</span></button>
-    </div>
-  </div>
-  <nav id="site-nav" class="site-nav" aria-label="Secciones">
-    <div class="wrap">
+    <nav class="site-nav" aria-label="Secciones">
       <ul>
-        <li><a href="#why">Por qué importa</a></li>
-        <li><a href="#check">¿Califico?</a></li>
-        <li><a href="#dental">Servicios dentales</a></li>
-        <li><a href="#apply">Cómo solicitar</a></li>
-        <li><a href="#bring">Qué llevar</a></li>
-        <li><a href="#myths">Mitos y realidades</a></li>
-        <li><a href="#changes">Cambios 2026–2028</a></li>
+        <li><a href="#check">Revisar</a></li>
+        <li><a href="#coverage">Cobertura</a></li>
+        <li><a href="#apply">Solicitar</a></li>
         <li><a href="#help">Ayuda</a></li>
-        <li><a href="#references">Referencias</a></li>
       </ul>
-    </div>
-  </nav>
+    </nav>
+    <a class="lang" href="../index.html" hreflang="en" lang="en">English</a>
+  </div>
 </header>
 
 <main id="main">
 <div id="top"></div>
 
-<section class="hero">
-  <div class="wrap">
-    <div class="hero-grid">
-      <div>
-        <p class="eyebrow">Para familias de California sin seguro médico</p>
-        <h1>La atención dental gratis o de bajo costo para sus hijos empieza con Medi-Cal.</h1>
-        <p class="lead">Medi-Cal es la cobertura de salud gratis o de bajo costo de California. Incluye servicios dentales: chequeos, limpiezas, empastes y más. Muchas familias que trabajan califican. Esta guía le muestra cómo inscribirse, paso a paso.</p>
-        <div class="cta-row">
-          <a class="btn" href="#check">Vea si podría calificar</a>
-          <a class="btn alt" href="#apply">Cómo solicitar</a>
-        </div>
-      </div>
-      <ul class="quick">
-        <li><strong>Los niños menores de 19 años pueden recibir Medi-Cal</strong> sin importar su estatus migratorio. <a class="cite" href="#ref-dhcs-imm">(DHCS, 2026a)</a></li>
-        <li><strong>Incluye servicios dentales</strong> para niños, adolescentes, personas embarazadas y adultos. <a class="cite" href="#ref-dhcs-benefits">(DHCS, n.d.-c)</a></li>
-        <li><strong>Puede solicitar en cualquier época del año</strong> por internet, por teléfono, por correo o en persona. <a class="cite" href="#ref-dhcs-help">(DHCS, n.d.-e)</a></li>
+<!-- CHECK: hero + guided flow -->
+<section id="check" class="hero" aria-labelledby="hero-h">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">Para familias de California sin seguro médico</p>
+      <h1 id="hero-h">Sus hijos pueden recibir atención dental con Medi-Cal.</h1>
+      <p class="lead">Medi-Cal es el plan de salud gratis o de bajo costo de California, y trae atención dental. Muchas familias que trabajan califican. Conteste 3 preguntas rápidas para ver su siguiente paso.</p>
+      <ul class="facts">
+        <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>Los niños menores de 19 años pueden tener Medi-Cal sin importar su estatus migratorio. <a class="cite" href="#ref-dhcs-imm">(DHCS, 2026a)</a></span></li>
+        <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>Puede solicitar en cualquier época del año. <a class="cite" href="#ref-dhcs-help">(DHCS, n.d.-e)</a></span></li>
       </ul>
     </div>
-  </div>
-</section>
 
-<section id="why" class="tint" aria-labelledby="why-h">
-  <div class="wrap">
-    <h2 id="why-h">Por qué es importante</h2>
-    <p class="section-intro">La salud depende de más que cepillarse y usar hilo dental. Los expertos llaman <strong>determinantes sociales de la salud</strong> a las condiciones de los lugares donde vivimos, trabajamos y crecemos. <a class="cite" href="#ref-odphp">(ODPHP, n.d.)</a> Este proyecto se enfoca en dos de las cinco áreas de Healthy People 2030:</p>
-    <ul class="sdoh-tags" aria-label="Determinantes sociales de la salud que se abordan">
-      <li>Estabilidad económica</li>
-      <li>Acceso a la atención médica y su calidad</li>
-    </ul>
-    <div class="grid three">
-      <div class="card">
-        <p class="stat">2&times;</p>
-        <h3>El dinero afecta las sonrisas</h3>
-        <p>Los niños de 6 a 9 años de hogares con menos ingresos tienen más del doble de probabilidad de tener caries sin tratar (25%) que los niños de hogares con más ingresos (10%). <a class="cite" href="#ref-cdc">(CDC, 2024)</a></p>
+    <div class="flow" id="flow">
+      <noscript><p class="flow-noscript">Esta revisión necesita JavaScript. Aun así puede leer abajo las secciones de <a href="#coverage">cobertura</a>, <a href="#apply">cómo solicitar</a> y <a href="#help">dónde encontrar ayuda</a>.</p></noscript>
+      <div class="flow-head">
+        <p class="flow-title">Encuentre su siguiente paso</p>
+        <p class="flow-progress" id="flow-progress" aria-live="polite" data-done="Listo">Paso 1 de 3</p>
       </div>
-      <div class="card">
-        <p class="stat">1 de 2</p>
-        <h3>Las caries empiezan temprano</h3>
-        <p>A los 9 años, la mitad de los niños ya ha tenido una caries en sus dientes de leche o permanentes. Muchos niños tienen caries desde los 2 años. <a class="cite" href="#ref-cdc">(CDC, 2024;</a> <a class="cite" href="#ref-smile-hub">Smile, California, n.d.-a)</a></p>
-      </div>
-      <div class="card">
-        <p class="stat">34M</p>
-        <h3>Horas de clase perdidas</h3>
-        <p>Cada año se pierden unos 34 millones de horas de clase en EE. UU. por atención dental de emergencia. El dolor de muelas puede dificultar comer, hablar y aprender. <a class="cite" href="#ref-cdc">(CDC, 2024)</a></p>
-      </div>
-    </div>
-    <div class="card" style="margin-top:1rem">
-      <h3>Los obstáculos, y cómo ayuda Medi-Cal</h3>
-      <ul>
-        <li><strong>Costo:</strong> Medi-Cal da cobertura gratis o de bajo costo a quienes califican, incluidos exámenes dentales, limpiezas y empastes. <a class="cite" href="#ref-dhcs-benefits">(DHCS, n.d.-c)</a></li>
-        <li><strong>Transporte:</strong> Medi-Cal cubre el transporte a citas de Medi-Cal para quienes lo necesitan. <a class="cite" href="#ref-dhcs-benefits">(DHCS, n.d.-c)</a></li>
-        <li><strong>Idioma:</strong> La solicitud de Medi-Cal en papel está disponible en 12 idiomas, y Covered California ofrece ayuda por teléfono y asesores en muchos idiomas. <a class="cite" href="#ref-dhcs-apply">(DHCS, n.d.-a;</a> <a class="cite" href="#ref-coveredca">Covered California, n.d.)</a></li>
-        <li><strong>Papeles:</strong> Si le pagan en efectivo o no tiene comprobante de ingresos, es posible que pueda declarar sus ingresos usted mismo ("autodeclaración"). <a class="cite" href="#ref-dhcs-help">(DHCS, n.d.-e)</a></li>
-      </ul>
-    </div>
-  </div>
-</section>
+      <div class="flow-bar" aria-hidden="true"><span></span><span></span><span></span></div>
 
-<section id="check" aria-labelledby="check-h">
-  <div class="wrap">
-    <h2 id="check-h">¿Es probable que califique? Revisión de 30 segundos</h2>
-    <p class="section-intro">Conteste tres preguntas para un cálculo rápido basado en los límites de ingreso de 2026. <a class="cite" href="#ref-dhcs-fpl">(DHCS, n.d.-b;</a> <a class="cite" href="#ref-dhcs-haccp">DHCS, 2025;</a> <a class="cite" href="#ref-aspe">ASPE, 2026)</a></p>
-    <form id="checker" class="checker" novalidate>
-      <fieldset>
-        <legend>1. ¿Quién necesita cobertura?</legend>
-        <div class="choices">
-          <label class="choice"><input type="radio" name="who" value="child"> Mi hijo o hija (menor de 19 años)</label>
-          <label class="choice"><input type="radio" name="who" value="pregnant"> Yo, y estoy embarazada</label>
-          <label class="choice"><input type="radio" name="who" value="adult"> Yo, un adulto de 19 a 64 años</label>
-          <label class="choice"><input type="radio" name="who" value="senior"> Yo, de 65 años o más</label>
+      <fieldset class="step" data-step="1">
+        <legend tabindex="-1">¿En qué condado vive?</legend>
+        <div class="tiles tiles-2">
+          <button type="button" class="tile" data-county="la">Los Ángeles</button>
+          <button type="button" class="tile" data-county="riv">Riverside</button>
+          <button type="button" class="tile" data-county="sb">San Bernardino</button>
+          <button type="button" class="tile" data-county="other">Otro condado</button>
         </div>
       </fieldset>
-      <div class="checker-row">
-        <div class="field">
-          <label class="q" for="size">2. ¿Cuántas personas viven en su hogar, incluyéndose usted?</label>
-          <select id="size" name="size">
-            <option value="">Elija…</option>
-            <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option>
-            <option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option>
-          </select>
+
+      <fieldset class="step" data-step="2" hidden>
+        <legend tabindex="-1">¿Cuántas personas viven en su hogar? Cuéntese usted.</legend>
+        <div class="tiles tiles-num">
+          <button type="button" class="tile" data-size="1">1</button>
+          <button type="button" class="tile" data-size="2">2</button>
+          <button type="button" class="tile" data-size="3">3</button>
+          <button type="button" class="tile" data-size="4">4</button>
+          <button type="button" class="tile" data-size="5">5</button>
+          <button type="button" class="tile" data-size="6">6</button>
+          <button type="button" class="tile" data-size="7">7</button>
+          <button type="button" class="tile" data-size="8">8</button>
+          <button type="button" class="tile" data-size="9">9</button>
+          <button type="button" class="tile" data-size="10">10</button>
+          <button type="button" class="tile" data-size="11">11</button>
+          <button type="button" class="tile" data-size="12">12</button>
         </div>
-        <div class="field">
-          <label class="q" for="income">3. ¿Aproximadamente cuánto ganará su familia este año, antes de impuestos?</label>
-          <input id="income" name="income" type="number" inputmode="numeric" min="0" step="100" placeholder="Ejemplo: 45000" aria-describedby="income-hint">
-          <p class="hint" id="income-hint">Total del año en dólares. Cuente el pago de todos los trabajos, incluido el efectivo.</p>
+        <div class="step-nav"><button type="button" class="link-btn" data-back><svg class="ic" aria-hidden="true"><use href="#i-left"/></svg>Atrás</button></div>
+      </fieldset>
+
+      <fieldset class="step" data-step="3" hidden>
+        <legend tabindex="-1">¿Quién necesita cobertura? Elija a todos los que apliquen.</legend>
+        <div class="tiles tiles-2">
+          <button type="button" class="tile pick" aria-pressed="false" data-who="baby">Bebé, de 0 a 3</button>
+          <button type="button" class="tile pick" aria-pressed="false" data-who="kid">Niño, de 4 a 12</button>
+          <button type="button" class="tile pick" aria-pressed="false" data-who="teen">Adolescente, de 13 a 18</button>
+          <button type="button" class="tile pick" aria-pressed="false" data-who="preg">Alguien embarazada</button>
+          <button type="button" class="tile pick" aria-pressed="false" data-who="adult">Adulto, de 19 a 64</button>
+          <button type="button" class="tile pick" aria-pressed="false" data-who="senior">Adulto, de 65 o más</button>
         </div>
+        <p class="flow-error" id="flow-error" role="alert" data-msg="Elija al menos una opción."></p>
+        <div class="step-nav">
+          <button type="button" class="link-btn" data-back><svg class="ic" aria-hidden="true"><use href="#i-left"/></svg>Atrás</button>
+          <button type="button" class="btn" data-finish>Ver mi plan<svg class="ic" aria-hidden="true"><use href="#i-right"/></svg></button>
+        </div>
+      </fieldset>
+
+      <!-- Tarjeta de resultado. Todo el texto está aquí; app.js solo muestra las partes y llena los números. -->
+      <div class="plan" id="plan" hidden>
+        <h2 class="plan-h" id="plan-h" tabindex="-1">Su plan</h2>
+        <p class="plan-sub">Hogar de <span data-fill="size"></span> en <span data-county-name="la">el condado de Los Ángeles</span><span data-county-name="riv">el condado de Riverside</span><span data-county-name="sb">el condado de San Bernardino</span><span data-county-name="other">California</span></p>
+
+        <div class="plan-block">
+          <h3>¿Puede tener Medi-Cal?</h3>
+          <p data-show="kids">Es probable que los niños menores de 19 años puedan tener Medi-Cal gratis si su familia gana unos <strong data-fill="kid266"></strong> al año o menos, antes de impuestos. Hasta unos <strong data-fill="kid322"></strong>, los niños podrían tener cobertura de bajo costo por una pequeña cuota mensual. Su estatus migratorio no importa. <a class="cite" href="#ref-dhcs-haccp">(DHCS, 2025;</a> <a class="cite" href="#ref-aspe">ASPE, 2026;</a> <a class="cite" href="#ref-dhcs-imm">DHCS, 2026a)</a></p>
+          <p data-show="preg">Si está embarazada, puede tener Medi-Cal completo con servicios dentales, sin importar su estatus migratorio. Dura todo el embarazo y 1 año después. El embarazo tiene sus propias reglas de ingreso, así que solicite aunque crea que gana demasiado. <a class="cite" href="#ref-dhcs-imm">(DHCS, 2026a)</a></p>
+          <p data-show="adult">Los adultos de 19 a 64 años pueden calificar si la familia gana <strong data-fill="adult138"></strong> al año o menos. Desde el 1 de enero de 2026, la mayoría de los adultos sin un estatus migratorio que califique no pueden inscribirse por primera vez en Medi-Cal completo, pero aún pueden recibir atención de emergencia y del embarazo. <a class="cite" href="#ref-dhcs-fpl">(DHCS, n.d.-b,</a> <a class="cite" href="#ref-dhcs-changes">n.d.-d)</a></p>
+          <p data-show="senior">Los adultos de 65 años o más tienen otras reglas. Desde el 1 de enero de 2026, Medi-Cal cuenta los ahorros y otros bienes de este grupo (hasta $130,000 para una persona, más $65,000 por cada persona adicional). Llame a la oficina de su condado para hablar de su caso. <a class="cite" href="#ref-dhcs-changes">(DHCS, n.d.-d)</a></p>
+        </div>
+
+        <div class="plan-block">
+          <h3>Atención dental que puede recibir</h3>
+          <ul class="ticks">
+            <li data-show="baby"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span><strong>Bebé:</strong> exámenes cada 3 meses, más limpiezas y flúor cada 6 meses. Primera visita al salir el primer diente o antes del primer cumpleaños. <a class="cite" href="#ref-smile-hub">(Smile, California, n.d.-a)</a></span></li>
+            <li data-show="kid"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span><strong>Niño:</strong> chequeos y limpiezas cada 6 meses, selladores en las muelas, empastes y tratamientos de conducto. <a class="cite" href="#ref-smile-kids">(Smile, California, n.d.-c)</a></span></li>
+            <li data-show="teen"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span><strong>Adolescente:</strong> chequeos cada 6 meses, selladores y coronas. Frenos (brackets) para quienes califican. <a class="cite" href="#ref-smile-teens">(Smile, California, n.d.-d)</a></span></li>
+            <li data-show="preg"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span><strong>Embarazada:</strong> atención dental completa, y es posible que no tenga límite de dinero al año. <a class="cite" href="#ref-smile-adults">(Smile, California, n.d.-b)</a></span></li>
+            <li data-show="adult"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span><strong>Adulto:</strong> un chequeo y limpieza cada año, empastes, coronas y dentaduras, hasta $1,800 al año. <a class="cite" href="#ref-smile-adults">(Smile, California, n.d.-b)</a></span></li>
+            <li data-show="senior"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span><strong>65 o más:</strong> Medi-Cal Dental también cubre a los adultos mayores. Llame al <a class="tel" href="tel:18003226384">1-800-322-6384</a> para preguntar qué le cubre. <a class="cite" href="#ref-smile-hub">(Smile, California, n.d.-a)</a></span></li>
+          </ul>
+        </div>
+
+        <div class="plan-block">
+          <h3>Su siguiente paso</h3>
+          <p data-county="la">Solicite por internet en <a href="https://benefitscal.com/">BenefitsCal.com</a> o llame al DPSS del condado de Los Ángeles al <a class="tel" href="tel:18666133777">1-866-613-3777</a>. <a class="cite" href="#ref-dhcs-apply">(DHCS, n.d.-a;</a> <a class="cite" href="#ref-la">LA County DPSS, n.d.)</a></p>
+          <p data-county="riv">Solicite por internet en <a href="https://benefitscal.com/">BenefitsCal.com</a> o llame al DPSS del condado de Riverside al <a class="tel" href="tel:18774108827">1-877-410-8827</a>. <a class="cite" href="#ref-dhcs-apply">(DHCS, n.d.-a;</a> <a class="cite" href="#ref-riv">Riverside County DPSS, n.d.)</a></p>
+          <p data-county="sb">Solicite por internet en <a href="https://benefitscal.com/">BenefitsCal.com</a> o llame al TAD del condado de San Bernardino al <a class="tel" href="tel:18774108829">1-877-410-8829</a>. <a class="cite" href="#ref-dhcs-apply">(DHCS, n.d.-a;</a> <a class="cite" href="#ref-sb">San Bernardino County TAD, n.d.)</a></p>
+          <p data-county="other">Solicite por internet en <a href="https://benefitscal.com/">BenefitsCal.com</a> o <a href="https://www.dhcs.ca.gov/medi-cal/contact/find-a-county-office/">busque la oficina de su condado</a>. Covered California también le puede ayudar al <a class="tel" href="tel:18003001506">1-800-300-1506</a>. <a class="cite" href="#ref-dhcs-apply">(DHCS, n.d.-a;</a> <a class="cite" href="#ref-coveredca">Covered California, n.d.)</a></p>
+        </div>
+
+        <div class="plan-block">
+          <h3>Qué llevar</h3>
+          <ul class="boxes">
+            <li>Identificación con foto</li>
+            <li>Tarjeta de Seguro Social, si la tiene</li>
+            <li>Documentos de inmigración, si los tiene</li>
+            <li>Su talón de pago más reciente o su declaración de impuestos</li>
+            <li>¿Le pagan en efectivo? Puede declarar sus ingresos usted mismo.</li>
+          </ul>
+          <p class="small">No necesita tenerlo todo para empezar. <a class="cite" href="#ref-dhcs-help">(DHCS, n.d.-e)</a></p>
+        </div>
+
+        <div class="plan-block">
+          <h3>La clínica más cercana en este sitio</h3>
+          <div data-county="la"><p><strong>WesternU Health Dental Center, Pomona</strong><br>Clínica de enseñanza para niños y adultos. Llame para preguntar sobre Medi-Cal. <a class="tel" href="tel:19097063910">909-706-3910</a> <a class="cite" href="#ref-westernu">(WesternU Health, n.d.)</a></p></div>
+          <div data-county="riv"><p><strong>SAC Health, San Bernardino</strong> es la clínica más cercana en este sitio. Acepta Medi-Cal y ayuda a pacientes sin seguro. <a class="tel" href="tel:19093827100">909-382-7100</a> <a class="cite" href="#ref-sac">(SAC Health, n.d.-a,</a> <a class="cite" href="#ref-sac-home">n.d.-b)</a></p><p>Para encontrar una en el condado de Riverside, use el <a href="https://findahealthcenter.hrsa.gov/">buscador de centros de salud</a>. <a class="cite" href="#ref-hrsa">(HRSA, n.d.)</a></p></div>
+          <div data-county="sb"><p><strong>SAC Health, San Bernardino</strong><br>Acepta Medi-Cal y ayuda a pacientes sin seguro. Atención dental familiar con Loma Linda University. <a class="tel" href="tel:19093827100">909-382-7100</a> <a class="cite" href="#ref-sac">(SAC Health, n.d.-a,</a> <a class="cite" href="#ref-sac-home">n.d.-b)</a></p></div>
+          <div data-county="other"><p>Use el <a href="https://findahealthcenter.hrsa.gov/">buscador de centros de salud</a> o el <a href="https://smilecalifornia.org/find-a-dentist/">buscador de dentistas de Medi-Cal</a> para encontrar atención cerca de usted. <a class="cite" href="#ref-hrsa">(HRSA, n.d.;</a> <a class="cite" href="#ref-smile-hub">Smile, California, n.d.-a)</a></p></div>
+        </div>
+
+        <div class="plan-actions">
+          <a class="btn" href="checklist.html"><svg class="ic" aria-hidden="true"><use href="#i-print"/></svg>Imprimir la lista para el refri</a>
+          <button type="button" class="btn alt" data-restart><svg class="ic" aria-hidden="true"><use href="#i-reset"/></svg>Empezar de nuevo</button>
+        </div>
+        <p class="small">Esto es un cálculo aproximado, no una decisión. El condado decide cuando usted presenta la solicitud.</p>
       </div>
-      <div class="cta-row">
-        <button class="btn" type="submit">Ver mi resultado</button>
-        <button class="btn alt" type="reset">Empezar de nuevo</button>
-      </div>
-      <div id="result" class="result" role="status" aria-live="polite" tabindex="-1"></div>
-      <p class="privacy"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2 4 5v6c0 5 3.4 9.7 8 11 4.6-1.3 8-6 8-11V5l-8-3z"/></svg> <span>Privado: sus respuestas se quedan en su aparato. No se guarda ni se envía nada. Esto es solo un cálculo aproximado, no una solicitud.</span></p>
-    </form>
+
+      <p class="privacy"><svg class="ic" aria-hidden="true"><use href="#i-shield"/></svg><span>Sus respuestas se quedan en esta página. No se guarda ni se envía nada.</span></p>
+    </div>
   </div>
 </section>
 
-<section id="dental" class="warm" aria-labelledby="dental-h">
+<!-- NOTE + SDOH -->
+<section id="about" class="band warm" aria-labelledby="about-h">
+  <div class="wrap about-grid">
+    <div class="note-card">
+      <h2 id="about-h" class="kicker">Una nota de Josh</h2>
+      <p class="note-text">Soy estudiante de odontología en WesternU, y veo niños con caries que esperaron demasiado para recibir atención. Tener cobertura es el primer paso para cambiar eso. Hice esta guía para que inscribirse en Medi-Cal sea menos confuso.</p>
+      <p class="signature"><span class="sig-name">Josh Chung</span><span class="sig-role">DMD Clase de 2029, Western University of Health Sciences</span></p>
+    </div>
+    <div class="sdoh">
+      <p class="sdoh-lead">Este proyecto trata de dos <strong>determinantes sociales de la salud</strong>, las condiciones de los lugares donde vivimos y trabajamos que afectan nuestra salud. <a class="cite" href="#ref-odphp">(ODPHP, n.d.)</a></p>
+      <ul class="tags" aria-label="Determinantes sociales de la salud que se abordan">
+        <li>Estabilidad económica</li>
+        <li>Acceso a la atención médica y su calidad</li>
+      </ul>
+      <div class="stats">
+        <div class="stat"><p class="stat-num">25% <span>vs.</span> 10%</p><p>Niños de 6 a 9 años con caries sin tratar, de hogares con menos ingresos comparados con hogares con más ingresos. <a class="cite" href="#ref-cdc">(CDC, 2024)</a></p></div>
+        <div class="stat"><p class="stat-num">34M</p><p>Horas de clase que se pierden cada año en EE. UU. por atención dental de emergencia. <a class="cite" href="#ref-cdc">(CDC, 2024)</a></p></div>
+      </div>
+      <p class="small">Medi-Cal ayuda con los obstáculos. Es gratis o de bajo costo y cubre el transporte a citas de Medi-Cal para quienes lo necesitan. <a class="cite" href="#ref-dhcs-benefits">(DHCS, n.d.-c)</a> La solicitud en papel viene en 12 idiomas. <a class="cite" href="#ref-dhcs-apply">(DHCS, n.d.-a)</a> Si le pagan en efectivo, es posible que pueda declarar sus ingresos usted mismo. <a class="cite" href="#ref-dhcs-help">(DHCS, n.d.-e)</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- COVERAGE: tap a tooth -->
+<section id="coverage" class="band" aria-labelledby="coverage-h">
   <div class="wrap">
-    <h2 id="dental-h">Lo que cubre Medi-Cal Dental</h2>
-    <p class="section-intro">Medi-Cal Dental ofrece servicios gratis o de bajo costo. Esto es lo que el programa indica para cada edad. <a class="cite" href="#ref-smile-hub">(Smile, California, n.d.-a)</a> También puede visitar <a href="https://sonriecalifornia.org/" hreflang="es">SonrieCalifornia.org</a>.</p>
-    <div class="grid two">
-      <div class="card">
-        <h3>Bebés (0–3 años)</h3>
-        <ul>
-          <li>Exámenes dentales cada 3 meses</li>
-          <li>Limpieza y barniz de flúor cada 6 meses</li>
-          <li>Radiografías, empastes, extracciones y atención de emergencia</li>
-        </ul>
-        <p><strong>Primera visita:</strong> cuando salga el primer diente o antes del primer cumpleaños, lo que pase primero. <a class="cite" href="#ref-smile-hub">(Smile, California, n.d.-a)</a></p>
+    <div class="section-head">
+      <h2 id="coverage-h">Toque un diente para ver lo que cubre Medi-Cal</h2>
+      <p>Medi-Cal Dental da atención gratis o de bajo costo a niños y adultos. Elija una boca y toque cualquier diente. <a class="cite" href="#ref-smile-hub">(Smile, California, n.d.-a)</a></p>
+    </div>
+    <div class="teeth" id="teeth">
+      <div class="mouth-switch" role="group" aria-label="Elija una boca">
+        <button type="button" class="seg" aria-pressed="true" data-mouth="kid">Niño, de unos 7 años</button>
+        <button type="button" class="seg" aria-pressed="false" data-mouth="adult">Adulto</button>
       </div>
-      <div class="card">
-        <h3>Niños (4–12 años)</h3>
-        <ul>
-          <li>Exámenes, limpiezas y barniz de flúor cada 6 meses</li>
-          <li><strong>Selladores</strong> que protegen las muelas de las caries</li>
-          <li>Radiografías, empastes, tratamientos de conducto, extracciones y emergencias</li>
-        </ul>
-        <p><a class="cite" href="#ref-smile-kids">(Smile, California, n.d.-c)</a></p>
-      </div>
-      <div class="card">
-        <h3>Adolescentes (13–20 años)</h3>
-        <ul>
-          <li>Todo lo de los niños, más coronas y limpiezas profundas</li>
-          <li><strong>Frenos (brackets)</strong> para quienes califican</li>
-          <li>Dentaduras parciales y completas si se necesitan</li>
-        </ul>
-        <p><a class="cite" href="#ref-smile-teens">(Smile, California, n.d.-d)</a></p>
-      </div>
-      <div class="card">
-        <h3>Adultos y embarazo</h3>
-        <ul>
-          <li>Examen y limpieza cada 12 meses</li>
-          <li>Empastes, coronas, tratamientos de conducto y limpiezas profundas</li>
-          <li>Dentaduras parciales y completas, extracciones y emergencias</li>
-        </ul>
-        <p><a class="cite" href="#ref-smile-adults">(Smile, California, n.d.-b)</a></p>
+      <div class="teeth-grid">
+        <div class="mouth" data-mouth-view="kid">
+          <!--MOUTH:kid--><svg class="mouth-svg" viewBox="0 0 360 440" role="radiogroup" aria-label="Dientes de un niño de unos 7 años. Use las flechas para moverse entre los dientes."><text aria-hidden="true" class="arch-label" x="180" y="214" text-anchor="middle">Dientes de arriba</text><text aria-hidden="true" class="arch-label" x="180" y="238" text-anchor="middle">Dientes de abajo</text><g aria-hidden="true"><path class="gum" d="M69.1 175.1 L70.2 166.7 L71.6 158.3 L73.4 150.0 L75.5 142.0 L78.0 134.0 L80.8 126.3 L84.0 118.8 L87.4 111.6 L91.2 104.6 L95.2 98.0 L99.5 91.7 L104.1 85.7 L109.0 80.0 L114.0 74.8 L119.3 69.9 L124.8 65.5 L130.5 61.5 L136.3 57.9 L142.3 54.8 L148.4 52.1 L154.6 49.9 L160.9 48.2 L167.2 47.0 L173.6 46.2 L180.0 46.0 L186.4 46.2 L192.8 47.0 L199.1 48.2 L205.4 49.9 L211.6 52.1 L217.7 54.8 L223.7 57.9 L229.5 61.5 L235.2 65.5 L240.7 69.9 L246.0 74.8 L251.0 80.0 L255.9 85.7 L260.5 91.7 L264.8 98.0 L268.8 104.6 L272.6 111.6 L276.0 118.8 L279.2 126.3 L282.0 134.0 L284.5 142.0 L286.6 150.0 L288.4 158.3 L289.8 166.7 L290.9 175.1 L290.9 175.1"/><path class="gum" d="M69.1 264.9 L70.2 273.3 L71.6 281.7 L73.4 290.0 L75.5 298.0 L78.0 306.0 L80.8 313.7 L84.0 321.2 L87.4 328.4 L91.2 335.4 L95.2 342.0 L99.5 348.3 L104.1 354.3 L109.0 360.0 L114.0 365.2 L119.3 370.1 L124.8 374.5 L130.5 378.5 L136.3 382.1 L142.3 385.2 L148.4 387.9 L154.6 390.1 L160.9 391.8 L167.2 393.0 L173.6 393.8 L180.0 394.0 L186.4 393.8 L192.8 393.0 L199.1 391.8 L205.4 390.1 L211.6 387.9 L217.7 385.2 L223.7 382.1 L229.5 378.5 L235.2 374.5 L240.7 370.1 L246.0 365.2 L251.0 360.0 L255.9 354.3 L260.5 348.3 L264.8 342.0 L268.8 335.4 L272.6 328.4 L276.0 321.2 L279.2 313.7 L282.0 306.0 L284.5 298.0 L286.6 290.0 L288.4 281.7 L289.8 273.3 L290.9 264.9 L290.9 264.9"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="six-molar" data-i="0" aria-label="Primera muela permanente de arriba, lado derecho" transform="translate(72.3 154.8) rotate(-78.0)"><rect x="-20.518607689855465" y="-20.518607689855465" width="41.03721537971093" height="41.03721537971093" rx="10"/><path class="groove" d="M-11.5 0H11.5M0 -11.5V11.5"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="baby-molar" data-i="1" aria-label="Muela de leche de arriba, lado derecho" transform="translate(84.5 117.5) rotate(-65.4)"><rect x="-15.885373695371971" y="-16.54726426601247" width="31.770747390743942" height="33.09452853202494" rx="10"/><path class="groove" d="M-6.9 0H6.9M0 -7.5V7.5"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="baby-molar" data-i="2" aria-label="Muela de leche de arriba, lado derecho" transform="translate(102.5 87.7) rotate(-52.1)"><rect x="-15.885373695371971" y="-16.54726426601247" width="31.770747390743942" height="33.09452853202494" rx="10"/><path class="groove" d="M-6.9 0H6.9M0 -7.5V7.5"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="baby-front" data-i="3" aria-label="Colmillo de leche de arriba, lado derecho" transform="translate(123.6 66.4) rotate(-38.0)"><rect x="-11.25213970088848" y="-13.237811412809977" width="22.50427940177696" height="26.475622825619954" rx="8"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="baby-front" data-i="4" aria-label="Diente de leche del frente de arriba, lado derecho" transform="translate(144.9 53.6) rotate(-23.9)"><rect x="-10.590249130247981" y="-11.25213970088848" width="21.180498260495963" height="22.50427940177696" rx="8"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="baby-front" data-i="5" aria-label="Diente de leche del frente de arriba, lado derecho" transform="translate(168.0 46.9) rotate(-8.2)"><rect x="-10.590249130247981" y="-11.25213970088848" width="21.180498260495963" height="22.50427940177696" rx="8"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="baby-front" data-i="6" aria-label="Diente de leche del frente de arriba, lado izquierdo" transform="translate(192.0 46.9) rotate(8.2)"><rect x="-10.590249130247981" y="-11.25213970088848" width="21.180498260495963" height="22.50427940177696" rx="8"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="baby-front" data-i="7" aria-label="Diente de leche del frente de arriba, lado izquierdo" transform="translate(215.1 53.6) rotate(23.9)"><rect x="-10.590249130247981" y="-11.25213970088848" width="21.180498260495963" height="22.50427940177696" rx="8"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="baby-front" data-i="8" aria-label="Colmillo de leche de arriba, lado izquierdo" transform="translate(236.4 66.4) rotate(38.0)"><rect x="-11.25213970088848" y="-13.237811412809977" width="22.50427940177696" height="26.475622825619954" rx="8"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="baby-molar" data-i="9" aria-label="Muela de leche de arriba, lado izquierdo" transform="translate(257.5 87.7) rotate(52.1)"><rect x="-15.885373695371971" y="-16.54726426601247" width="31.770747390743942" height="33.09452853202494" rx="10"/><path class="groove" d="M-6.9 0H6.9M0 -7.5V7.5"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="baby-molar" data-i="10" aria-label="Muela de leche de arriba, lado izquierdo" transform="translate(275.5 117.5) rotate(65.4)"><rect x="-15.885373695371971" y="-16.54726426601247" width="31.770747390743942" height="33.09452853202494" rx="10"/><path class="groove" d="M-6.9 0H6.9M0 -7.5V7.5"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="six-molar" data-i="11" aria-label="Primera muela permanente de arriba, lado izquierdo" transform="translate(287.7 154.8) rotate(78.0)"><rect x="-20.518607689855465" y="-20.518607689855465" width="41.03721537971093" height="41.03721537971093" rx="10"/><path class="groove" d="M-11.5 0H11.5M0 -11.5V11.5"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="six-molar" data-i="12" aria-label="Primera muela permanente de abajo, lado derecho" transform="translate(72.3 285.2) rotate(78.0)"><rect x="-20.51860768985545" y="-20.51860768985545" width="41.0372153797109" height="41.0372153797109" rx="10"/><path class="groove" d="M-11.5 0H11.5M0 -11.5V11.5"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="baby-molar" data-i="13" aria-label="Muela de leche de abajo, lado derecho" transform="translate(84.5 322.5) rotate(65.4)"><rect x="-15.88537369537196" y="-16.54726426601246" width="31.77074739074392" height="33.09452853202492" rx="10"/><path class="groove" d="M-6.9 0H6.9M0 -7.5V7.5"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="baby-molar" data-i="14" aria-label="Muela de leche de abajo, lado derecho" transform="translate(102.5 352.3) rotate(52.1)"><rect x="-15.88537369537196" y="-16.54726426601246" width="31.77074739074392" height="33.09452853202492" rx="10"/><path class="groove" d="M-6.9 0H6.9M0 -7.5V7.5"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="baby-front" data-i="15" aria-label="Colmillo de leche de abajo, lado derecho" transform="translate(123.6 373.6) rotate(38.0)"><rect x="-11.252139700888472" y="-13.237811412809968" width="22.504279401776945" height="26.475622825619936" rx="8"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="baby-front" data-i="16" aria-label="Diente de leche del frente de abajo, lado derecho" transform="translate(144.9 386.4) rotate(23.9)"><rect x="-10.590249130247974" y="-11.252139700888472" width="21.18049826049595" height="22.504279401776945" rx="8"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="baby-front" data-i="17" aria-label="Diente de leche del frente de abajo, lado derecho" transform="translate(168.0 393.1) rotate(8.2)"><rect x="-10.590249130247974" y="-11.252139700888472" width="21.18049826049595" height="22.504279401776945" rx="8"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="baby-front" data-i="18" aria-label="Diente de leche del frente de abajo, lado izquierdo" transform="translate(192.0 393.1) rotate(-8.2)"><rect x="-10.590249130247974" y="-11.252139700888472" width="21.18049826049595" height="22.504279401776945" rx="8"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="baby-front" data-i="19" aria-label="Diente de leche del frente de abajo, lado izquierdo" transform="translate(215.1 386.4) rotate(-23.9)"><rect x="-10.590249130247974" y="-11.252139700888472" width="21.18049826049595" height="22.504279401776945" rx="8"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="baby-front" data-i="20" aria-label="Colmillo de leche de abajo, lado izquierdo" transform="translate(236.4 373.6) rotate(-38.0)"><rect x="-11.252139700888472" y="-13.237811412809968" width="22.504279401776945" height="26.475622825619936" rx="8"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="baby-molar" data-i="21" aria-label="Muela de leche de abajo, lado izquierdo" transform="translate(257.5 352.3) rotate(-52.1)"><rect x="-15.88537369537196" y="-16.54726426601246" width="31.77074739074392" height="33.09452853202492" rx="10"/><path class="groove" d="M-6.9 0H6.9M0 -7.5V7.5"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="baby-molar" data-i="22" aria-label="Muela de leche de abajo, lado izquierdo" transform="translate(275.5 322.5) rotate(-65.4)"><rect x="-15.88537369537196" y="-16.54726426601246" width="31.77074739074392" height="33.09452853202492" rx="10"/><path class="groove" d="M-6.9 0H6.9M0 -7.5V7.5"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="six-molar" data-i="23" aria-label="Primera muela permanente de abajo, lado izquierdo" transform="translate(287.7 285.2) rotate(-78.0)"><rect x="-20.51860768985545" y="-20.51860768985545" width="41.0372153797109" height="41.0372153797109" rx="10"/><path class="groove" d="M-11.5 0H11.5M0 -11.5V11.5"/></g></svg><!--/MOUTH:kid-->
+          <p class="legend"><span class="leg"><span class="key"></span>Dientes de leche</span><span class="leg"><span class="key key-adult"></span>Dientes permanentes</span></p>
+        </div>
+        <div class="mouth" data-mouth-view="adult">
+          <!--MOUTH:adult--><svg class="mouth-svg" viewBox="0 0 360 440" role="radiogroup" aria-label="Dientes de un adulto. Use las flechas para moverse entre los dientes."><text aria-hidden="true" class="arch-label" x="180" y="214" text-anchor="middle">Dientes de arriba</text><text aria-hidden="true" class="arch-label" x="180" y="238" text-anchor="middle">Dientes de abajo</text><g aria-hidden="true"><path class="gum" d="M50.7 179.3 L51.7 170.0 L53.2 160.8 L55.1 151.7 L57.4 142.7 L60.2 134.0 L63.3 125.5 L66.9 117.2 L70.8 109.1 L75.1 101.4 L79.8 94.0 L84.9 87.0 L90.2 80.3 L95.9 74.0 L101.8 68.2 L108.1 62.7 L114.5 57.8 L121.2 53.3 L128.1 49.3 L135.2 45.8 L142.4 42.8 L149.8 40.4 L157.2 38.5 L164.8 37.1 L172.4 36.3 L180.0 36.0 L187.6 36.3 L195.2 37.1 L202.8 38.5 L210.2 40.4 L217.6 42.8 L224.8 45.8 L231.9 49.3 L238.8 53.3 L245.5 57.8 L251.9 62.7 L258.2 68.2 L264.1 74.0 L269.8 80.3 L275.1 87.0 L280.2 94.0 L284.9 101.4 L289.2 109.1 L293.1 117.2 L296.7 125.5 L299.8 134.0 L302.6 142.7 L304.9 151.7 L306.8 160.8 L308.3 170.0 L309.3 179.3 L309.3 179.3"/><path class="gum" d="M50.7 260.7 L51.7 270.0 L53.2 279.2 L55.1 288.3 L57.4 297.3 L60.2 306.0 L63.3 314.5 L66.9 322.8 L70.8 330.9 L75.1 338.6 L79.8 346.0 L84.9 353.0 L90.2 359.7 L95.9 366.0 L101.8 371.8 L108.1 377.3 L114.5 382.2 L121.2 386.7 L128.1 390.7 L135.2 394.2 L142.4 397.2 L149.8 399.6 L157.2 401.5 L164.8 402.9 L172.4 403.7 L180.0 404.0 L187.6 403.7 L195.2 402.9 L202.8 401.5 L210.2 399.6 L217.6 397.2 L224.8 394.2 L231.9 390.7 L238.8 386.7 L245.5 382.2 L251.9 377.3 L258.2 371.8 L264.1 366.0 L269.8 359.7 L275.1 353.0 L280.2 346.0 L284.9 338.6 L289.2 330.9 L293.1 322.8 L296.7 314.5 L299.8 306.0 L302.6 297.3 L304.9 288.3 L306.8 279.2 L308.3 270.0 L309.3 260.7 L309.3 260.7"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="wisdom" data-i="0" aria-label="Muela del juicio de arriba, lado derecho" transform="translate(52.3 166.1) rotate(-81.2)"><rect x="-13.432560128302631" y="-13.969862533434737" width="26.865120256605262" height="27.939725066869475" rx="10"/><path class="groove" d="M-4.4 0H4.4M0 -5.0V5.0"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="back" data-i="1" aria-label="Muela de arriba, lado derecho" transform="translate(59.5 135.9) rotate(-71.8)"><rect x="-14.507164938566842" y="-15.044467343698948" width="29.014329877133683" height="30.088934687397895" rx="10"/><path class="groove" d="M-5.5 0H5.5M0 -6.0V6.0"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="back" data-i="2" aria-label="Muela de arriba, lado derecho" transform="translate(72.2 106.6) rotate(-61.3)"><rect x="-14.507164938566842" y="-15.044467343698948" width="29.014329877133683" height="30.088934687397895" rx="10"/><path class="groove" d="M-5.5 0H5.5M0 -6.0V6.0"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="back" data-i="3" aria-label="Premolar de arriba, lado derecho" transform="translate(88.2 82.7) rotate(-50.8)"><rect x="-11.28335050777421" y="-12.357955318038421" width="22.56670101554842" height="24.715910636076842" rx="8"/><path class="groove" d="M-5.3 0H5.3"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="back" data-i="4" aria-label="Premolar de arriba, lado derecho" transform="translate(106.0 64.4) rotate(-40.4)"><rect x="-11.28335050777421" y="-12.357955318038421" width="22.56670101554842" height="24.715910636076842" rx="8"/><path class="groove" d="M-5.3 0H5.3"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="front" data-i="5" aria-label="Colmillo de arriba, lado derecho" transform="translate(126.0 50.4) rotate(-29.3)"><rect x="-10.20874569751" y="-11.820652912906315" width="20.41749139502" height="23.64130582581263" rx="8"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="front" data-i="6" aria-label="Diente del frente de arriba, lado derecho" transform="translate(147.0 41.2) rotate(-17.9)"><rect x="-9.671443292377894" y="-10.20874569751" width="19.34288658475579" height="20.41749139502" rx="8"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="front" data-i="7" aria-label="Diente del frente de arriba, lado derecho" transform="translate(168.8 36.6) rotate(-6.1)"><rect x="-9.671443292377894" y="-10.20874569751" width="19.34288658475579" height="20.41749139502" rx="8"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="front" data-i="8" aria-label="Diente del frente de arriba, lado izquierdo" transform="translate(191.2 36.6) rotate(6.1)"><rect x="-9.671443292377894" y="-10.20874569751" width="19.34288658475579" height="20.41749139502" rx="8"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="front" data-i="9" aria-label="Diente del frente de arriba, lado izquierdo" transform="translate(213.0 41.2) rotate(17.9)"><rect x="-9.671443292377894" y="-10.20874569751" width="19.34288658475579" height="20.41749139502" rx="8"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="front" data-i="10" aria-label="Colmillo de arriba, lado izquierdo" transform="translate(234.0 50.4) rotate(29.3)"><rect x="-10.20874569751" y="-11.820652912906315" width="20.41749139502" height="23.64130582581263" rx="8"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="back" data-i="11" aria-label="Premolar de arriba, lado izquierdo" transform="translate(254.0 64.4) rotate(40.4)"><rect x="-11.28335050777421" y="-12.357955318038421" width="22.56670101554842" height="24.715910636076842" rx="8"/><path class="groove" d="M-5.3 0H5.3"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="back" data-i="12" aria-label="Premolar de arriba, lado izquierdo" transform="translate(271.8 82.7) rotate(50.8)"><rect x="-11.28335050777421" y="-12.357955318038421" width="22.56670101554842" height="24.715910636076842" rx="8"/><path class="groove" d="M-5.3 0H5.3"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="back" data-i="13" aria-label="Muela de arriba, lado izquierdo" transform="translate(287.8 106.6) rotate(61.3)"><rect x="-14.507164938566842" y="-15.044467343698948" width="29.014329877133683" height="30.088934687397895" rx="10"/><path class="groove" d="M-5.5 0H5.5M0 -6.0V6.0"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="back" data-i="14" aria-label="Muela de arriba, lado izquierdo" transform="translate(300.5 135.9) rotate(71.8)"><rect x="-14.507164938566842" y="-15.044467343698948" width="29.014329877133683" height="30.088934687397895" rx="10"/><path class="groove" d="M-5.5 0H5.5M0 -6.0V6.0"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="wisdom" data-i="15" aria-label="Muela del juicio de arriba, lado izquierdo" transform="translate(307.7 166.1) rotate(81.2)"><rect x="-13.432560128302631" y="-13.969862533434737" width="26.865120256605262" height="27.939725066869475" rx="10"/><path class="groove" d="M-4.4 0H4.4M0 -5.0V5.0"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="wisdom" data-i="16" aria-label="Muela del juicio de abajo, lado derecho" transform="translate(52.3 273.9) rotate(81.2)"><rect x="-13.432560128302612" y="-13.969862533434716" width="26.865120256605223" height="27.939725066869432" rx="10"/><path class="groove" d="M-4.4 0H4.4M0 -5.0V5.0"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="back" data-i="17" aria-label="Muela de abajo, lado derecho" transform="translate(59.5 304.1) rotate(71.8)"><rect x="-14.50716493856682" y="-15.044467343698926" width="29.01432987713364" height="30.088934687397852" rx="10"/><path class="groove" d="M-5.5 0H5.5M0 -6.0V6.0"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="back" data-i="18" aria-label="Muela de abajo, lado derecho" transform="translate(72.2 333.4) rotate(61.3)"><rect x="-14.50716493856682" y="-15.044467343698926" width="29.01432987713364" height="30.088934687397852" rx="10"/><path class="groove" d="M-5.5 0H5.5M0 -6.0V6.0"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="back" data-i="19" aria-label="Premolar de abajo, lado derecho" transform="translate(88.2 357.3) rotate(50.8)"><rect x="-11.283350507774195" y="-12.357955318038403" width="22.56670101554839" height="24.715910636076806" rx="8"/><path class="groove" d="M-5.3 0H5.3"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="back" data-i="20" aria-label="Premolar de abajo, lado derecho" transform="translate(106.0 375.6) rotate(40.4)"><rect x="-11.283350507774195" y="-12.357955318038403" width="22.56670101554839" height="24.715910636076806" rx="8"/><path class="groove" d="M-5.3 0H5.3"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="front" data-i="21" aria-label="Colmillo de abajo, lado derecho" transform="translate(126.0 389.6) rotate(29.3)"><rect x="-10.208745697509984" y="-11.820652912906299" width="20.41749139501997" height="23.641305825812598" rx="8"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="front" data-i="22" aria-label="Diente del frente de abajo, lado derecho" transform="translate(147.0 398.8) rotate(17.9)"><rect x="-9.67144329237788" y="-10.208745697509984" width="19.34288658475576" height="20.41749139501997" rx="8"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="front" data-i="23" aria-label="Diente del frente de abajo, lado derecho" transform="translate(168.8 403.4) rotate(6.1)"><rect x="-9.67144329237788" y="-10.208745697509984" width="19.34288658475576" height="20.41749139501997" rx="8"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="front" data-i="24" aria-label="Diente del frente de abajo, lado izquierdo" transform="translate(191.2 403.4) rotate(-6.1)"><rect x="-9.67144329237788" y="-10.208745697509984" width="19.34288658475576" height="20.41749139501997" rx="8"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="front" data-i="25" aria-label="Diente del frente de abajo, lado izquierdo" transform="translate(213.0 398.8) rotate(-17.9)"><rect x="-9.67144329237788" y="-10.208745697509984" width="19.34288658475576" height="20.41749139501997" rx="8"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="front" data-i="26" aria-label="Colmillo de abajo, lado izquierdo" transform="translate(234.0 389.6) rotate(-29.3)"><rect x="-10.208745697509984" y="-11.820652912906299" width="20.41749139501997" height="23.641305825812598" rx="8"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="back" data-i="27" aria-label="Premolar de abajo, lado izquierdo" transform="translate(254.0 375.6) rotate(-40.4)"><rect x="-11.283350507774195" y="-12.357955318038403" width="22.56670101554839" height="24.715910636076806" rx="8"/><path class="groove" d="M-5.3 0H5.3"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="back" data-i="28" aria-label="Premolar de abajo, lado izquierdo" transform="translate(271.8 357.3) rotate(-50.8)"><rect x="-11.283350507774195" y="-12.357955318038403" width="22.56670101554839" height="24.715910636076806" rx="8"/><path class="groove" d="M-5.3 0H5.3"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="back" data-i="29" aria-label="Muela de abajo, lado izquierdo" transform="translate(287.8 333.4) rotate(-61.3)"><rect x="-14.50716493856682" y="-15.044467343698926" width="29.01432987713364" height="30.088934687397852" rx="10"/><path class="groove" d="M-5.5 0H5.5M0 -6.0V6.0"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="back" data-i="30" aria-label="Muela de abajo, lado izquierdo" transform="translate(300.5 304.1) rotate(-71.8)"><rect x="-14.50716493856682" y="-15.044467343698926" width="29.01432987713364" height="30.088934687397852" rx="10"/><path class="groove" d="M-5.5 0H5.5M0 -6.0V6.0"/></g><g class="tooth" role="radio" aria-checked="false" tabindex="-1" data-group="wisdom" data-i="31" aria-label="Muela del juicio de abajo, lado izquierdo" transform="translate(307.7 273.9) rotate(-81.2)"><rect x="-13.432560128302612" y="-13.969862533434716" width="26.865120256605223" height="27.939725066869432" rx="10"/><path class="groove" d="M-4.4 0H4.4M0 -5.0V5.0"/></g></svg><!--/MOUTH:adult-->
+          <p class="legend"><button type="button" class="link-btn" data-panel-btn="missing">¿Le faltan dientes?</button></p>
+        </div>
+
+        <div class="tooth-info" id="tooth-info" aria-live="polite">
+          <div class="panel" data-panel="kid-intro" data-for="kid">
+            <h3>Dientes de niños</h3>
+            <p>Toque un diente para ver lo que se cubre. Los niños reciben chequeos, limpiezas y flúor cada 6 meses. <a class="cite" href="#ref-smile-kids">(Smile, California, n.d.-c)</a></p>
+            <p class="small">Los bebés de hasta 3 años reciben exámenes cada 3 meses. Haga la primera visita al salir el primer diente o antes del primer cumpleaños. <a class="cite" href="#ref-smile-hub">(Smile, California, n.d.-a)</a></p>
+          </div>
+          <div class="panel" data-panel="baby-front" data-for="kid">
+            <p class="panel-tag">Diente de leche</p>
+            <h3>Diente de leche del frente</h3>
+            <p>Los dientes de leche ayudan a masticar y hablar. Perder uno antes de tiempo por una caries puede hacer que los dientes permanentes salgan chuecos. <a class="cite" href="#ref-smile-hub">(Smile, California, n.d.-a)</a></p>
+            <ul class="ticks">
+              <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>Empastes para las caries</span></li>
+              <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>Barniz de flúor cada 6 meses</span></li>
+              <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>Extracciones y atención de emergencia</span></li>
+            </ul>
+            <p class="small"><a class="cite" href="#ref-smile-kids">(Smile, California, n.d.-c)</a></p>
+          </div>
+          <div class="panel" data-panel="baby-molar" data-for="kid">
+            <p class="panel-tag">Diente de leche</p>
+            <h3>Muela de leche</h3>
+            <p>Los niños empiezan a perder los dientes de leche desde los 5 años. Hasta que el diente se cae, todavía necesita cuidado.</p>
+            <ul class="ticks">
+              <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>Radiografías y empastes</span></li>
+              <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>Tratamientos de conducto</span></li>
+              <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>Sedación si es médicamente necesaria</span></li>
+            </ul>
+            <p class="small"><a class="cite" href="#ref-smile-kids">(Smile, California, n.d.-c)</a></p>
+          </div>
+          <div class="panel" data-panel="six-molar" data-for="kid">
+            <p class="panel-tag adult">Diente permanente</p>
+            <h3>Primera muela permanente</h3>
+            <p>Este diente permanente sale detrás de los dientes de leche, más o menos cuando los niños empiezan a perderlos. Es un buen momento para preguntar por los selladores.</p>
+            <ul class="ticks">
+              <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span><strong>Selladores de muelas:</strong> una capa transparente que ayuda a evitar las caries. Es rápido, no duele y puede proteger por varios años.</span></li>
+              <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>Empastes y tratamientos de conducto</span></li>
+            </ul>
+            <p class="small"><a class="cite" href="#ref-smile-kids">(Smile, California, n.d.-c)</a></p>
+          </div>
+
+          <div class="panel" data-panel="adult-intro" data-for="adult">
+            <h3>Dientes de adultos</h3>
+            <p>Toque un diente para ver lo que se cubre. Los adultos reciben examen, limpieza y flúor cada 12 meses. Medi-Cal paga hasta $1,800 al año por servicios dentales cubiertos, y más si es médicamente necesario. <a class="cite" href="#ref-smile-adults">(Smile, California, n.d.-b)</a></p>
+            <p class="small">Los adolescentes de 13 a 20 años también reciben selladores, limpiezas cada 6 meses y frenos si califican. <a class="cite" href="#ref-smile-teens">(Smile, California, n.d.-d)</a></p>
+          </div>
+          <div class="panel" data-panel="front" data-for="adult">
+            <p class="panel-tag adult">Diente permanente</p>
+            <h3>Diente del frente</h3>
+            <ul class="ticks">
+              <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>Empastes</span></li>
+              <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>Coronas</span></li>
+              <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>Tratamientos de conducto</span></li>
+            </ul>
+            <p class="small"><a class="cite" href="#ref-smile-adults">(Smile, California, n.d.-b)</a></p>
+          </div>
+          <div class="panel" data-panel="back" data-for="adult">
+            <p class="panel-tag adult">Diente permanente</p>
+            <h3>Muela</h3>
+            <ul class="ticks">
+              <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>Empastes y coronas</span></li>
+              <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>Tratamientos de conducto</span></li>
+              <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span><strong>Raspado y alisado radicular:</strong> una limpieza profunda para la enfermedad de las encías</span></li>
+            </ul>
+            <p class="small"><a class="cite" href="#ref-smile-adults">(Smile, California, n.d.-b)</a></p>
+          </div>
+          <div class="panel" data-panel="wisdom" data-for="adult">
+            <p class="panel-tag adult">Diente permanente</p>
+            <h3>Muela del juicio</h3>
+            <ul class="ticks">
+              <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>Extracción</span></li>
+              <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>Atención de emergencia</span></li>
+              <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>Sedación si es médicamente necesaria</span></li>
+            </ul>
+            <p class="small"><a class="cite" href="#ref-smile-adults">(Smile, California, n.d.-b)</a></p>
+          </div>
+          <div class="panel" data-panel="missing" data-for="adult">
+            <p class="panel-tag adult">Dientes que faltan</p>
+            <h3>Dentaduras</h3>
+            <ul class="ticks">
+              <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>Dentaduras parciales y completas</span></li>
+              <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>Rebases de dentaduras</span></li>
+            </ul>
+            <p class="small"><a class="cite" href="#ref-smile-adults">(Smile, California, n.d.-b)</a></p>
+          </div>
+        </div>
       </div>
     </div>
-    <p class="note alert"><strong>Cambio próximo para algunos adultos:</strong> A partir del 1 de julio de 2027, algunos adultos (por su estatus migratorio) solo recibirán atención dental de emergencia, como tratamiento para dolor fuerte de muelas, infecciones y extracciones. <strong>Los niños de 0 a 18 años y las personas embarazadas mantienen todos sus beneficios dentales.</strong> <a class="cite" href="#ref-dhcs-changes">(DHCS, n.d.-d)</a></p>
   </div>
 </section>
 
-<section id="apply" aria-labelledby="apply-h">
+<!-- MYTHS -->
+<section id="myths" class="band tint" aria-labelledby="myths-h">
   <div class="wrap">
-    <h2 id="apply-h">Cómo solicitar, paso a paso</h2>
-    <p class="section-intro">Puede presentar su solicitud en cualquier época del año. <a class="cite" href="#ref-dhcs-help">(DHCS, n.d.-e)</a></p>
+    <div class="section-head">
+      <h2 id="myths-h">¿Ha oído alguno de estos?</h2>
+      <p>Toque una tarjeta para darle vuelta.</p>
+    </div>
+    <ul class="flips">
+      <li class="flip">
+        <div class="flip-inner">
+          <div class="face front"><p class="tag myth">Mito</p><p class="flip-q">“Mis hijos no pueden tener Medi-Cal por nuestro estatus migratorio.”</p><button type="button" class="flip-btn"><svg class="ic" aria-hidden="true"><use href="#i-reset"/></svg>Ver la realidad</button></div>
+          <div class="face back"><p class="tag fact">Realidad</p><p id="f1" tabindex="-1">Los niños menores de 19 años pueden tener Medi-Cal completo con servicios dentales sin importar su estatus migratorio. Lo mismo las personas embarazadas, durante el embarazo y 1 año después. <a class="cite" href="#ref-dhcs-imm">(DHCS, 2026a)</a></p><button type="button" class="flip-btn">Voltear</button></div>
+        </div>
+      </li>
+      <li class="flip">
+        <div class="flip-inner">
+          <div class="face front"><p class="tag myth">Mito</p><p class="flip-q">“Los dos trabajamos, así que ganamos demasiado.”</p><button type="button" class="flip-btn"><svg class="ic" aria-hidden="true"><use href="#i-reset"/></svg>Ver la realidad</button></div>
+          <div class="face back"><p class="tag fact">Realidad</p><p id="f2" tabindex="-1">Los niños califican con ingresos más altos que los adultos. En 2026 una familia de 4 puede ganar unos $87,780 al año y los niños aún pueden tener Medi-Cal. <a class="cite" href="#ref-dhcs-haccp">(DHCS, 2025;</a> <a class="cite" href="#ref-aspe">ASPE, 2026)</a></p><button type="button" class="flip-btn">Voltear</button></div>
+        </div>
+      </li>
+      <li class="flip">
+        <div class="flip-inner">
+          <div class="face front"><p class="tag myth">Mito</p><p class="flip-q">“Medi-Cal no cubre al dentista.”</p><button type="button" class="flip-btn"><svg class="ic" aria-hidden="true"><use href="#i-reset"/></svg>Ver la realidad</button></div>
+          <div class="face back"><p class="tag fact">Realidad</p><p id="f3" tabindex="-1">Los servicios dentales son parte de Medi-Cal. Eso incluye exámenes, radiografías, limpiezas, empastes, coronas y tratamientos de conducto. <a class="cite" href="#ref-dhcs-benefits">(DHCS, n.d.-c)</a></p><button type="button" class="flip-btn">Voltear</button></div>
+        </div>
+      </li>
+      <li class="flip">
+        <div class="flip-inner">
+          <div class="face front"><p class="tag myth">Mito</p><p class="flip-q">“Tengo que esperar al periodo de inscripción abierta.”</p><button type="button" class="flip-btn"><svg class="ic" aria-hidden="true"><use href="#i-reset"/></svg>Ver la realidad</button></div>
+          <div class="face back"><p class="tag fact">Realidad</p><p id="f4" tabindex="-1">Puede solicitar Medi-Cal en cualquier época del año. <a class="cite" href="#ref-dhcs-help">(DHCS, n.d.-e)</a></p><button type="button" class="flip-btn">Voltear</button></div>
+        </div>
+      </li>
+      <li class="flip">
+        <div class="flip-inner">
+          <div class="face front"><p class="tag myth">Mito</p><p class="flip-q">“Los dientes de leche se caen, así que sus caries no importan.”</p><button type="button" class="flip-btn"><svg class="ic" aria-hidden="true"><use href="#i-reset"/></svg>Ver la realidad</button></div>
+          <div class="face back"><p class="tag fact">Realidad</p><p id="f5" tabindex="-1">Los dientes de leche ayudan a masticar y hablar. Perderlos antes de tiempo por caries puede hacer que los dientes permanentes salgan chuecos. <a class="cite" href="#ref-smile-hub">(Smile, California, n.d.-a)</a></p><button type="button" class="flip-btn">Voltear</button></div>
+        </div>
+      </li>
+      <li class="flip">
+        <div class="flip-inner">
+          <div class="face front"><p class="tag myth">Mito</p><p class="flip-q">“Medi-Cal se va a acabar por las nuevas reglas.”</p><button type="button" class="flip-btn"><svg class="ic" aria-hidden="true"><use href="#i-reset"/></svg>Ver la realidad</button></div>
+          <div class="face back"><p class="tag fact">Realidad</p><p id="f6" tabindex="-1">La mayoría de los miembros de Medi-Cal no verán ningún cambio. Los niños mantienen Medi-Cal completo y todos sus servicios dentales. <a class="cite" href="#ref-dhcs-changes">(DHCS, n.d.-d)</a></p><button type="button" class="flip-btn">Voltear</button></div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- APPLY -->
+<section id="apply" class="band" aria-labelledby="apply-h">
+  <div class="wrap apply-grid">
+    <div class="section-head">
+      <h2 id="apply-h">Cómo solicitar</h2>
+      <p>Puede solicitar en cualquier época del año. Si le falta algún papel, solicite de todos modos. La oficina de su condado le puede ayudar. <a class="cite" href="#ref-dhcs-help">(DHCS, n.d.-e)</a></p>
+      <a class="btn alt" href="checklist.html"><svg class="ic" aria-hidden="true"><use href="#i-print"/></svg>Imprimir la lista</a>
+    </div>
     <ol class="steps">
       <li>
-        <h3>Junte sus papeles</h3>
-        <p>Use la <a href="#bring">lista de abajo</a>. Si le falta algo, presente la solicitud de todos modos. La oficina de su condado le puede ayudar. <a class="cite" href="#ref-dhcs-help">(DHCS, n.d.-e)</a></p>
+        <h3>Elija cómo solicitar</h3>
+        <p>Por internet en <a href="https://benefitscal.com/">BenefitsCal.com</a> o <a href="https://www.coveredca.com/">CoveredCA.com</a>. También puede llamar o ir a la oficina de su condado (<a href="#help">números abajo</a>), o enviar por correo una <a href="https://www.dhcs.ca.gov/medi-cal/apply/">solicitud en papel</a> en su idioma. <a class="cite" href="#ref-dhcs-apply">(DHCS, n.d.-a)</a></p>
       </li>
       <li>
-        <h3>Elija la forma más fácil de solicitar</h3>
-        <ul class="ways">
-          <li><strong>Por internet:</strong> <a href="https://benefitscal.com/">BenefitsCal.com</a> o <a href="https://www.coveredca.com/">CoveredCA.com</a></li>
-          <li><strong>Por teléfono:</strong> llame a la oficina de su condado (<a href="#help">números abajo</a>)</li>
-          <li><strong>Por correo:</strong> <a href="https://www.dhcs.ca.gov/medi-cal/apply/">descargue una solicitud en papel</a> en su idioma</li>
-          <li><strong>En persona:</strong> visite una oficina del condado</li>
-        </ul>
-        <p><a class="cite" href="#ref-dhcs-apply">(DHCS, n.d.-a)</a></p>
-      </li>
-      <li>
-        <h3>Revise su correo, mensajes de texto y email</h3>
-        <p>Es posible que el condado le pida más comprobantes. Abra las cartas enseguida y conteste rápido para que su solicitud no se detenga. <a class="cite" href="#ref-dhcs-changes">(DHCS, n.d.-d)</a></p>
+        <h3>Revise su correo y sus mensajes</h3>
+        <p>Es posible que el condado le pida más comprobantes. Conteste rápido para que su solicitud no se detenga. <a class="cite" href="#ref-dhcs-changes">(DHCS, n.d.-d)</a></p>
       </li>
       <li>
         <h3>Busque un dentista de Medi-Cal</h3>
-        <p>Use el <a href="https://smilecalifornia.org/find-a-dentist/">buscador de dentistas de Smile, California</a> o llame a Medi-Cal Dental al <a class="tel" href="tel:18003226384">1-800-322-6384</a> (llamada gratis, lunes a viernes, 8 a.m. a 5 p.m.). <a class="cite" href="#ref-smile-hub">(Smile, California, n.d.-a)</a></p>
+        <p>Use el <a href="https://smilecalifornia.org/find-a-dentist/">buscador de dentistas de Smile, California</a> o llame a Medi-Cal Dental al <a class="tel" href="tel:18003226384">1-800-322-6384</a>. La llamada es gratis, de lunes a viernes, de 8 a.m. a 5 p.m. <a class="cite" href="#ref-smile-hub">(Smile, California, n.d.-a)</a></p>
       </li>
       <li>
-        <h3>Renueve a tiempo para no perder su cobertura</h3>
-        <p>Mantenga al día su información de contacto y devuelva los paquetes de renovación. A partir del 1 de marzo de 2027, algunos adultos de 19 a 64 años renovarán cada seis meses en lugar de una vez al año. <a class="cite" href="#ref-dhcs-changes">(DHCS, n.d.-d)</a></p>
+        <h3>Renueve a tiempo</h3>
+        <p>Mantenga al día su dirección y teléfono y devuelva los formularios de renovación. A partir del 1 de marzo de 2027, algunos adultos de 19 a 64 años renovarán cada 6 meses. <a class="cite" href="#ref-dhcs-changes">(DHCS, n.d.-d)</a></p>
       </li>
     </ol>
   </div>
+
+  <div class="wrap">
+    <div class="callout" id="changes">
+      <div class="callout-icon"><svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg></div>
+      <div>
+        <h3>Lo que está cambiando en Medi-Cal</h3>
+        <p><strong>Los niños menores de 19 años y las personas embarazadas mantienen Medi-Cal completo y todos sus servicios dentales.</strong> La mayoría de los miembros no verán ningún cambio. Algunas reglas para adultos cambian entre 2026 y 2028, así que los adultos deben renovar a tiempo. <a class="cite" href="#ref-dhcs-changes">(DHCS, n.d.-d)</a></p>
+        <details>
+          <summary>Ver las fechas</summary>
+          <ul class="dates">
+            <li><strong>Desde el 1 de enero de 2026:</strong> la mayoría de los adultos de 19 años o más sin un estatus migratorio que califique no pueden inscribirse por primera vez en Medi-Cal completo. Quienes ya lo tienen lo mantienen si renuevan a tiempo. Si la cobertura termina, tienen 3 meses para volver a inscribirse.</li>
+            <li><strong>Desde el 1 de enero de 2026:</strong> regresa el límite de bienes para adultos de 65 años o más y personas con discapacidades ($130,000 para una persona, más $65,000 por cada persona adicional). No aplica a los niños. <a class="cite" href="#ref-hca">(HCA, n.d.)</a></li>
+            <li><strong>1 de enero de 2027:</strong> algunos adultos de 19 a 64 años tendrán que trabajar, estudiar o hacer voluntariado 80 horas al mes, o ganar al menos $580 al mes. Los padres de niños de 13 años o menos no tienen que hacerlo.</li>
+            <li><strong>1 de julio de 2027:</strong> algunos adultos, según su estatus migratorio, solo recibirán atención dental de emergencia y pagarán $30 al mes para mantener Medi-Cal completo. <a class="cite" href="#ref-hca">(HCA, n.d.)</a></li>
+            <li><strong>1 de octubre de 2028:</strong> pequeños copagos para algunos adultos que ganan más de $15,560 al año. Sin copagos para niños, chequeos ni centros de salud comunitarios.</li>
+          </ul>
+          <p class="small">Vea cómo se afecta cada estatus migratorio en la <a href="https://www.dhcs.ca.gov/immigration-status-and-changes-to-medi-cal-eligibility/">tabla de estatus migratorio de DHCS</a> (en inglés). <a class="cite" href="#ref-dhcs-imm">(DHCS, 2026a)</a></p>
+        </details>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section id="bring" class="tint" aria-labelledby="bring-h">
+<!-- HELP -->
+<section id="help" class="band tint" aria-labelledby="help-h">
   <div class="wrap">
-    <h2 id="bring-h">Qué llevar</h2>
-    <p class="section-intro">Estos son ejemplos de lo que el condado podría pedirle. No necesita tenerlo todo para empezar. <a class="cite" href="#ref-dhcs-help">(DHCS, n.d.-e)</a></p>
-    <div class="grid three">
+    <div class="section-head">
+      <h2 id="help-h">Ayuda gratis cerca de usted</h2>
+      <p>Estas oficinas y clínicas ayudan a familias en Los Ángeles y el Inland Empire.</p>
+    </div>
+    <div class="help-grid">
       <div class="card">
-        <h3>Quién es usted</h3>
-        <ul class="checklist">
-          <li>Licencia de manejar o identificación con foto</li>
-          <li>Tarjeta de Seguro Social, si la tiene</li>
-          <li>Documentos de inmigración, si los tiene</li>
+        <h3><svg class="ic" aria-hidden="true"><use href="#i-building"/></svg>Oficinas de Medi-Cal del condado</h3>
+        <ul class="dir">
+          <li><span class="name">Condado de Los Ángeles (DPSS)</span><span><a class="tel" href="tel:18666133777">1-866-613-3777</a> · <a href="https://dpss.lacounty.gov/en/health.html">Sitio web</a> <a class="cite" href="#ref-la">(LA County DPSS, n.d.)</a></span></li>
+          <li><span class="name">Condado de Riverside (DPSS)</span><span><a class="tel" href="tel:18774108827">1-877-410-8827</a> · <a href="https://rivcodpss.org/medi-cal">Sitio web</a> <a class="cite" href="#ref-riv">(Riverside County DPSS, n.d.)</a></span></li>
+          <li><span class="name">Condado de San Bernardino (TAD)</span><span><a class="tel" href="tel:18774108829">1-877-410-8829</a> · <a href="https://wp.sbcounty.gov/tad/">Sitio web</a> <a class="cite" href="#ref-sb">(San Bernardino County TAD, n.d.)</a></span></li>
+          <li><span class="name">Otros condados</span><span><a href="https://www.dhcs.ca.gov/medi-cal/contact/find-a-county-office/">Busque la oficina de su condado</a></span></li>
         </ul>
       </div>
       <div class="card">
-        <h3>Cuánto gana</h3>
-        <ul class="checklist">
-          <li>Su talón de pago más reciente</li>
-          <li>Su última declaración de impuestos (Formulario 1040; Anexo C si trabaja por su cuenta)</li>
-          <li>Cartas de beneficios (desempleo, incapacidad, Seguro Social)</li>
+        <h3><svg class="ic" aria-hidden="true"><use href="#i-steth"/></svg>Clínicas y dentistas</h3>
+        <ul class="dir">
+          <li><span class="name">SAC Health, San Bernardino</span><span>Acepta Medi-Cal y ayuda a pacientes sin seguro. Atención dental familiar con Loma Linda University. <a class="tel" href="tel:19093827100">909-382-7100</a> <a class="cite" href="#ref-sac">(SAC Health, n.d.-a,</a> <a class="cite" href="#ref-sac-home">n.d.-b)</a></span></li>
+          <li><span class="name">WesternU Health Dental Center, Pomona</span><span>Clínica de enseñanza para niños y adultos. Llame para preguntar sobre Medi-Cal. <a class="tel" href="tel:19097063910">909-706-3910</a> <a class="cite" href="#ref-westernu">(WesternU Health, n.d.)</a></span></li>
+          <li><span class="name">Centros de salud comunitarios</span><span><a href="https://findahealthcenter.hrsa.gov/">Busque un centro de salud</a> cerca de usted. <a class="cite" href="#ref-hrsa">(HRSA, n.d.)</a></span></li>
+          <li><span class="name">Dentistas de Medi-Cal</span><span><a href="https://smilecalifornia.org/find-a-dentist/">Buscador de dentistas de Smile, California</a></span></li>
         </ul>
       </div>
       <div class="card">
-        <h3>Dónde vive y lo que paga</h3>
-        <ul class="checklist">
-          <li>Su domicilio o dirección postal (no se necesita comprobante)</li>
-          <li>Recibos de cuidado de niños o manutención que usted paga</li>
-          <li>¿Le pagan en efectivo? Puede declararlo usted mismo.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="myths" aria-labelledby="myths-h">
-  <div class="wrap">
-    <h2 id="myths-h">Mitos y realidades</h2>
-    <p class="section-intro">Toque cada mito para ver la realidad.</p>
-    <div class="myths">
-      <details>
-        <summary><span class="tag myth">Mito</span> "Mis hijos no pueden tener Medi-Cal por nuestro estatus migratorio."</summary>
-        <div class="answer"><span class="tag fact">Realidad</span><p>Los niños menores de 19 años pueden solicitar Medi-Cal completo, con servicios dentales, sin importar su estatus migratorio. Lo mismo las personas embarazadas, durante el embarazo y un año después. <a class="cite" href="#ref-dhcs-imm">(DHCS, 2026a)</a></p></div>
-      </details>
-      <details>
-        <summary><span class="tag myth">Mito</span> "Los dos trabajamos, así que ganamos demasiado."</summary>
-        <div class="answer"><span class="tag fact">Realidad</span><p>Los niños califican con ingresos más altos que los adultos: hasta el 266% del nivel federal de pobreza. En 2026 eso es unos $87,780 al año para una familia de cuatro. <a class="cite" href="#ref-dhcs-haccp">(DHCS, 2025;</a> <a class="cite" href="#ref-aspe">ASPE, 2026)</a></p></div>
-      </details>
-      <details>
-        <summary><span class="tag myth">Mito</span> "Medi-Cal no cubre al dentista."</summary>
-        <div class="answer"><span class="tag fact">Realidad</span><p>Los servicios dentales son parte de Medi-Cal: exámenes, radiografías, limpiezas, empastes, coronas, tratamientos de conducto y más. <a class="cite" href="#ref-dhcs-benefits">(DHCS, n.d.-c)</a></p></div>
-      </details>
-      <details>
-        <summary><span class="tag myth">Mito</span> "Tengo que esperar al periodo de inscripción abierta."</summary>
-        <div class="answer"><span class="tag fact">Realidad</span><p>Puede solicitar Medi-Cal en cualquier época del año. <a class="cite" href="#ref-dhcs-help">(DHCS, n.d.-e)</a></p></div>
-      </details>
-      <details>
-        <summary><span class="tag myth">Mito</span> "Los dientes de leche se caen, así que sus caries no importan."</summary>
-        <div class="answer"><span class="tag fact">Realidad</span><p>Los dientes de leche ayudan a los niños a masticar y hablar. Perderlos antes de tiempo por caries puede causar problemas con los dientes permanentes, como que salgan chuecos. <a class="cite" href="#ref-smile-hub">(Smile, California, n.d.-a)</a></p></div>
-      </details>
-      <details>
-        <summary><span class="tag myth">Mito</span> "Medi-Cal se va a acabar para todos por las nuevas reglas."</summary>
-        <div class="answer"><span class="tag fact">Realidad</span><p>La mayoría de los miembros de Medi-Cal no verán cambios en su cobertura. Los niños mantienen Medi-Cal completo y todos sus servicios dentales. <a class="cite" href="#ref-dhcs-changes">(DHCS, n.d.-d)</a></p></div>
-      </details>
-      <details>
-        <summary><span class="tag myth">Mito</span> "Tenemos ahorros, así que Medi-Cal nos va a negar."</summary>
-        <div class="answer"><span class="tag fact">Realidad</span><p>El límite de bienes que regresó el 1 de enero de 2026 aplica principalmente a adultos de 65 años o más y a personas con discapacidades, no a los niños. <a class="cite" href="#ref-dhcs-changes">(DHCS, n.d.-d;</a> <a class="cite" href="#ref-hca">HCA, n.d.)</a></p></div>
-      </details>
-    </div>
-  </div>
-</section>
-
-<section id="changes" class="warm" aria-labelledby="changes-h">
-  <div class="wrap">
-    <h2 id="changes-h">Lo que está cambiando en Medi-Cal (2026–2028)</h2>
-    <p class="section-intro">Decisiones del presupuesto estatal y una ley federal están cambiando algunas reglas de Medi-Cal. Este es el calendario oficial, en palabras sencillas. <a class="cite" href="#ref-dhcs-changes">(DHCS, n.d.-d)</a></p>
-    <div class="table-wrap">
-      <table>
-        <caption>Cambios de Medi-Cal por fecha de inicio</caption>
-        <thead><tr><th scope="col">Inicio</th><th scope="col">Qué cambia</th><th scope="col">A quién afecta</th></tr></thead>
-        <tbody>
-          <tr><td data-label="Inicio">1 ene 2026 <span class="pill">Vigente</span></td><td data-label="Qué cambia">Congelamiento de inscripción: algunos adultos ya no pueden inscribirse por primera vez en Medi-Cal completo. Quienes ya lo tienen lo mantienen si renuevan a tiempo. Si la cobertura termina, hay 3 meses para volver a inscribirse.</td><td data-label="A quién afecta">Adultos de 19 años o más sin un estatus migratorio que califique. <strong>No</strong> afecta a niños de 0 a 18 años, personas embarazadas ni jóvenes que estuvieron en cuidado de crianza (menores de 26).</td></tr>
-          <tr><td data-label="Inicio">1 ene 2026 <span class="pill">Vigente</span></td><td data-label="Qué cambia">Regresa el límite de bienes: $130,000 para una persona, más $65,000 por cada persona adicional (hasta 10).</td><td data-label="A quién afecta">Adultos de 65 años o más, personas con discapacidades, residentes de asilos de ancianos y algunos otros.</td></tr>
-          <tr><td data-label="Inicio">1 ene 2027</td><td data-label="Qué cambia">Reglas de trabajo: trabajar, hacer voluntariado, estudiar o capacitarse al menos 80 horas al mes (o ganar al menos $580 al mes).</td><td data-label="A quién afecta">Algunos adultos de 19 a 64 años. <strong>No</strong> afecta a niños, personas embarazadas ni padres y cuidadores de niños de 0 a 13 años.</td></tr>
-          <tr><td data-label="Inicio">1 mar 2027</td><td data-label="Qué cambia">Renovación cada seis meses en lugar de una vez al año.</td><td data-label="A quién afecta">Algunos adultos de 19 a 64 años que califican por sus ingresos.</td></tr>
-          <tr><td data-label="Inicio">1 jul 2027</td><td data-label="Qué cambia">Servicios dentales solo de emergencia y una cuota mensual para mantener Medi-Cal completo ($30 al mes). <a class="cite" href="#ref-hca">(HCA, n.d.)</a></td><td data-label="A quién afecta">Algunos adultos, según su estatus migratorio. <strong>No</strong> afecta a niños de 0 a 18 años ni a personas embarazadas.</td></tr>
-          <tr><td data-label="Inicio">1 oct 2028</td><td data-label="Qué cambia">Pequeños copagos por algunos servicios. Sin copagos para niños, chequeos, emergencias ni centros de salud comunitarios.</td><td data-label="A quién afecta">Algunos adultos de 19 a 64 años que ganan más de $15,560 al año.</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="note">Revise su situación: DHCS tiene una tabla que muestra cómo se afecta cada estatus migratorio. <a href="https://www.dhcs.ca.gov/immigration-status-and-changes-to-medi-cal-eligibility/">Vea la tabla de estatus migratorio de DHCS</a> (en inglés). <a class="cite" href="#ref-dhcs-imm">(DHCS, 2026a)</a></p>
-  </div>
-</section>
-
-<section id="help" aria-labelledby="help-h">
-  <div class="wrap">
-    <h2 id="help-h">Ayuda gratis cerca de usted</h2>
-    <p class="section-intro">No tiene que hacerlo solo. Estas oficinas y clínicas ayudan a familias en Los Ángeles y el Inland Empire (condados de Riverside y San Bernardino).</p>
-    <div class="grid three">
-      <div class="card help-group">
-        <h3>Oficinas de Medi-Cal del condado</h3>
+        <h3><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg>Ayuda por teléfono</h3>
         <ul class="dir">
-          <li><span class="name">Condado de Los Ángeles (DPSS)</span><a class="tel" href="tel:18666133777">1-866-613-3777</a> · <a href="https://dpss.lacounty.gov/en/health.html">Sitio web</a> <a class="cite" href="#ref-la">(LA County DPSS, n.d.)</a></li>
-          <li><span class="name">Condado de Riverside (DPSS)</span><a class="tel" href="tel:18774108827">1-877-410-8827</a> · <a href="https://rivcodpss.org/medi-cal">Sitio web</a> <a class="cite" href="#ref-riv">(Riverside County DPSS, n.d.)</a></li>
-          <li><span class="name">Condado de San Bernardino (TAD)</span><a class="tel" href="tel:18774108829">1-877-410-8829</a> · <a href="https://wp.sbcounty.gov/tad/">Sitio web</a> <a class="cite" href="#ref-sb">(San Bernardino County TAD, n.d.)</a></li>
-          <li><span class="name">Otros condados</span><a href="https://www.dhcs.ca.gov/medi-cal/contact/find-a-county-office/">Busque la oficina de su condado</a></li>
-        </ul>
-      </div>
-      <div class="card help-group">
-        <h3>Clínicas y dentistas</h3>
-        <ul class="dir">
-          <li><span class="name">SAC Health (San Bernardino)</span>Acepta Medi-Cal y ayuda a pacientes sin seguro. Atención dental familiar con Loma Linda University. <a class="tel" href="tel:19093827100">909-382-7100</a> <a class="cite" href="#ref-sac">(SAC Health, n.d.-a,</a> <a class="cite" href="#ref-sac-home">n.d.-b)</a></li>
-          <li><span class="name">WesternU Health Dental Center (Pomona)</span>Clínica de enseñanza con atención para niños y adultos. Llame para preguntar sobre Medi-Cal. <a class="tel" href="tel:19097063910">909-706-3910</a> <a class="cite" href="#ref-westernu">(WesternU Health, n.d.)</a></li>
-          <li><span class="name">Centros de salud comunitarios</span><a href="https://findahealthcenter.hrsa.gov/">Busque un centro de salud</a> cerca de usted (directorio federal). <a class="cite" href="#ref-hrsa">(HRSA, n.d.)</a></li>
-          <li><span class="name">Dentistas de Medi-Cal</span><a href="https://smilecalifornia.org/find-a-dentist/">Buscador de dentistas de Smile, California</a></li>
-        </ul>
-      </div>
-      <div class="card help-group">
-        <h3>Ayuda por teléfono</h3>
-        <ul class="dir">
-          <li><span class="name">Medi-Cal Dental</span><a class="tel" href="tel:18003226384">1-800-322-6384</a> <a class="cite" href="#ref-smile-hub">(Smile, California, n.d.-a)</a></li>
-          <li><span class="name">Covered California (muchos idiomas)</span><a class="tel" href="tel:18003001506">1-800-300-1506</a> <a class="cite" href="#ref-coveredca">(Covered California, n.d.)</a></li>
-          <li><span class="name">Preguntas sobre Medi-Cal (DHCS)</span><a class="tel" href="tel:18005415555">1-800-541-5555</a> <a class="cite" href="#ref-dhcs-imm">(DHCS, 2026a)</a></li>
-          <li><span class="name">Ayuda legal gratis: Health Consumer Alliance</span><a class="tel" href="tel:18888043536">1-888-804-3536</a> <a class="cite" href="#ref-dhcs-imm">(DHCS, 2026a)</a></li>
-          <li><span class="name">211 (comida, vivienda, ayuda con beneficios)</span>Marque <a class="tel" href="tel:211">2-1-1</a> · <a href="https://211la.org/">211 LA</a> · <a href="https://inlandsocaluw.org/211">Inland SoCal 211</a></li>
+          <li><span class="name">Medi-Cal Dental</span><span><a class="tel" href="tel:18003226384">1-800-322-6384</a> <a class="cite" href="#ref-smile-hub">(Smile, California, n.d.-a)</a></span></li>
+          <li><span class="name">Covered California, muchos idiomas</span><span><a class="tel" href="tel:18003001506">1-800-300-1506</a> <a class="cite" href="#ref-coveredca">(Covered California, n.d.)</a></span></li>
+          <li><span class="name">Preguntas sobre Medi-Cal (DHCS)</span><span><a class="tel" href="tel:18005415555">1-800-541-5555</a> <a class="cite" href="#ref-dhcs-imm">(DHCS, 2026a)</a></span></li>
+          <li><span class="name">Ayuda legal gratis: Health Consumer Alliance</span><span><a class="tel" href="tel:18888043536">1-888-804-3536</a> <a class="cite" href="#ref-dhcs-imm">(DHCS, 2026a)</a></span></li>
+          <li><span class="name">211 para comida, vivienda y beneficios</span><span>Marque <a class="tel" href="tel:211">2-1-1</a> · <a href="https://211la.org/">211 LA</a> · <a href="https://inlandsocaluw.org/211">Inland SoCal 211</a></span></li>
         </ul>
       </div>
     </div>
-    <p class="note"><strong>¿Le preocupa su privacidad o su situación migratoria?</strong> Lea la <a href="https://www.dhcs.ca.gov/newsroom-office-of-communications/statement-from-the-department-of-health-care-services-on-the-federal-use-of-medi-cal-data-and-member-privacy/">declaración de privacidad de Medi-Cal</a> (en inglés), que explica una decisión judicial de 2025 sobre compartir algunos datos con agencias federales. DHCS sugiere hablar con una organización de ayuda legal calificada si tiene dudas. <a class="cite" href="#ref-dhcs-privacy">(DHCS, 2026b)</a></p>
+    <p class="note"><svg class="ic" aria-hidden="true"><use href="#i-info"/></svg><span><strong>¿Le preocupa su privacidad o su situación migratoria?</strong> Lea la <a href="https://www.dhcs.ca.gov/newsroom-office-of-communications/statement-from-the-department-of-health-care-services-on-the-federal-use-of-medi-cal-data-and-member-privacy/">declaración de privacidad de Medi-Cal</a> (en inglés). Explica una decisión judicial de 2025 sobre compartir algunos datos con agencias federales. DHCS sugiere hablar con una organización de ayuda legal si tiene dudas. <a class="cite" href="#ref-dhcs-privacy">(DHCS, 2026b)</a></span></p>
+
+    <div class="share">
+      <div>
+        <h3>Imprímalo o compártalo</h3>
+        <p>Pegue la lista en su refrigerador. Las clínicas pueden imprimir el volante para su sala de espera. Su código QR abre este sitio.</p>
+      </div>
+      <div class="share-links">
+        <a class="btn alt" href="checklist.html"><svg class="ic" aria-hidden="true"><use href="#i-file"/></svg>Lista para el refri</a>
+        <a class="btn alt" href="flyer.html"><svg class="ic" aria-hidden="true"><use href="#i-qr"/></svg>Volante para clínicas</a>
+      </div>
+    </div>
   </div>
 </section>
 
-<section id="references" class="tint" aria-labelledby="refs-h">
+<!-- REFERENCES -->
+<section id="references" class="band refs-band" aria-labelledby="refs-h">
   <div class="wrap">
     <h2 id="refs-h">Referencias</h2>
-    <p class="section-intro">Formato APA, 7.ª edición. Las fuentes están en inglés. Todas se consultaron el 9 de noviembre de 2026.</p>
-    <ul class="refs">
+    <p class="small">Formato APA, 7.ª edición. Las fuentes están en inglés. Todas se consultaron el 9 de noviembre de 2026.</p>
+    <ul class="refs" lang="en">
       <li id="ref-dhcs-apply">California Department of Health Care Services. (n.d.-a). <em>Apply for Medi-Cal</em>. Retrieved November 9, 2026, from <a href="https://www.dhcs.ca.gov/medi-cal/apply/">https://www.dhcs.ca.gov/medi-cal/apply/</a></li>
       <li id="ref-dhcs-fpl">California Department of Health Care Services. (n.d.-b). <em>Eligibility by federal poverty level</em>. Retrieved November 9, 2026, from <a href="https://www.dhcs.ca.gov/medi-cal/qualify/qualify-for-medi-cal-eligibility-chart/">https://www.dhcs.ca.gov/medi-cal/qualify/qualify-for-medi-cal-eligibility-chart/</a></li>
       <li id="ref-dhcs-benefits">California Department of Health Care Services. (n.d.-c). <em>Medi-Cal benefits</em>. Retrieved November 9, 2026, from <a href="https://www.dhcs.ca.gov/medi-cal/benefits/">https://www.dhcs.ca.gov/medi-cal/benefits/</a></li>
@@ -386,10 +505,10 @@
 </section>
 </main>
 
-<footer>
+<footer class="site-footer">
   <div class="wrap">
     <p lang="en">Created by Joshua Chung, DMD Class of 2029, Western University of Health Sciences, for CSL II. Educational only, not legal or eligibility advice.</p>
-    <p>Creado por Joshua Chung, DMD Clase de 2029, Western University of Health Sciences, para CSL II. Solo con fines educativos; no es asesoría legal ni de elegibilidad.</p>
+    <p>Creado por Joshua Chung, DMD Clase de 2029, Western University of Health Sciences, para CSL II. Solo con fines educativos. No es asesoría legal ni de elegibilidad.</p>
     <p>Última actualización: 9 de noviembre de 2026. · <a href="../index.html" hreflang="en" lang="en">Read in English</a></p>
   </div>
 </footer>
