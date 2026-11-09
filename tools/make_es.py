@@ -242,7 +242,6 @@ R = [
 ('data-stage="adult">Adult teeth<small>about 12 and up</small>', 'data-stage="adult">Permanentes<small>de 12 años en adelante, más o menos</small>'),
 ('data-stage="edentulous">No natural teeth<small>teens and adults</small>', 'data-stage="edentulous">Sin dientes naturales<small>adolescentes y adultos</small>'),
 ('<p class="legend">Gums only. Tap the top or bottom gums.</p>', '<p class="legend">Solo encías. Toque las encías de arriba o de abajo.</p>'),
-('<span class="key"></span>20 baby teeth</span>', '<span class="key"></span>20 dientes de leche</span>'),
 ('<span class="key key-adult"></span>28 adult teeth</span>', '<span class="key key-adult"></span>28 dientes permanentes</span>'),
 ('<span class="key key-adult key-opt"></span>Wisdom teeth, if you have them</span>', '<span class="key key-adult key-opt"></span>Muelas del juicio, si las tiene</span>'),
 ('data-panel-btn="partial">Missing some teeth?</button>', 'data-panel-btn="partial">¿Le faltan algunos dientes?</button>'),
