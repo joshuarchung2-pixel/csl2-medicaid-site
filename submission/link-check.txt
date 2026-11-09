@@ -7,7 +7,7 @@
 200 | ok | https://findahealthcenter.hrsa.gov/
 200 | ok | https://healthconsumer.org/medi-cal-changes-and-what-you-need-to-know/
 200 | ok | https://inlandsocaluw.org/211
-404 | expected: site not published yet (pending publish) | https://joshuarchung2-pixel.github.io/csl2-medicaid-site/
+200 | ok (live on GitHub Pages 2026-11-09) | https://joshuarchung2-pixel.github.io/csl2-medicaid-site/
 200 | ok | https://odphp.health.gov/healthypeople/priority-areas/social-determinants-health
 403 | ok (headed browser 200; curl gets 403 bot wall) | https://rivcodpss.org/medi-cal
 200 | ok | https://smilecalifornia.org/covered-services/
