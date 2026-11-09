@@ -90,23 +90,43 @@
   });
 })();
 
-/* ---------- Tap a tooth ---------- */
+/* ---------- Tap a tooth: age slider, stage of teeth, Medi-Cal age group ---------- */
 (function () {
   "use strict";
   var root = document.getElementById("teeth");
   if (!root) return;
-  var panels = root.querySelectorAll(".panel");
-  var segs = root.querySelectorAll("[data-mouth]");
+  var range = document.getElementById("age");
+  var out = document.getElementById("age-out");
+  var labels = out.dataset.labels.split("|");
+  var segs = root.querySelectorAll("[data-stage]");
   var views = root.querySelectorAll("[data-mouth-view]");
+  var panels = root.querySelectorAll(".panel");
+  var aged = root.querySelectorAll("[data-ages]");
+  var MAX = Number(range.max);
 
-  function showPanel(name) {
-    panels.forEach(function (p) { p.hidden = p.dataset.panel !== name; });
-  }
+  // Slider steps: 0 = under 6 months, 1 = 6 to 11 months, then 1 year per step, last step = 90+.
+  function years(i) { return i === 0 ? 0.25 : i === 1 ? 0.75 : i - 1; }
+  function label(i) { return i === 0 ? labels[0] : i === 1 ? labels[1] : i === MAX ? labels[3] : labels[2].replace("{n}", String(i - 1)); }
+  // Typical stage for an age. "No natural teeth" is never picked from age alone.
+  function stageFor(y) { return y < 0.5 ? "none" : y < 6 ? "primary" : y < 12 ? "mixed" : "adult"; }
+  // Medi-Cal Dental age groups (Smile, California, n.d.-a): babies 0-3, kids 4-12, teens 13-20, adults 21-54, seniors 55+.
+  function groupFor(y) { return y < 4 ? "baby" : y < 13 ? "kid" : y < 21 ? "teen" : y < 55 ? "adult" : "senior"; }
+  // If someone picks a stage that doesn't fit the age, move the slider to a typical age for it.
+  var FIT = { none: [0, 2, 0], primary: [1, 8, 4], mixed: [6, 15, 9], adult: [12, MAX, 31], edentulous: [14, MAX, 61] };
+
+  var stage = null;
+
+  function showPanel(name) { panels.forEach(function (p) { p.hidden = p.dataset.panel !== name; }); }
   function teethOf(view) { return Array.prototype.slice.call(view.querySelectorAll(".tooth")); }
-
+  function clear(view) {
+    teethOf(view).forEach(function (t, i) {
+      t.setAttribute("aria-checked", "false");
+      t.setAttribute("tabindex", i === 0 ? "0" : "-1");
+      t.classList.remove("same");
+    });
+  }
   function select(tooth, focus) {
-    var view = tooth.closest("[data-mouth-view]");
-    var all = teethOf(view);
+    var all = teethOf(tooth.closest("[data-mouth-view]"));
     all.forEach(function (t) {
       var on = t === tooth;
       t.setAttribute("aria-checked", on ? "true" : "false");
@@ -117,22 +137,43 @@
     if (focus) tooth.focus();
   }
 
-  function clear(view) {
-    var all = teethOf(view);
-    all.forEach(function (t, i) {
-      t.setAttribute("aria-checked", "false");
-      t.setAttribute("tabindex", i === 0 ? "0" : "-1");
-      t.classList.remove("same");
-    });
+  function applyAge() {
+    var i = Number(range.value);
+    var text = label(i);
+    out.textContent = text;
+    range.setAttribute("aria-valuetext", text);
+    var g = groupFor(years(i));
+    aged.forEach(function (el) { el.classList.toggle("age-on", el.dataset.ages.split(" ").indexOf(g) !== -1); });
   }
 
-  function setMouth(name) {
-    segs.forEach(function (s) { s.setAttribute("aria-pressed", s.dataset.mouth === name ? "true" : "false"); });
+  function setStage(name) {
+    if (name === stage) return;
+    stage = name;
+    segs.forEach(function (s) { s.setAttribute("aria-pressed", s.dataset.stage === name ? "true" : "false"); });
     views.forEach(function (v) { v.hidden = v.dataset.mouthView !== name; clear(v); });
     showPanel(name + "-intro");
   }
 
-  segs.forEach(function (s) { s.addEventListener("click", function () { setMouth(s.dataset.mouth); }); });
+  function onAge() {
+    var i = Number(range.value);
+    applyAge();
+    if (!(stage === "edentulous" && i >= FIT.edentulous[0])) setStage(stageFor(years(i)));
+  }
+
+  range.addEventListener("input", onAge);
+  root.querySelectorAll("[data-age-step]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      range.value = String(Math.min(MAX, Math.max(0, Number(range.value) + Number(b.dataset.ageStep))));
+      onAge();
+    });
+  });
+  segs.forEach(function (s) {
+    s.addEventListener("click", function () {
+      var f = FIT[s.dataset.stage], i = Number(range.value);
+      if (i < f[0] || i > f[1]) { range.value = String(f[2]); applyAge(); }
+      setStage(s.dataset.stage);
+    });
+  });
 
   views.forEach(function (view) {
     var all = teethOf(view);
@@ -159,8 +200,17 @@
     });
   });
 
-  setMouth("kid");
+  applyAge();
+  setStage(stageFor(years(Number(range.value))));
 })();
+
+/* ---------- Citations: the reference's back link returns to the citation that was clicked ---------- */
+document.addEventListener("click", function (e) {
+  var c = e.target.closest && e.target.closest("a.cite[id]");
+  if (!c) return;
+  var back = document.querySelector(c.getAttribute("href") + " .back");
+  if (back) back.setAttribute("href", "#" + c.id);
+});
 
 /* ---------- Flip cards ---------- */
 (function () {
