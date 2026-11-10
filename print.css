@@ -45,8 +45,7 @@ p { margin: 0; }
 .title { font-family: var(--display); font-weight: 600; font-size: 24pt; line-height: 1.05; margin: var(--p3) 0 var(--p1); letter-spacing: -0.01em; }
 .sub { color: var(--muted); margin-bottom: var(--p2); font-size: 10.5pt; }
 .cols { display: grid; grid-template-columns: 1fr 1fr; gap: var(--p2) var(--p4); flex: 1; align-content: start; }
-.box { border: 1px solid var(--gray-3); border-top: 2px solid var(--ink); padding: var(--p2) var(--p3) var(--p3); }
-.box.warm { border-top-color: var(--accent); }
+.box { border: 1px solid var(--gray-3); padding: var(--p2) var(--p3) var(--p3); }
 .box.blue { grid-column: 1 / -1; }
 .box h2 { display: flex; align-items: center; gap: var(--p2); font: 700 11.5pt/1.2 var(--sans); margin-bottom: var(--p1); }
 .num { display: inline-grid; place-items: center; width: 18pt; height: 18pt; background: var(--ink); color: #fff; font: 700 10pt/1 var(--sans); }

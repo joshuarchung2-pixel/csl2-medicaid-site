@@ -157,7 +157,7 @@ section { scroll-margin-top: 112px; }
 .facts li, .ticks li { display: flex; gap: var(--s1); align-items: flex-start; }
 .facts .ic, .ticks .ic { width: 20px; height: 20px; margin-top: 4px; color: var(--accent); }
 
-.flow { background: #fff; border: 1px solid var(--ink); border-top: 6px solid var(--accent); padding: var(--s2); }
+.flow { background: #fff; border: 1px solid var(--ink); padding: var(--s2); }
 .js .flow { display: flex; flex-direction: column; min-height: 680px; }
 @media (min-width: 1024px) { .js .flow { min-height: 730px; } }
 .js .flow > .privacy { margin-top: auto; }
@@ -271,10 +271,10 @@ html:not(.js) .flow-hint { display: none; }
 .sdoh-pair { display: flex; flex-direction: column; border: 1px solid var(--ink); }
 .sdoh-tag { display: flex; align-items: center; gap: var(--s1); min-height: 48px; margin: 0; padding: var(--s1) var(--s2); background: var(--ink); color: #fff; font-weight: 600; font-size: var(--t-ui); line-height: 1.3; }
 .sdoh-n { display: grid; place-items: center; flex: none; width: 24px; height: 24px; background: #fff; color: var(--ink); font-size: var(--t-sm); font-weight: 700; }
-.sdoh-pair .stat { flex: 1; border-top: 0; padding: var(--s2); }
+.sdoh-pair .stat { flex: 1; padding: var(--s2); }
 .stats { display: grid; gap: var(--s3); margin-bottom: var(--s3); }
 @media (min-width: 560px) { .stats { grid-template-columns: 1fr 1fr; } }
-.stat { border-top: 2px solid var(--ink); padding-top: var(--s2); }
+.stat { padding-top: var(--s2); }
 .stat p { margin: 0; font-size: var(--t-ui); }
 .stat .stat-num { font-family: var(--display); font-weight: 600; font-size: var(--t-h2); line-height: 1.1; color: var(--ink); margin-bottom: var(--s1); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
 .stat .stat-num span { font-family: var(--sans); font-size: var(--t-ui); font-weight: 600; color: var(--muted); letter-spacing: 0; }
@@ -358,28 +358,27 @@ html:not(.js) .mouth-controls, html:not(.js) .legend .link-btn { display: none; 
 .flips { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s3); }
 @media (min-width: 640px) { .flips { grid-template-columns: repeat(2, 1fr); } .js .face { min-height: 248px; } }
 @media (min-width: 1024px) { .flips { grid-template-columns: repeat(3, 1fr); } }
-.flip { perspective: 1200px; --fa: var(--accent); --fa-tint: var(--accent-tint); }
-.flip:nth-child(3n+2) { --fa: #1d5fa8; --fa-tint: #e8eff8; }  /* blue, 6.4:1 on white */
-.flip:nth-child(3n) { --fa: #a8471f; --fa-tint: #f8ece6; }    /* clay, 5.6:1 on white */
+/* every myth side is clay, every fact side is blue: accent outline + light tint of it */
+.flip { perspective: 1200px; --my: #a8471f; --my-tint: #f8ece6; --fc: #1d5fa8; --fc-tint: #e8eff8; }
 .flip-inner { display: grid; gap: var(--s1); height: 100%; }
-.face { display: flex; flex-direction: column; align-items: flex-start; padding: var(--s3); border: 1px solid var(--fa); background: #fff; }
-.face.front { border-top: 6px solid var(--fa); background: var(--fa-tint); }
+.face { display: flex; flex-direction: column; align-items: flex-start; padding: var(--s3); border: 1px solid var(--my); background: var(--my-tint); }
 .face p { margin-bottom: var(--s2); }
 .flip-q { font-family: var(--display); font-size: var(--t-h3); line-height: 1.35; color: var(--ink); flex: 1; }
-.face.back { background: var(--fa); border-color: var(--fa); color: #fff; }
+.face.back { background: var(--fc-tint); border-color: var(--fc); color: var(--ink); }
 .face.back p:focus { outline: none; }
-.face.back a, .face.back .cite { color: #fff; text-decoration-color: #fff; }
+.face.back .cite { color: var(--muted); }
 .tag { display: inline-flex; align-items: center; min-height: 24px; padding: 0 var(--s1); margin-bottom: var(--s2) !important; font-size: var(--t-sm); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
-.tag.myth { border: 1px solid var(--fa); background: #fff; color: var(--fa); }
-.tag.fact { background: #fff; color: var(--fa); }
+.tag.myth { border: 1px solid var(--my); background: #fff; color: var(--my); }
+.tag.fact { border: 1px solid var(--fc); background: #fff; color: var(--fc); }
 .flip-btn {
   display: inline-flex; align-items: center; gap: var(--s1); min-height: 48px; margin-top: auto; padding: 0 var(--s2);
   border: 1px solid var(--ink); border-radius: var(--r); background: #fff; color: var(--ink);
   font: 600 var(--t-ui)/1.2 var(--sans); cursor: pointer;
 }
 .flip-btn .ic { width: 20px; height: 20px; }
-.face.front .flip-btn { border-color: var(--fa); background: var(--fa); color: #fff; }
-.flip-btn:hover, .face.front .flip-btn:hover { background: var(--ink); border-color: var(--ink); color: #fff; }
+.face.front .flip-btn { border-color: var(--my); background: var(--my); color: #fff; }
+.face.back .flip-btn { border-color: var(--fc); background: var(--fc); color: #fff; }
+.flip-btn:hover, .face.front .flip-btn:hover, .face.back .flip-btn:hover { background: var(--ink); border-color: var(--ink); color: #fff; }
 @keyframes nudge { 0%, 62%, 100% { transform: translateY(0); } 70% { transform: translateY(-5px); } 78% { transform: translateY(0); } 85% { transform: translateY(-2px); } 92% { transform: translateY(0); } }
 .js .face.front .flip-btn { animation: nudge 3.2s ease-in-out infinite; }
 .js .flip:nth-child(2) .face.front .flip-btn { animation-delay: .3s; }
@@ -388,8 +387,8 @@ html:not(.js) .mouth-controls, html:not(.js) .legend .link-btn { display: none; 
 .js .flip:nth-child(5) .face.front .flip-btn { animation-delay: 1.2s; }
 .js .flip:nth-child(6) .face.front .flip-btn { animation-delay: 1.5s; }
 .js .face.front .flip-btn:hover, .js .face.front .flip-btn:focus-visible, .js .flip.flipped .flip-btn { animation: none; }
-.face.back .flip-btn { border-color: #fff; }
-.face.back .flip-btn:focus-visible { outline-color: #fff; }
+.face.back .flip-btn:focus-visible { outline-color: var(--fc); }
+.face.front .flip-btn:focus-visible { outline-color: var(--my); }
 .js .flip-inner { gap: 0; transition: transform .5s cubic-bezier(.2, .7, .2, 1); transform-style: preserve-3d; }
 .js .face { grid-area: 1 / 1; min-height: 200px; backface-visibility: hidden; -webkit-backface-visibility: hidden; cursor: pointer; }
 .js .face.back { transform: rotateY(180deg); }

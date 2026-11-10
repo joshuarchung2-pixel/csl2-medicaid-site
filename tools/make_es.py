@@ -144,7 +144,7 @@ R = [
 ('<span>Denture relines</span>', '<span>Rebases de dentaduras</span>'),
 # myths
 ('Heard any of these?</h2>', '¿Ha oído alguno de estos?</h2>'),
-('<p>Tap a card to flip it.</p>', '<p>Toque una tarjeta para darle vuelta.</p>'),
+('<p>Tap one of the common myths and misconceptions below to see the facts.</p>', '<p>Toque uno de los mitos y malentendidos comunes de abajo para ver la realidad.</p>'),
 ('<p class="tag myth">Myth</p>', '<p class="tag myth">Mito</p>'),
 ('<p class="tag fact">Fact</p>', '<p class="tag fact">Realidad</p>'),
 ('<use href="#i-reset"/></svg>See the fact</button>', '<use href="#i-reset"/></svg>Ver la realidad</button>'),
@@ -253,9 +253,9 @@ R = [
 ('>Every adult 21 to 54 gets</h3>', '>Cada adulto de 21 a 54 años recibe</h3>'),
 ('>Every adult 55 and older gets</h3>', '>Cada adulto de 55 años o más recibe</h3>'),
 # tapped-tooth panel labels
-('<p class="panel-kicker">The tooth you tapped</p>', '<p class="panel-kicker">El diente que tocó</p>'),
-('<p class="panel-kicker">What you tapped</p>', '<p class="panel-kicker">Lo que tocó</p>'),
-('<p class="panel-kicker">What you picked</p>', '<p class="panel-kicker">Lo que eligió</p>'),
+('<p class="panel-kicker">Selected tooth</p>', '<p class="panel-kicker">Diente seleccionado</p>'),
+('<p class="panel-kicker">Selected area</p>', '<p class="panel-kicker">Área seleccionada</p>'),
+('<p class="panel-kicker">Selected option</p>', '<p class="panel-kicker">Opción seleccionada</p>'),
 ('<p class="panel-sub">Baby tooth</p>', '<p class="panel-sub">Diente de leche</p>'),
 ('<p class="panel-sub">Adult tooth</p>', '<p class="panel-sub">Diente permanente</p>'),
 ('<p class="panel-sub">No natural teeth</p>', '<p class="panel-sub">Sin dientes naturales</p>'),
