@@ -151,6 +151,7 @@
       otherName.textContent = state.county === "other" && state.countyName
         ? otherName.dataset.tpl.replace("{name}", state.countyName) : otherName.dataset.base;
     }
+    plan.querySelectorAll(".plan-block").forEach(function (d, i) { d.open = i === 0; });
     go(4);
   });
 

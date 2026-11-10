@@ -12,9 +12,10 @@ s = P.read_text()
 s = re.sub(r'<a class="cite" id="c-[a-z0-9-]+" href=', '<a class="cite" href=', s)
 s = re.sub(r'<a class="back" href="#[^"]*" aria-label="[^"]*">↑</a>', '', s)
 
-# parts of the page that start hidden or folded: result card, tooth panels, myth backs, the dates list
+# parts of the page that start hidden or folded: result card, age box + tooth panels, myth backs, the dates list
 hidden = []
 for start, end in (('<div class="plan" id="plan"', '<p class="privacy">'),
+                   ('<div class="age-box"', '<div class="teeth-grid">'),
                    ('<div class="tooth-info"', '<!-- MYTHS -->'),
                    ('<div class="face back">', '</div>'),
                    ('<details>', '</details>')):

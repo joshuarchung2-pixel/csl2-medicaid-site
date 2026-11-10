@@ -135,19 +135,31 @@
 
       <!-- Tarjeta de resultado. Todo el texto está aquí; app.js solo muestra las partes y llena los números. -->
       <div class="plan" id="plan" hidden>
-        <h2 class="plan-h" id="plan-h" tabindex="-1">Su plan</h2>
+        <div class="plan-top">
+          <h2 class="plan-h" id="plan-h" tabindex="-1">Su plan</h2>
+          <button type="button" class="link-btn" data-restart><svg class="ic" aria-hidden="true"><use href="#i-reset"/></svg>Empezar de nuevo</button>
+        </div>
         <p class="plan-sub">Hogar de <span data-fill="size"></span> en <span data-county-name="la">el condado de Los Ángeles</span><span data-county-name="riv">el condado de Riverside</span><span data-county-name="sb">el condado de San Bernardino</span><span data-county-name="other" data-tpl="el condado de {name}">California</span></p>
 
-        <div class="plan-block">
-          <h3>¿Puede tener Medi-Cal?</h3>
+        <details class="plan-block" name="plan-part" open>
+          <summary><h3>Su siguiente paso</h3></summary>
+          <p data-county="la">Solicite por internet en <a href="https://benefitscal.com/">BenefitsCal.com</a> o llame al DPSS del condado de Los Ángeles al <a class="tel" href="tel:18666133777">1-866-613-3777</a>. <a class="cite" id="c-dhcs-apply-1" href="#ref-dhcs-apply">(DHCS, n.d.-a;</a> <a class="cite" id="c-la-1" href="#ref-la">LA County DPSS, n.d.)</a></p>
+          <p data-county="riv">Solicite por internet en <a href="https://benefitscal.com/">BenefitsCal.com</a> o llame al DPSS del condado de Riverside al <a class="tel" href="tel:18774108827">1-877-410-8827</a>. <a class="cite" id="c-dhcs-apply-2" href="#ref-dhcs-apply">(DHCS, n.d.-a;</a> <a class="cite" id="c-riv-1" href="#ref-riv">Riverside County DPSS, n.d.)</a></p>
+          <p data-county="sb">Solicite por internet en <a href="https://benefitscal.com/">BenefitsCal.com</a> o llame al TAD del condado de San Bernardino al <a class="tel" href="tel:18774108829">1-877-410-8829</a>. <a class="cite" id="c-dhcs-apply-3" href="#ref-dhcs-apply">(DHCS, n.d.-a;</a> <a class="cite" id="c-sb-1" href="#ref-sb">San Bernardino County TAD, n.d.)</a></p>
+          <p data-county="other">Solicite por internet en <a href="https://benefitscal.com/">BenefitsCal.com</a> o <a href="https://www.dhcs.ca.gov/medi-cal/contact/find-a-county-office/">busque la oficina de su condado</a>. Covered California también le puede ayudar al <a class="tel" href="tel:18003001506">1-800-300-1506</a>. <a class="cite" id="c-dhcs-apply-4" href="#ref-dhcs-apply">(DHCS, n.d.-a;</a> <a class="cite" id="c-coveredca-1" href="#ref-coveredca">Covered California, n.d.)</a></p>
+        </details>
+
+        <details class="plan-block" name="plan-part">
+          <summary><h3>¿Puede tener Medi-Cal?</h3></summary>
           <p data-show="kids">Es probable que los niños menores de 19 años puedan tener Medi-Cal gratis si su familia gana unos <strong data-fill="kid266"></strong> al año o menos, antes de impuestos. Hasta unos <strong data-fill="kid322"></strong>, los niños podrían tener cobertura de bajo costo por una pequeña cuota mensual. Su estatus migratorio no importa. <a class="cite" id="c-dhcs-haccp-1" href="#ref-dhcs-haccp">(DHCS, 2025a;</a> <a class="cite" id="c-aspe-1" href="#ref-aspe">ASPE, 2026;</a> <a class="cite" id="c-dhcs-imm-2" href="#ref-dhcs-imm">DHCS, 2026a)</a></p>
           <p data-show="preg">Si está embarazada, puede tener Medi-Cal completo con servicios dentales, sin importar su estatus migratorio. Dura todo el embarazo y 1 año después. El embarazo tiene sus propias reglas de ingreso, así que solicite aunque crea que gana demasiado. <a class="cite" id="c-dhcs-imm-3" href="#ref-dhcs-imm">(DHCS, 2026a)</a></p>
           <p data-show="adult">Los adultos de 19 a 64 años pueden calificar si la familia gana <strong data-fill="adult138"></strong> al año o menos. Desde el 1 de enero de 2026, la mayoría de los adultos sin un estatus migratorio que califique no pueden inscribirse por primera vez en Medi-Cal completo, pero aún pueden recibir atención de emergencia y del embarazo. <a class="cite" id="c-dhcs-fpl-1" href="#ref-dhcs-fpl">(DHCS, n.d.-b,</a> <a class="cite" id="c-dhcs-changes-1" href="#ref-dhcs-changes">n.d.-d)</a></p>
           <p data-show="senior">Los adultos de 65 años o más tienen otras reglas. Desde el 1 de enero de 2026, Medi-Cal cuenta los ahorros y otros bienes de este grupo (hasta $130,000 para una persona, más $65,000 por cada persona adicional). Llame a la oficina de su condado para hablar de su caso. <a class="cite" id="c-dhcs-changes-2" href="#ref-dhcs-changes">(DHCS, n.d.-d)</a></p>
-        </div>
+          <p class="small">Esto es un cálculo aproximado, no una decisión. El condado decide cuando usted presenta la solicitud.</p>
+        </details>
 
-        <div class="plan-block">
-          <h3>Atención dental que puede recibir</h3>
+        <details class="plan-block" name="plan-part">
+          <summary><h3>Atención dental que puede recibir</h3></summary>
           <ul class="ticks">
             <li data-show="baby"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span><strong>Bebé:</strong> exámenes cada 3 meses, más limpiezas y flúor cada 6 meses. Primera visita al salir el primer diente o antes del primer cumpleaños. <a class="cite" id="c-smile-hub-1" href="#ref-smile-hub">(Smile, California, n.d.-a)</a></span></li>
             <li data-show="kid"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span><strong>Niño:</strong> chequeos y limpiezas cada 6 meses, selladores en las muelas, empastes y tratamientos de conducto. <a class="cite" id="c-smile-kids-1" href="#ref-smile-kids">(Smile, California, n.d.-c)</a></span></li>
@@ -156,18 +168,10 @@
             <li data-show="adult"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span><strong>Adulto:</strong> un chequeo y limpieza cada año, empastes, coronas y dentaduras, hasta $1,800 al año. <a class="cite" id="c-smile-adults-2" href="#ref-smile-adults">(Smile, California, n.d.-b)</a></span></li>
             <li data-show="senior"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span><strong>65 o más:</strong> Medi-Cal Dental también cubre a los adultos mayores. Llame al <a class="tel" href="tel:18003226384">1-800-322-6384</a> para preguntar qué le cubre. <a class="cite" id="c-smile-hub-2" href="#ref-smile-hub">(Smile, California, n.d.-a)</a></span></li>
           </ul>
-        </div>
+        </details>
 
-        <div class="plan-block">
-          <h3>Su siguiente paso</h3>
-          <p data-county="la">Solicite por internet en <a href="https://benefitscal.com/">BenefitsCal.com</a> o llame al DPSS del condado de Los Ángeles al <a class="tel" href="tel:18666133777">1-866-613-3777</a>. <a class="cite" id="c-dhcs-apply-1" href="#ref-dhcs-apply">(DHCS, n.d.-a;</a> <a class="cite" id="c-la-1" href="#ref-la">LA County DPSS, n.d.)</a></p>
-          <p data-county="riv">Solicite por internet en <a href="https://benefitscal.com/">BenefitsCal.com</a> o llame al DPSS del condado de Riverside al <a class="tel" href="tel:18774108827">1-877-410-8827</a>. <a class="cite" id="c-dhcs-apply-2" href="#ref-dhcs-apply">(DHCS, n.d.-a;</a> <a class="cite" id="c-riv-1" href="#ref-riv">Riverside County DPSS, n.d.)</a></p>
-          <p data-county="sb">Solicite por internet en <a href="https://benefitscal.com/">BenefitsCal.com</a> o llame al TAD del condado de San Bernardino al <a class="tel" href="tel:18774108829">1-877-410-8829</a>. <a class="cite" id="c-dhcs-apply-3" href="#ref-dhcs-apply">(DHCS, n.d.-a;</a> <a class="cite" id="c-sb-1" href="#ref-sb">San Bernardino County TAD, n.d.)</a></p>
-          <p data-county="other">Solicite por internet en <a href="https://benefitscal.com/">BenefitsCal.com</a> o <a href="https://www.dhcs.ca.gov/medi-cal/contact/find-a-county-office/">busque la oficina de su condado</a>. Covered California también le puede ayudar al <a class="tel" href="tel:18003001506">1-800-300-1506</a>. <a class="cite" id="c-dhcs-apply-4" href="#ref-dhcs-apply">(DHCS, n.d.-a;</a> <a class="cite" id="c-coveredca-1" href="#ref-coveredca">Covered California, n.d.)</a></p>
-        </div>
-
-        <div class="plan-block">
-          <h3>Qué llevar</h3>
+        <details class="plan-block" name="plan-part">
+          <summary><h3>Qué llevar</h3></summary>
           <ul class="boxes">
             <li>Identificación con foto</li>
             <li>Tarjeta de Seguro Social, si la tiene</li>
@@ -176,21 +180,19 @@
             <li>¿Le pagan en efectivo? Puede declarar sus ingresos usted mismo.</li>
           </ul>
           <p class="small">No necesita tenerlo todo para empezar. <a class="cite" id="c-dhcs-help-2" href="#ref-dhcs-help">(DHCS, n.d.-e)</a></p>
-        </div>
+        </details>
 
-        <div class="plan-block">
-          <h3>La clínica más cercana en este sitio</h3>
+        <details class="plan-block" name="plan-part">
+          <summary><h3>La clínica más cercana en este sitio</h3></summary>
           <div data-county="la"><p><strong>WesternU Health Dental Center, Pomona</strong><br>Clínica de enseñanza para niños y adultos. Llame para preguntar sobre Medi-Cal. <a class="tel" href="tel:19097063910">909-706-3910</a> <a class="cite" id="c-westernu-1" href="#ref-westernu">(WesternU Health, n.d.)</a></p></div>
           <div data-county="riv"><p><strong>SAC Health, San Bernardino</strong> es la clínica más cercana en este sitio. Acepta Medi-Cal y ayuda a pacientes sin seguro. <a class="tel" href="tel:19093827100">909-382-7100</a> <a class="cite" id="c-sac-1" href="#ref-sac">(SAC Health, n.d.-a,</a> <a class="cite" id="c-sac-home-1" href="#ref-sac-home">n.d.-b)</a></p><p>Para encontrar una en el condado de Riverside, use el <a href="https://findahealthcenter.hrsa.gov/">buscador de centros de salud</a>. <a class="cite" id="c-hrsa-1" href="#ref-hrsa">(HRSA, n.d.)</a></p></div>
           <div data-county="sb"><p><strong>SAC Health, San Bernardino</strong><br>Acepta Medi-Cal y ayuda a pacientes sin seguro. Atención dental familiar con Loma Linda University. <a class="tel" href="tel:19093827100">909-382-7100</a> <a class="cite" id="c-sac-2" href="#ref-sac">(SAC Health, n.d.-a,</a> <a class="cite" id="c-sac-home-2" href="#ref-sac-home">n.d.-b)</a></p></div>
           <div data-county="other"><p>Use el <a href="https://findahealthcenter.hrsa.gov/">buscador de centros de salud</a> o el <a href="https://smilecalifornia.org/find-a-dentist/">buscador de dentistas de Medi-Cal</a> para encontrar atención cerca de usted. <a class="cite" id="c-hrsa-2" href="#ref-hrsa">(HRSA, n.d.;</a> <a class="cite" id="c-smile-hub-3" href="#ref-smile-hub">Smile, California, n.d.-a)</a></p></div>
-        </div>
+        </details>
 
         <div class="plan-actions">
           <a class="btn" href="checklist.html"><svg class="ic" aria-hidden="true"><use href="#i-print"/></svg>Imprimir la lista para el refri</a>
-          <button type="button" class="btn alt" data-restart><svg class="ic" aria-hidden="true"><use href="#i-reset"/></svg>Empezar de nuevo</button>
         </div>
-        <p class="small">Esto es un cálculo aproximado, no una decisión. El condado decide cuando usted presenta la solicitud.</p>
       </div>
 
       <p class="privacy"><svg class="ic" aria-hidden="true"><use href="#i-shield"/></svg><span>Sus respuestas se quedan en esta página. No se guarda ni se envía nada.</span></p>
@@ -257,6 +259,24 @@
         </div>
       </div>
 
+      <div class="age-box" aria-live="polite">
+        <p class="age-kicker">Medi-Cal Dental, por edad</p>
+        <h3 class="age-title" data-ages="baby">Cada bebé de 0 a 3 años recibe</h3>
+        <h3 class="age-title" data-ages="kid">Cada niño de 4 a 12 años recibe</h3>
+        <h3 class="age-title" data-ages="teen">Cada adolescente de 13 a 20 años recibe</h3>
+        <h3 class="age-title" data-ages="adult">Cada adulto de 21 a 54 años recibe</h3>
+        <h3 class="age-title" data-ages="senior">Cada adulto de 55 años o más recibe</h3>
+        <div class="when">
+          <p data-ages="baby">Exámenes cada 3 meses desde el nacimiento hasta los 3 años. Limpiezas y barniz de flúor cada 6 meses. <a class="cite" id="c-smile-hub-5" href="#ref-smile-hub">(Smile, California, n.d.-a)</a></p>
+          <p data-ages="kid">Exámenes, limpiezas y barniz de flúor cada 6 meses. <a class="cite" id="c-smile-kids-2" href="#ref-smile-kids">(Smile, California, n.d.-c)</a></p>
+          <p data-ages="teen">Exámenes, limpiezas y barniz de flúor cada 6 meses. <a class="cite" id="c-smile-teens-2" href="#ref-smile-teens">(Smile, California, n.d.-d)</a></p>
+          <p data-ages="adult">Un examen, limpieza y barniz de flúor cada 12 meses. <a class="cite" id="c-smile-adults-3" href="#ref-smile-adults">(Smile, California, n.d.-b)</a></p>
+          <p data-ages="senior">Un examen, limpieza y barniz de flúor cada 12 meses. <a class="cite" id="c-dhcs-dental-1" href="#ref-dhcs-dental">(DHCS, 2025b)</a></p>
+          <p data-ages="baby kid teen">Para menores de 21 años no hay límite de dinero al año, y pueden recibir atención adicional si es médicamente necesaria. <a class="cite" id="c-dhcs-dental-2" href="#ref-dhcs-dental">(DHCS, 2025b)</a></p>
+          <p data-ages="adult senior">Medi-Cal paga hasta $1,800 al año, sin límite para la atención médicamente necesaria. <a class="cite" id="c-dhcs-dental-3" href="#ref-dhcs-dental">(DHCS, 2025b)</a></p>
+        </div>
+      </div>
+
       <div class="teeth-grid">
         <div class="mouths">
           <div class="mouth" data-mouth-view="none">
@@ -281,23 +301,6 @@
         </div>
 
         <div class="tooth-info" id="tooth-info" aria-live="polite">
-          <div class="group-bar">
-            <p class="group-name" data-ages="baby">Grupo de edad de Medi-Cal Dental: bebés, de 0 a 3</p>
-            <p class="group-name" data-ages="kid">Grupo de edad de Medi-Cal Dental: niños, de 4 a 12</p>
-            <p class="group-name" data-ages="teen">Grupo de edad de Medi-Cal Dental: adolescentes, de 13 a 20</p>
-            <p class="group-name" data-ages="adult">Grupo de edad de Medi-Cal Dental: adultos, de 21 a 54</p>
-            <p class="group-name" data-ages="senior">Grupo de edad de Medi-Cal Dental: adultos mayores, de 55 o más</p>
-          </div>
-          <div class="when">
-            <p data-ages="baby">Exámenes cada 3 meses desde el nacimiento hasta los 3 años. Limpiezas y barniz de flúor cada 6 meses. <a class="cite" id="c-smile-hub-5" href="#ref-smile-hub">(Smile, California, n.d.-a)</a></p>
-            <p data-ages="kid">Exámenes, limpiezas y barniz de flúor cada 6 meses. <a class="cite" id="c-smile-kids-2" href="#ref-smile-kids">(Smile, California, n.d.-c)</a></p>
-            <p data-ages="teen">Exámenes, limpiezas y barniz de flúor cada 6 meses. <a class="cite" id="c-smile-teens-2" href="#ref-smile-teens">(Smile, California, n.d.-d)</a></p>
-            <p data-ages="adult">Un examen, limpieza y barniz de flúor cada 12 meses. <a class="cite" id="c-smile-adults-3" href="#ref-smile-adults">(Smile, California, n.d.-b)</a></p>
-            <p data-ages="senior">Un examen, limpieza y barniz de flúor cada 12 meses. <a class="cite" id="c-dhcs-dental-1" href="#ref-dhcs-dental">(DHCS, 2025b)</a></p>
-            <p data-ages="baby kid teen">Para menores de 21 años no hay límite de dinero al año, y pueden recibir atención adicional si es médicamente necesaria. <a class="cite" id="c-dhcs-dental-2" href="#ref-dhcs-dental">(DHCS, 2025b)</a></p>
-            <p data-ages="adult senior">Medi-Cal paga hasta $1,800 al año, sin límite para la atención médicamente necesaria. <a class="cite" id="c-dhcs-dental-3" href="#ref-dhcs-dental">(DHCS, 2025b)</a></p>
-          </div>
-
           <div class="panel" data-panel="none-intro">
             <h3>Todavía sin dientes</h3>
             <p>Los dientes empiezan a salir entre los 4 y 6 meses, y la mayoría de los bebés tiene un diente antes de cumplir 1 año. Limpie las encías de su bebé con un paño limpio todos los días.</p>
@@ -321,13 +324,14 @@
           </div>
 
           <div class="panel" data-panel="gums">
-            <p class="panel-tag">Encías</p>
+            <p class="panel-kicker">Lo que tocó</p>
             <h3>Las encías del bebé</h3>
             <p>Las encías sanas abren paso a dientes sanos. Limpie las encías con un paño limpio todos los días. Cuando salga el primer diente, empiece a cepillar con una capa de pasta con flúor del tamaño de un grano de arroz. <a class="cite" id="c-smile-hub-8" href="#ref-smile-hub">(Smile, California, n.d.-a)</a></p>
           </div>
           <div class="panel" data-panel="baby-front">
-            <p class="panel-tag">Diente de leche</p>
+            <p class="panel-kicker">El diente que tocó</p>
             <h3>Diente de leche del frente</h3>
+            <p class="panel-sub">Diente de leche</p>
             <p>Perder un diente de leche antes de tiempo por una caries puede hacer que los dientes permanentes salgan chuecos. <a class="cite" id="c-smile-hub-9" href="#ref-smile-hub">(Smile, California, n.d.-a)</a></p>
             <ul class="ticks">
               <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>Empastes para las caries</span></li>
@@ -337,8 +341,9 @@
             <p class="small"><a class="cite" id="c-dhcs-dental-5" href="#ref-dhcs-dental">(DHCS, 2025b)</a></p>
           </div>
           <div class="panel" data-panel="baby-molar">
-            <p class="panel-tag">Diente de leche</p>
+            <p class="panel-kicker">El diente que tocó</p>
             <h3>Muela de leche</h3>
+            <p class="panel-sub">Diente de leche</p>
             <p>Los niños empiezan a perder los dientes de leche desde los 5 años. Hasta que el diente se cae, todavía necesita cuidado. <a class="cite" id="c-smile-kids-4" href="#ref-smile-kids">(Smile, California, n.d.-c)</a></p>
             <ul class="ticks">
               <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>Radiografías y empastes</span></li>
@@ -348,8 +353,9 @@
             <p class="small"><a class="cite" id="c-dhcs-dental-6" href="#ref-dhcs-dental">(DHCS, 2025b)</a></p>
           </div>
           <div class="panel" data-panel="six-molar">
-            <p class="panel-tag adult">Diente permanente</p>
+            <p class="panel-kicker">El diente que tocó</p>
             <h3>Primera muela permanente</h3>
+            <p class="panel-sub">Diente permanente</p>
             <p>Este diente permanente sale detrás de los dientes de leche, más o menos cuando los niños empiezan a perderlos. Es un buen momento para preguntar por los selladores. <a class="cite" id="c-smile-kids-5" href="#ref-smile-kids">(Smile, California, n.d.-c)</a></p>
             <ul class="ticks">
               <li data-ages="kid teen"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span><strong>Selladores de muelas:</strong> una capa transparente que ayuda a evitar las caries. Se cubren para niños y adolescentes menores de 21 años.</span></li>
@@ -359,8 +365,9 @@
             <p class="small"><a class="cite" id="c-dhcs-dental-7" href="#ref-dhcs-dental">(DHCS, 2025b)</a></p>
           </div>
           <div class="panel" data-panel="front">
-            <p class="panel-tag adult">Diente permanente</p>
+            <p class="panel-kicker">El diente que tocó</p>
             <h3>Diente del frente</h3>
+            <p class="panel-sub">Diente permanente</p>
             <ul class="ticks">
               <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>Empastes</span></li>
               <li data-ages="kid teen adult senior"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>Tratamientos de conducto</span></li>
@@ -370,8 +377,9 @@
             <p class="small"><a class="cite" id="c-dhcs-dental-8" href="#ref-dhcs-dental">(DHCS, 2025b)</a></p>
           </div>
           <div class="panel" data-panel="back">
-            <p class="panel-tag adult">Diente permanente</p>
+            <p class="panel-kicker">El diente que tocó</p>
             <h3>Muela</h3>
+            <p class="panel-sub">Diente permanente</p>
             <ul class="ticks">
               <li data-ages="kid teen"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span><strong>Selladores de muelas:</strong> se cubren para niños y adolescentes menores de 21 años</span></li>
               <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>Empastes</span></li>
@@ -382,8 +390,9 @@
             <p class="small"><a class="cite" id="c-dhcs-dental-9" href="#ref-dhcs-dental">(DHCS, 2025b)</a></p>
           </div>
           <div class="panel" data-panel="wisdom">
-            <p class="panel-tag adult">Diente permanente</p>
+            <p class="panel-kicker">El diente que tocó</p>
             <h3>Muela del juicio</h3>
+            <p class="panel-sub">Diente permanente</p>
             <p>No todos tienen muelas del juicio.</p>
             <ul class="ticks">
               <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>Extracción</span></li>
@@ -393,8 +402,9 @@
             <p class="small"><a class="cite" id="c-dhcs-dental-10" href="#ref-dhcs-dental">(DHCS, 2025b)</a></p>
           </div>
           <div class="panel" data-panel="ridge">
-            <p class="panel-tag adult">Sin dientes naturales</p>
+            <p class="panel-kicker">Lo que tocó</p>
             <h3>Dentaduras completas</h3>
+            <p class="panel-sub">Sin dientes naturales</p>
             <ul class="ticks">
               <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span><strong>Dentaduras completas:</strong> un juego completo de dientes para arriba, abajo o los dos</span></li>
               <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span><strong>Rebases de dentadura:</strong> ajustar la dentadura para que asiente bien en las encías</span></li>
@@ -403,8 +413,9 @@
             <p class="small"><a class="cite" id="c-dhcs-dental-11" href="#ref-dhcs-dental">(DHCS, 2025b;</a> <a class="cite" id="c-smile-adults-4" href="#ref-smile-adults">Smile, California, n.d.-b)</a></p>
           </div>
           <div class="panel" data-panel="partial">
-            <p class="panel-tag adult">Le faltan dientes</p>
+            <p class="panel-kicker">Lo que eligió</p>
             <h3>Dentaduras parciales</h3>
+            <p class="panel-sub">Le faltan dientes</p>
             <ul class="ticks">
               <li data-ages="teen adult senior"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span><strong>Dentaduras parciales:</strong> llenan los espacios donde faltan algunos dientes</span></li>
               <li data-ages="teen adult senior"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>Rebases de dentaduras</span></li>
