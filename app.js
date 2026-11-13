@@ -329,3 +329,110 @@ document.addEventListener("click", function (e) {
     });
   });
 })();
+
+/* ---------- Motion (v4.3): background, scroll reveals, smooth expand/collapse ----------
+   Decoration only. Nothing is hidden unless this script runs, and with
+   prefers-reduced-motion: reduce nothing moves (the background stays still, reveals and
+   expand/collapse are instant). */
+(function () {
+  "use strict";
+  var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Background: drifting palette blobs + faint dot grid, both trailing the scroll (styles.css .bg-fx).
+  var bg = document.createElement("div");
+  bg.className = "bg-fx";
+  bg.setAttribute("aria-hidden", "true");
+  bg.innerHTML = '<div class="bg-dotmask"><div class="bg-dots"></div></div><div class="bg-par"><div class="bg-blobs"></div></div>';
+  document.body.appendChild(bg);
+  if (!reduce) {
+    var par = bg.querySelector(".bg-par"), dots = bg.querySelector(".bg-dots"), ticking = false;
+    var drawBg = function () {
+      ticking = false;
+      var y = window.pageYOffset || 0;
+      // Blobs move at a quarter of the scroll, dots at 40%. The patterns repeat every 1400px / 24px,
+      // so wrapping the offset keeps them seamless and the layers small.
+      par.style.transform = "translate3d(0," + (-(y * 0.25 % 1400)).toFixed(1) + "px,0)";
+      dots.style.transform = "translate3d(0," + (-(y * 0.4 % 24)).toFixed(1) + "px,0)";
+    };
+    window.addEventListener("scroll", function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(drawBg); }
+    }, { passive: true });
+    drawBg();
+  }
+
+  if (reduce) return;
+
+  // Scroll reveals: only blocks that start below the fold get hidden, so nothing on screen flashes.
+  if ("IntersectionObserver" in window) {
+    var SEL = [
+      ".band .section-head", ".refs-head", ".note-card", ".sdoh-lead", ".sdoh-pairs > li", ".sdoh > .small",
+      ".mouth-controls", ".teeth-grid", ".flips > li", ".steps > li", ".callout",
+      ".help-grid > .card", "#help .note", ".share", ".ref-group"
+    ].join(",");
+    var fold = window.innerHeight * 0.95;
+    var io = new IntersectionObserver(function (entries) {
+      // Everything that enters together staggers top-to-bottom, left-to-right.
+      var shown = entries.filter(function (e) { return e.isIntersecting; }).map(function (e) { return e.target; });
+      shown.sort(function (a, b) {
+        var ra = a.getBoundingClientRect(), rb = b.getBoundingClientRect();
+        return (ra.top - rb.top) || (ra.left - rb.left);
+      });
+      shown.forEach(function (el, i) {
+        io.unobserve(el);
+        var d = Math.min(i, 5) * 90;
+        el.style.setProperty("--rv-d", d + "ms");
+        el.classList.add("in");
+        setTimeout(function () { el.classList.remove("rv", "in"); el.style.removeProperty("--rv-d"); }, d + 750);
+      });
+    }, { rootMargin: "0px 0px -8% 0px" });
+    Array.prototype.forEach.call(document.querySelectorAll(SEL), function (el) {
+      var r = el.getBoundingClientRect();
+      if (r.height > 0 && r.top > fold) { el.classList.add("rv"); io.observe(el); }
+    });
+  }
+
+  // Expand/collapse: browsers that can transition to height:auto do it in CSS (styles.css,
+  // interpolate-size). Others (Safari, Firefox) get the same motion here. <details> keeps its
+  // native state and semantics; exclusive groups (name="...") are kept exclusive by hand.
+  var cssDetails = window.CSS && CSS.supports && CSS.supports("interpolate-size", "allow-keywords");
+  if (cssDetails || !Element.prototype.animate) return;
+  var EASE = "cubic-bezier(.2, .7, .2, 1)";
+  document.querySelectorAll("details").forEach(function (d) {
+    var sum = d.firstElementChild;
+    if (!sum || sum.tagName !== "SUMMARY") return;
+    var group = d.getAttribute("name");
+    if (group) { d.setAttribute("data-group", group); d.removeAttribute("name"); }
+    var anim = null, closing = false;
+    function run(opening) {
+      var start = d.getBoundingClientRect().height;
+      if (anim) { anim.cancel(); anim = null; }
+      d.open = false;
+      var closedH = d.getBoundingClientRect().height;
+      d.open = true;
+      var end = opening ? d.getBoundingClientRect().height : closedH;
+      closing = !opening;
+      d.style.overflow = "hidden";
+      anim = d.animate([{ height: start + "px" }, { height: end + "px" }], { duration: 320, easing: EASE });
+      if (opening) {
+        Array.prototype.forEach.call(d.children, function (c) {
+          if (c !== sum) c.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 260, easing: "ease" });
+        });
+      }
+      anim.onfinish = function () {
+        anim = null; closing = false; d.style.overflow = "";
+        if (!opening) d.open = false;
+      };
+    }
+    d._motion = { run: run, isOpen: function () { return d.open && !closing; } };
+    sum.addEventListener("click", function (e) {
+      e.preventDefault();
+      var opening = !d.open || closing;
+      if (opening && group) {
+        document.querySelectorAll('details[data-group="' + group + '"]').forEach(function (o) {
+          if (o !== d && o._motion && o._motion.isOpen()) o._motion.run(false);
+        });
+      }
+      run(opening);
+    });
+  });
+})();

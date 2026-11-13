@@ -462,10 +462,97 @@ html:not(.js) .mouth-controls, html:not(.js) .legend .link-btn { display: none; 
 .site-footer { padding: var(--s4) 0 var(--s5); border-top: 1px solid var(--gray-3); font-size: var(--t-ui); color: var(--muted); }
 .site-footer p { margin: 0 0 var(--s1); }
 
+/* ---------- Motion + polish (v4.3) ----------
+   Everything here is decoration on top of the page above. Without JS the page is unchanged
+   (no hidden states, no background); with prefers-reduced-motion: reduce nothing moves. */
+
+/* Color shifts: links and controls ease instead of snapping (color only, so they stay on under reduced motion) */
+a, .link-btn, .cite, .refs .back { transition: color .2s ease, text-decoration-color .2s ease, background-color .2s ease; }
+.seg, .age-step, .age-num, .county-opt, .flip-btn, .face { transition: background-color .2s ease, border-color .2s ease, color .2s ease, box-shadow .25s ease; }
+.ca-map .cty { transition: fill .2s ease; }
+.mouth-svg .tooth rect, .mouth-svg .tooth path.ridge-hit { transition: fill .2s ease, stroke .2s ease; }
+.tiles-2 .tile:not(.pick)::after { transition: background-color .2s ease, transform .2s ease; }
+
+/* Nav: the underline grows in from the left */
+.site-nav a { position: relative; transition: color .2s ease; }
+.site-nav a:hover { border-bottom-color: transparent; }
+.site-nav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 2px; background: var(--accent); transform: scaleX(0); transform-origin: left center; transition: transform .25s ease; }
+.site-nav a:hover::after, .site-nav a:focus-visible::after { transform: scaleX(1); }
+
+/* Disclosure chevrons on every details/summary (the result card already has one) */
+.county-list summary, .callout summary { gap: var(--s1); list-style: none; }
+.county-list summary::-webkit-details-marker, .callout summary::-webkit-details-marker { display: none; }
+.county-list summary::after, .callout summary::after {
+  content: ""; flex: none; width: 16px; height: 16px; background: currentColor; transition: transform .25s ease;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='square'%3E%3Cpath d='M5 9l7 7 7-7'/%3E%3C/svg%3E") center/contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='square'%3E%3Cpath d='M5 9l7 7 7-7'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+.county-list[open] > summary::after, .callout details[open] > summary::after { transform: rotate(180deg); }
+.plan-block > summary::after { transition: transform .25s ease, background-color .2s ease; }
+.plan-block > summary:hover::after { background: var(--accent); }
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Hover/focus lift on things you can press. Uses the separate `translate` property so it
+     never fights the existing transforms (tile press, card flip, scroll reveal). */
+  .btn, .age-step, .flip { transition-property: background-color, border-color, color, box-shadow, transform, translate; transition-duration: .2s; transition-timing-function: ease; }
+  .tile { transition: border-color .15s ease, background-color .15s ease, transform .1s ease, box-shadow .1s ease, translate .2s ease; }
+  .btn:hover, .btn:focus-visible { translate: 0 -2px; box-shadow: 0 8px 18px -10px rgba(17, 17, 17, .45); }
+  .btn:active { translate: 0; box-shadow: none; transition-duration: .05s; }
+  .tile:hover, .tile:focus-visible { translate: 0 -1px; }
+  .tile:active { translate: 0; }
+  .tiles-2 .tile:not(.pick):hover::after { transform: translateX(3px); }
+  .age-step:hover, .age-step:focus-visible { translate: 0 -1px; box-shadow: 0 4px 10px -6px rgba(17, 17, 17, .4); }
+  .flip:hover, .flip:has(.flip-btn:focus-visible) { translate: 0 -3px; }
+  .flip:hover .face, .flip:has(.flip-btn:focus-visible) .face { box-shadow: 0 14px 28px -18px rgba(17, 17, 17, .45); }
+  .flip-btn .ic { transition: transform .35s ease; }
+  .flip-btn:hover .ic { transform: rotate(-180deg); }
+
+  /* Smooth expand/collapse. Native details/summary stays in charge of state and a11y; where the
+     browser can animate to height:auto (interpolate-size) CSS does it. Elsewhere app.js animates. */
+  @supports (interpolate-size: allow-keywords) {
+    details { interpolate-size: allow-keywords; }
+    details::details-content {
+      block-size: 0; opacity: 0; overflow: clip; overflow-clip-margin: 8px;
+      transition: block-size .32s cubic-bezier(.2, .7, .2, 1), opacity .25s ease, content-visibility .32s allow-discrete;
+    }
+    details[open]::details-content { block-size: auto; opacity: 1; }
+  }
+}
+
+/* Scroll reveal: app.js adds .rv only to blocks that start below the fold, then .in as they enter */
+.rv { opacity: 0; transform: translateY(20px); }
+.rv.in { opacity: 1; transform: none; transition: opacity .55s ease var(--rv-d, 0ms), transform .6s cubic-bezier(.2, .7, .2, 1) var(--rv-d, 0ms); }
+
+/* Background: soft palette blobs that drift and trail the scroll, plus a faint dot grid in the
+   side margins. Fixed layer behind everything, transform-only, no layout. Inserted by app.js. */
+.bg-fx { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; contain: strict; }
+.bg-fx .bg-par { position: absolute; left: -80px; right: -80px; top: -60px; height: calc(100vh + 1400px + 120px); will-change: transform; }
+.bg-fx .bg-blobs {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(360px 300px at 6% 320px, rgba(11, 110, 79, .06), rgba(11, 110, 79, 0)),
+    radial-gradient(340px 320px at 96% 760px, rgba(29, 95, 168, .05), rgba(29, 95, 168, 0)),
+    radial-gradient(320px 250px at 34% 1120px, rgba(168, 71, 31, .04), rgba(168, 71, 31, 0));
+  background-size: 100% 1400px; background-repeat: repeat-y;
+}
+.bg-fx .bg-dots { position: absolute; left: 0; right: 0; top: 0; height: calc(100% + 48px); background: radial-gradient(circle, rgba(17, 17, 17, .11) 1px, transparent 1.6px) 0 0 / 24px 24px; will-change: transform; }
+.bg-fx .bg-dotmask { position: absolute; inset: 0; -webkit-mask: linear-gradient(90deg, #000, rgba(0, 0, 0, 0) 9%, rgba(0, 0, 0, 0) 91%, #000); mask: linear-gradient(90deg, #000, rgba(0, 0, 0, 0) 9%, rgba(0, 0, 0, 0) 91%, #000); }
+@media (max-width: 1199.98px) { .bg-fx .bg-dotmask { display: none; } }
+@keyframes drift { 0% { transform: translate3d(0, 0, 0) scale(1); } 50% { transform: translate3d(36px, -24px, 0) scale(1.04); } 100% { transform: translate3d(-28px, 18px, 0) scale(.98); } }
+@media (prefers-reduced-motion: no-preference) { .bg-fx .bg-blobs { animation: drift 48s ease-in-out infinite alternate; will-change: transform; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .rv, .rv.in { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .site-nav a::after, .county-list summary::after, .callout summary::after, .plan-block > summary::after { transition: none; }
+}
+
 @media print {
   .site-header, .flow-head, .flow-bar, .step, .privacy, .plan-actions, .mouth-controls, .flip-btn, .share, .skip, .refs .back { display: none !important; }
   .js .flow { min-height: 0; }
   .plan-block::details-content { content-visibility: visible; height: auto; }
+  details::details-content { opacity: 1 !important; }
+  .bg-fx { display: none !important; }
+  .rv { opacity: 1 !important; transform: none !important; }
   .plan-block > summary::after { display: none; }
   .band, .hero { padding: var(--s3) 0; }
   .js .flip-inner { transform: none !important; }
