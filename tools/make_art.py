@@ -1,5 +1,5 @@
 """Writes the warm-character illustrations (v5) into index.html, between <!--ART:name--> and <!--/ART:name-->.
-Run before make_es.py (the Spanish page copies the art from index.html), then make_mouths.py and make_map.py.
+Run before make_es.py (the Spanish page copies the art from index.html), then make_mouths.py, make_map.py and make_nowrap.py.
 All art is original flat SVG drawn here from simple shapes: a tooth "buddy" (white tooth, warm shade, rosy cheeks),
 a parent and a child. Every piece is decorative (aria-hidden); the text next to it carries the meaning.
 Shared shapes live once in the page sprite (#bd-tooth, #bd-body) and every piece <use>s them.

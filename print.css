@@ -57,6 +57,7 @@ p { margin: 0; }
 .phones { list-style: none; margin: 0; padding: 0; display: grid; gap: 3pt; font-size: 9.5pt; }
 .phones li { display: flex; justify-content: space-between; gap: var(--p2); border-bottom: 1px dashed var(--gray-3); padding-bottom: 3pt; }
 .phones b { color: var(--ink); white-space: nowrap; }
+.nowrap { white-space: nowrap; }  /* keeps "Medi-Cal" from breaking at its hyphen (tools/make_nowrap.py) */
 .box.blue .phones { grid-template-columns: 1fr 1fr; column-gap: var(--p5); }
 .hint { font-size: 9pt; color: var(--muted); margin-top: var(--p1); }
 .foot { margin-top: var(--p2); padding-top: var(--p2); border-top: 1px dashed var(--gray-5); font-size: 7.5pt; line-height: 1.3; color: var(--muted); }

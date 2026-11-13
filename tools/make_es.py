@@ -1,10 +1,12 @@
 """Builds es/index.html from index.html by exact phrase replacement.
 Every English phrase must be found, so the two pages keep the same structure.
-Run after editing index.html (and after make_art.py), then run make_mouths.py and make_map.py.
-Full build: make_art.py -> make_es.py -> make_mouths.py -> make_map.py."""
-import re, pathlib
+Run after editing index.html (and after make_art.py), then run make_mouths.py, make_map.py and make_nowrap.py.
+Full build: make_art.py -> make_es.py -> make_mouths.py -> make_map.py -> make_nowrap.py."""
+import re, pathlib, sys
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from make_nowrap import nowrap, unwrap
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-s = (ROOT / "index.html").read_text()
+s = unwrap((ROOT / "index.html").read_text())  # phrases below use bare "Medi-Cal"; nowrap() puts the wraps back
 s = re.sub(r"<!--MOUTH:(\w+)-->.*?<!--/MOUTH:\1-->", r"<!--MOUTH:\1--><!--/MOUTH:\1-->", s, flags=re.S)
 s = re.sub(r"<!--MAP-->.*?<!--/MAP-->", "<!--MAP--><!--/MAP-->", s, flags=re.S)
 
@@ -19,7 +21,7 @@ R = [
 ('<link rel="alternate" hreflang="es" href="es/index.html">', '<link rel="alternate" hreflang="en" href="../index.html">'),
 ('<script src="app.js"></script>', '<script src="../app.js"></script>'),
 ('Skip to main content', 'Saltar al contenido principal'),
-('<span>Smiles Start with <span class="nowrap">Medi-Cal</span></span>', '<span>Sonrisas con <span class="nowrap">Medi-Cal</span></span>'),
+('<span>Smiles Start with Medi-Cal</span>', '<span>Sonrisas con Medi-Cal</span>'),
 ('<nav class="site-nav" aria-label="Sections">', '<nav class="site-nav" aria-label="Secciones">'),
 ('<li><a href="#check">Check</a></li>', '<li><a href="#check">Revisar</a></li>'),
 ('<li><a href="#coverage">Coverage</a></li>', '<li><a href="#coverage">Cobertura</a></li>'),
@@ -322,5 +324,5 @@ for en, es in R:
     s = s.replace(en, es)
 # the reference list itself stays in English (APA titles); mark it
 s = s.replace('<ol class="refs" ', '<ol class="refs" lang="en" ')
-(ROOT / "es" / "index.html").write_text(s)
+(ROOT / "es" / "index.html").write_text(nowrap(s))
 print("wrote es/index.html")
