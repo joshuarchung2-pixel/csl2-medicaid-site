@@ -436,3 +436,184 @@ document.addEventListener("click", function (e) {
     });
   });
 })();
+
+/* ---------- Wow pass (v4.4): hero parallax, one-time interaction hints, count-ups ----------
+   Decoration only, on top of everything above. With prefers-reduced-motion: reduce none of it
+   runs (the page sits in its final state). Hints play once per widget, the first time it scrolls
+   into view, and stop for good on the first interaction with that widget. */
+(function () {
+  "use strict";
+  if (!window.matchMedia || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  if (!("IntersectionObserver" in window)) return;
+  var es = document.documentElement.lang === "es";
+
+  // Run fn once when el is at least `ratio` visible.
+  function whenSeen(el, ratio, fn) {
+    if (!el) return;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting && e.intersectionRatio >= ratio) { io.disconnect(); fn(); }
+      });
+    }, { threshold: [ratio] });
+    io.observe(el);
+  }
+  // Hints wait for the hero intro (~1.4 s) and for the block's own scroll reveal to finish.
+  function later(fn, ms) { setTimeout(fn, Math.max(ms, 1500 - (window.performance ? performance.now() : 0))); }
+  // A widget's hint stops on the first pointer, key or focus inside it.
+  function onFirstTouch(root, fn, types) {
+    var done = false;
+    types = types || ["pointerdown", "keydown", "focusin"];
+    function stop() {
+      if (done) return; done = true;
+      types.forEach(function (t) { root.removeEventListener(t, stop, true); });
+      fn();
+    }
+    types.forEach(function (t) { root.addEventListener(t, stop, true); });
+    return { stop: stop, get done() { return done; } };
+  }
+  function tag(host, text, x, y) {
+    var t = document.createElement("span");
+    t.className = "hint-tag"; t.setAttribute("aria-hidden", "true"); t.textContent = text;
+    host.appendChild(t);
+    var half = t.offsetWidth / 2 + 4;
+    t.style.left = Math.min(Math.max(x, half), host.clientWidth - half) + "px";
+    t.style.top = y + "px";
+    setTimeout(function () { t.remove(); }, 2700);
+    return t;
+  }
+
+  // 4. Hero parallax (wide screens only): text, tooth and disc trail the scroll at different speeds.
+  var hero = document.querySelector(".hero");
+  var copy = hero && hero.querySelector(".hero-copy");
+  var back = hero && hero.querySelector(".hero-art .ha-back");
+  var front = hero && hero.querySelector(".hero-art .ha-front");
+  if (copy && back && front) {
+    var wide = matchMedia("(min-width: 1024px)"), ticking = false, moved = false;
+    var paint = function () {
+      ticking = false;
+      var y = window.pageYOffset || 0;
+      if (!wide.matches) {
+        if (moved) { copy.style.transform = back.style.transform = front.style.transform = ""; moved = false; }
+        return;
+      }
+      if (y > hero.offsetTop + hero.offsetHeight) return; // hero is off screen: leave it where it is
+      moved = y > 0;
+      copy.style.transform = moved ? "translate3d(0," + (y * 0.06).toFixed(1) + "px,0)" : "";
+      // relative to the text: the tooth trails a little more, the disc behind it more again
+      front.style.transform = moved ? "translate(0," + (y * 0.07).toFixed(1) + "px)" : "";
+      back.style.transform = moved ? "translate(0," + (y * 0.14).toFixed(1) + "px)" : "";
+    };
+    var queue = function () { if (!ticking) { ticking = true; requestAnimationFrame(paint); } };
+    window.addEventListener("scroll", queue, { passive: true });
+    window.addEventListener("resize", queue, { passive: true });
+    paint();
+  }
+
+  // 3a. County map: one soft wave of color sweeps down California.
+  var cmap = document.querySelector(".county-map");
+  var camap = cmap && cmap.querySelector(".ca-map");
+  if (camap) {
+    var mapTouch = onFirstTouch(cmap, function () { camap.classList.remove("hint"); }, ["pointerdown", "pointerover", "keydown", "focusin"]);
+    whenSeen(camap, 0.6, function () {
+      later(function () {
+        if (mapTouch.done) return;
+        var ctys = camap.querySelectorAll(".cty"), ys = [], lo = Infinity, hi = -Infinity;
+        Array.prototype.forEach.call(ctys, function (c) {
+          var b = c.getBBox(), y = b.y + b.height / 2; ys.push(y); lo = Math.min(lo, y); hi = Math.max(hi, y);
+        });
+        Array.prototype.forEach.call(ctys, function (c, i) { c.style.setProperty("--wd", Math.round((ys[i] - lo) / (hi - lo || 1) * 900) + "ms"); });
+        camap.classList.add("hint");
+        setTimeout(function () {
+          camap.classList.remove("hint");
+          Array.prototype.forEach.call(ctys, function (c) { c.style.removeProperty("--wd"); });
+        }, 2000);
+      }, 400);
+    });
+  }
+
+  // 3b. Tooth map: the first tooth of the mouth on screen pulses twice, with a small "Tap" label.
+  var grid = document.querySelector(".teeth-grid");
+  var controls = document.querySelector(".mouth-controls");
+  if (grid) {
+    var hinted = null;
+    var toothTouch = onFirstTouch(grid, function () { if (hinted) hinted.classList.remove("hint"); });
+    if (controls) controls.addEventListener("pointerdown", function () { toothTouch.stop(); }, { capture: true, once: true });
+    whenSeen(grid, 0.5, function () {
+      later(function () {
+        if (toothTouch.done) return;
+        var view = grid.querySelector("[data-mouth-view]:not([hidden])");
+        var first = view && view.querySelector(".tooth");
+        if (!first) return;
+        hinted = first;
+        first.classList.add("hint");
+        var r = (first.querySelector("rect, path") || first).getBoundingClientRect(), m = view.getBoundingClientRect();
+        tag(view, es ? "Toque un diente" : "Tap a tooth", r.left + r.width / 2 - m.left, r.top - m.top - 8);
+        setTimeout(function () { first.classList.remove("hint"); }, 2300);
+      }, 750);
+    });
+  }
+
+  // 3c. Age controls: the - / + buttons bounce and the age box rings, twice.
+  if (controls) {
+    var ageEls = controls.querySelectorAll(".age-step, .age-num");
+    var clearAge = function () { Array.prototype.forEach.call(ageEls, function (b) { b.classList.remove("hint"); }); };
+    var ageTouch = onFirstTouch(controls, clearAge);
+    whenSeen(controls, 0.6, function () {
+      later(function () {
+        if (ageTouch.done) return;
+        Array.prototype.forEach.call(ageEls, function (b) { b.classList.add("hint"); });
+        setTimeout(clearAge, 2400);
+      }, 750);
+    });
+  }
+
+  // 3d. Check, steps 2 and 3: the first time each step opens, its tiles ripple once from the first tile.
+  Array.prototype.forEach.call(document.querySelectorAll('.step[data-step="2"], .step[data-step="3"]'), function (step) {
+    var tiles = step.querySelector(".tiles");
+    if (!tiles) return;
+    Array.prototype.forEach.call(tiles.children, function (t, i) { t.style.setProperty("--ti", i); });
+    // (no focusin here: opening a step moves focus to its question, which is not an interaction)
+    var touch = onFirstTouch(step, function () { tiles.classList.remove("hint"); }, ["pointerdown", "keydown"]);
+    var mo = new MutationObserver(function () {
+      if (step.hidden) return;
+      mo.disconnect();
+      if (touch.done) return;
+      tiles.classList.add("hint");
+      setTimeout(function () { tiles.classList.remove("hint"); }, 1600);
+    });
+    mo.observe(step, { attributes: true, attributeFilter: ["hidden"] });
+  });
+
+  // 5. Count-ups on the stat numbers (~800 ms), drawn on an aria-hidden copy over the real text.
+  Array.prototype.forEach.call(document.querySelectorAll(".stat-num"), function (p) {
+    whenSeen(p, 0.6, function () {
+      setTimeout(function () {
+        var cu = document.createElement("span");
+        cu.className = "cu"; cu.setAttribute("aria-hidden", "true"); cu.innerHTML = p.innerHTML;
+        var nums = [];
+        Array.prototype.slice.call(cu.childNodes).forEach(function (n) {
+          if (n.nodeType !== 3 || !/\d/.test(n.textContent)) return;
+          var frag = document.createDocumentFragment();
+          n.textContent.split(/(\d+)/).forEach(function (t, i) {
+            if (i % 2) { var s = document.createElement("span"); s.className = "cu-n"; s.textContent = t; s.dataset.to = t; nums.push(s); frag.appendChild(s); }
+            else if (t) frag.appendChild(document.createTextNode(t));
+          });
+          cu.replaceChild(frag, n);
+        });
+        if (!nums.length) return;
+        p.appendChild(cu);
+        nums.forEach(function (s) { s.style.width = s.getBoundingClientRect().width + "px"; s.textContent = "0"; });
+        p.classList.add("cu-run");
+        var t0 = null, D = 800;
+        var step = function (t) {
+          if (t0 === null) t0 = t;
+          var k = Math.min(1, (t - t0) / D), e = 1 - Math.pow(1 - k, 3);
+          nums.forEach(function (s) { s.textContent = String(Math.round(Number(s.dataset.to) * e)); });
+          if (k < 1) requestAnimationFrame(step);
+          else { p.classList.remove("cu-run"); cu.remove(); }
+        };
+        requestAnimationFrame(step);
+      }, 250);
+    });
+  });
+})();
