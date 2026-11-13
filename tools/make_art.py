@@ -45,10 +45,9 @@ BROWS = {
     "worried": line("M93 91q11-2 19-10M128 81q8 8 19 10"),
     "": "",
 }
-TONGUE = line("M112 140q8 5 16 0", 5, CORAL)
 MOUTH = {
-    "smile": f'<path d="M104 132q16 20 32 0z" fill="{PLUM}"/>' + TONGUE,
-    "beam": f'<path d="M100 128q20 28 40 0z" fill="{PLUM}"/>' + line("M111 142q9 6 18 0", 5, CORAL),
+    "smile": f'<path d="M104 132q16 20 32 0z" fill="{PLUM}"/>',
+    "beam": f'<path d="M100 128q20 28 40 0z" fill="{PLUM}"/>',
     "squiggle": line("M104 142q8-8 16 0t16 0"),
     "o": f'<ellipse cx="120" cy="141" rx="7" ry="8" fill="{PLUM}"/>',
     "small": line("M110 136q10 9 20 0"),
@@ -252,7 +251,7 @@ def hero_scene():
          '<path d="M198 248q30 34 52 52" fill="none" stroke="#c46f45" stroke-width="18" stroke-linecap="round"/>'
          f'<path d="M198 248q28 32 44 46" fill="none" stroke="{BERRY}" stroke-width="22" stroke-linecap="round" stroke-dasharray="30 200"/>'
          '<rect x="146" y="188" width="26" height="28" rx="10" fill="#c46f45"/><circle cx="159" cy="166" r="36" fill="#c46f45"/>'
-         '<path d="M122 166c0-30 18-42 38-42s38 12 38 40c-10-14-30-20-46-18-12 2-22 8-30 20z" fill="#2b1a1f"/><circle cx="166" cy="122" r="17" fill="#2b1a1f"/>'
+         '<path d="M123 166c0-30 18-42 37-42s35 12 35 42c-10-14-30-20-46-18-12 2-22 8-26 18z" fill="#2b1a1f"/><circle cx="166" cy="122" r="17" fill="#2b1a1f"/>'
          '<g class="blink"><circle cx="146" cy="170" r="4.5" fill="#2b1a1f"/><circle cx="174" cy="170" r="4.5" fill="#2b1a1f"/></g>'
          '<path d="M150 184q10 9 20 0" fill="none" stroke="#2b1a1f" stroke-width="4" stroke-linecap="round"/>'
          f'<circle cx="138" cy="182" r="6" fill="{BERRY}" opacity=".35"/><circle cx="182" cy="182" r="6" fill="{BERRY}" opacity=".35"/></g>'
@@ -366,12 +365,12 @@ PIECES = {
     "pbrand": brand(),
     "pflyer": print_flyer(),
 }
-PAGES = {"index.html": [k for k in PIECES if k not in ("pbrand", "pflyer")],
-         "checklist.html": ["defs", "pbrand"], "es/checklist.html": ["defs", "pbrand"],
-         "flyer.html": ["defs", "pbrand", "pflyer"], "es/flyer.html": ["defs", "pbrand", "pflyer"]}
 for n, (front, back) in MYTHS.items():
     PIECES[f"m{n}f"] = myth_pic(n, "front", front)
     PIECES[f"m{n}b"] = myth_pic(n, "back", back)
+PAGES = {"index.html": [k for k in PIECES if k not in ("pbrand", "pflyer")],
+         "checklist.html": ["defs", "pbrand"], "es/checklist.html": ["defs", "pbrand"],
+         "flyer.html": ["defs", "pbrand", "pflyer"], "es/flyer.html": ["defs", "pbrand", "pflyer"]}
 
 if __name__ == "__main__":
     import sys
