@@ -30,8 +30,8 @@ R = [
 ('<a class="lang" href="es/index.html" hreflang="es" lang="es">Español</a>', '<a class="lang" href="../index.html" hreflang="en" lang="en">English</a>'),
 # hero
 ('Your children can get dental care through Medi-Cal.', 'Sus hijos pueden recibir atención dental con Medi-Cal.'),
-("Medi-Cal is California's free or low-cost health plan, and it comes with dental care. Many working families qualify. Answer 3 quick questions to see your next step and a clinic near you.",
- "Medi-Cal es el plan de salud gratis o de bajo costo de California, y trae atención dental. Muchas familias que trabajan califican. Conteste 3 preguntas rápidas para ver su siguiente paso y una clínica cerca de usted."),
+("Medi-Cal is California's free or low-cost health plan, and it comes with dental care. Many working families qualify. Answer 3 quick questions to see your next steps and a clinic near you.",
+ "Medi-Cal es el plan de salud gratis o de bajo costo de California, y trae atención dental. Muchas familias que trabajan califican. Conteste 3 preguntas rápidas para ver sus siguientes pasos y una clínica cerca de usted."),
 ('<span>Children under 19 can get Medi-Cal no matter their immigration status.', '<span>Los niños menores de 19 años pueden tener Medi-Cal sin importar su estatus migratorio.'),
 ('<span>You can apply any time of year.', '<span>Puede solicitar en cualquier época del año.'),
 ('This check needs JavaScript. You can still read the <a href="#coverage">coverage</a>, <a href="#apply">how to apply</a> and <a href="#help">where to get help</a> sections below.',
@@ -199,6 +199,7 @@ R = [
  '<strong>1 de enero de 2027:</strong> algunos adultos de 19 a 64 años tendrán que trabajar, estudiar o hacer voluntariado 80 horas al mes, o ganar al menos $580 al mes. Los padres de niños de 13 años o menos no tienen que hacerlo.'),
 ('<strong>July 1, 2027:</strong> some adults, based on immigration status, will get only emergency dental care and pay $30 a month to keep full Medi-Cal.',
  '<strong>1 de julio de 2027:</strong> algunos adultos, según su estatus migratorio, solo recibirán atención dental de emergencia y pagarán $30 al mes para mantener Medi-Cal completo.'),
+('If this applies to you, get the dental care you need before then.', 'Si esto le aplica, reciba la atención dental que necesita antes de esa fecha.'),
 ('<strong>Oct. 1, 2028:</strong> small copays for some adults earning more than $15,560 a year. No copays for children, checkups or community health centers.',
  '<strong>1 de octubre de 2028:</strong> pequeños copagos para algunos adultos que ganan más de $15,560 al año. Sin copagos para niños, chequeos ni centros de salud comunitarios.'),
 ('See how each immigration status is affected on the <a href="https://www.dhcs.ca.gov/immigration-status-and-changes-to-medi-cal-eligibility/">DHCS immigration status chart</a>.',

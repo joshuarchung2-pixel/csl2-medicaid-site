@@ -101,7 +101,7 @@ a:hover { color: var(--sa); }
 :focus-visible { outline: 3px solid var(--sa); outline-offset: 2px; }
 
 .sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
-.ic { width: 24px; height: 24px; flex: none; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.ic { overflow: visible; width: 24px; height: 24px; flex: none; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
 .nowrap { white-space: nowrap; }
 .small { font-size: var(--t-ui); color: var(--muted); }
 .cite { font-size: var(--t-sm); font-weight: 600; color: var(--muted); white-space: nowrap; text-decoration-color: var(--gray-4); text-decoration-thickness: 1px; }
@@ -751,3 +751,5 @@ a, .link-btn, .cite, .refs .back { transition: color .2s ease, text-decoration-c
   .callout-icon { background: #fff; border: 1.5px solid var(--ink); }
   .facts .ic, .ticks .ic { background: #fff; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--ink); }
 }
+/* let icon strokes run to the edge of their 24-unit box without being clipped */
+symbol { overflow: visible; }

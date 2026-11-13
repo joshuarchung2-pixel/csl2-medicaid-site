@@ -36,7 +36,7 @@ p { margin: 0; }
   .sheet { margin: 0; height: 11in; border: 0; border-radius: 0; box-shadow: none; page-break-after: avoid; break-after: avoid; }
 }
 
-.ic { width: 24px; height: 24px; flex: none; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.ic { overflow: visible; width: 24px; height: 24px; flex: none; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
 .brand { display: flex; align-items: center; gap: 8px; color: var(--ink); font: 600 12pt/1.2 var(--display); }
 .brand .brand-mark { width: 13pt; height: 21pt; flex: none; }
 .top { display: flex; justify-content: space-between; align-items: center; padding-bottom: var(--p2); border-bottom: 2px dashed var(--gray-5); }
@@ -92,3 +92,4 @@ p { margin: 0; }
   .flyer-art { position: static; display: block; width: 1.4in; margin: 8px 0 0 auto; }
   .flyer .eyebrow, .flyer h1 { max-width: none; }
 }
+symbol { overflow: visible; }

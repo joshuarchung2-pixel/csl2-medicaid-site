@@ -19,6 +19,8 @@ DEFS = (
     '<clipPath id="bd-clip"><use href="#bd-tooth"/></clipPath>'
     f'<g id="bd-body"><g clip-path="url(#bd-clip)"><use href="#bd-tooth" fill="{SHADE}"/>'
     f'<use href="#bd-tooth" fill="{WHITE}" transform="translate(-16 -8)"/></g>'
+    # plum outline so the warm shade side never melts into a pale disc behind it
+    f'<use href="#bd-tooth" fill="none" stroke="{PLUM}" stroke-width="5" stroke-linejoin="round"/>'
     '<circle cx="94" cy="130" r="10" fill="#ffb3a1"/><circle cx="146" cy="130" r="10" fill="#ffb3a1"/></g>'
 )
 
