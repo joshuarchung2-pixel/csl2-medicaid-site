@@ -1,6 +1,7 @@
 """Builds es/index.html from index.html by exact phrase replacement.
 Every English phrase must be found, so the two pages keep the same structure.
-Run after editing index.html, then run make_mouths.py and make_map.py."""
+Run after editing index.html (and after make_art.py), then run make_mouths.py and make_map.py.
+Full build: make_art.py -> make_es.py -> make_mouths.py -> make_map.py."""
 import re, pathlib
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 s = (ROOT / "index.html").read_text()
@@ -12,8 +13,8 @@ R = [
 ('<title>Smiles Start with Medi-Cal</title>', '<title>Sonrisas con Medi-Cal</title>'),
 ('content="A plain guide for California families without insurance. Answer 3 questions to see if your children can get Medi-Cal, what dental care it covers, and where to get help."',
  'content="Una guía sencilla para familias de California sin seguro médico. Conteste 3 preguntas para ver si sus hijos pueden tener Medi-Cal, qué servicios dentales cubre y dónde encontrar ayuda."'),
-('href="fonts/inter-latin.woff2"', 'href="../fonts/inter-latin.woff2"'),
-('href="fonts/sourceserif4-latin.woff2"', 'href="../fonts/sourceserif4-latin.woff2"'),
+('href="fonts/nunito.woff2"', 'href="../fonts/nunito.woff2"'),
+('href="fonts/fredoka.woff2"', 'href="../fonts/fredoka.woff2"'),
 ('<link rel="stylesheet" href="styles.css">', '<link rel="stylesheet" href="../styles.css">'),
 ('<link rel="alternate" hreflang="es" href="es/index.html">', '<link rel="alternate" hreflang="en" href="../index.html">'),
 ('<script src="app.js"></script>', '<script src="../app.js"></script>'),

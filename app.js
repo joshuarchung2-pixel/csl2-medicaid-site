@@ -362,7 +362,10 @@ document.addEventListener("click", function (e) {
   bg.className = "bg-fx";
   bg.setAttribute("aria-hidden", "true");
   bg.innerHTML = '<div class="bg-dotmask"><div class="bg-dots"></div></div><div class="bg-par"><div class="bg-blobs"></div></div>';
-  document.body.appendChild(bg);
+  // v5: added just after first paint (it is decoration, and painting it up front cost ~25 ms of LCP); it fades in.
+  function addBg() { document.body.appendChild(bg); }
+  if (document.readyState === "complete") requestAnimationFrame(function () { setTimeout(addBg, 0); });
+  else window.addEventListener("load", function () { requestAnimationFrame(function () { setTimeout(addBg, 0); }); });
   if (!reduce) {
     var par = bg.querySelector(".bg-par"), dots = bg.querySelector(".bg-dots"), ticking = false;
     var drawBg = function () {

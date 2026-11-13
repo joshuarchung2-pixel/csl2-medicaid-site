@@ -1,3 +1,4 @@
 submission/shots/
 .DS_Store
 submission/proofs/
+__pycache__/

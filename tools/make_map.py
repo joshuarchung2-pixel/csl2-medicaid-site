@@ -4,6 +4,7 @@ Geometry: tools/data/ca-counties.json (US Census 2023 cartographic boundary file
 projected to California Albers and simplified, see the "source" field). No map library, no CDN.
 Los Angeles, Riverside and San Bernardino keep their own results; every other county is "other"."""
 import json, re, pathlib
+from make_art import map_buddy  # the tooth buddy with a map pin (v5)
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 DATA = json.loads((ROOT / "tools" / "data" / "ca-counties.json").read_text())
@@ -66,6 +67,7 @@ def block(lang):
         f'\n              <path class="hl hl-hover" d=""/><path class="hl hl-sel" d=""/>'
         f'\n            </svg>'
         f'\n            <div class="map-tip" aria-hidden="true" hidden></div>'
+        f'\n            {map_buddy()}'
         f'\n          </div>'
         f'\n          <details class="county-list">'
         f'\n            <summary>{t["list"]}</summary>'

@@ -1,18 +1,19 @@
-/* Printable pages (fridge checklist, clinic flyer). Design system v4, same tokens as styles.css:
-   near-black ink, gray ramp, ONE accent (deep green), square corners, 1px rules, no shadows, no tinted fills.
-   Each page fits one US Letter sheet. Print spacing runs on a 4pt/8pt scale. */
-@font-face { font-family: "Inter"; font-weight: 400 700; font-display: swap; src: url("fonts/inter-latin.woff2") format("woff2"); }
-@font-face { font-family: "Source Serif 4"; font-weight: 400 700; font-display: swap; src: url("fonts/sourceserif4-latin.woff2") format("woff2"); }
+/* Printable pages (fridge checklist, clinic flyer). Design system v5 "warm characters", same tokens as styles.css:
+   plum ink, Fredoka headings + Nunito text, round corners, and the tooth buddy. Ink-friendly: white paper, thin
+   rules, color only in small accents (number dots, ticks, the buddy). Each page fits one US Letter sheet.
+   Print spacing runs on a 4pt/8pt scale. */
+@font-face { font-family: "Nunito"; font-weight: 200 1000; font-display: swap; src: url("fonts/nunito.woff2") format("woff2"); }
+@font-face { font-family: "Fredoka"; font-weight: 300 700; font-display: swap; src: url("fonts/fredoka.woff2") format("woff2"); }
 :root {
-  --ink: #111111; --text: #2b2b2b; --muted: #555555; --gray-5: #767676; --gray-3: #d9d9d9; --gray-1: #f5f5f5;
-  --accent: #0b6e4f; --accent-strong: #08563e;
-  --display: "Source Serif 4", Georgia, serif; --sans: "Inter", system-ui, Arial, sans-serif;
+  --ink: #3a1f3d; --text: #3a1f3d; --muted: #5d4560; --gray-5: #8a7a8c; --gray-3: #eadbd0; --gray-1: #fff6ec;
+  --accent: #16634d; --accent-strong: #0f4a39; --marigold: #ffbd3a; --mint-d: #2f9d7e; --coral-ink: #a3361c; --sky-ink: #1f5f8f;
+  --display: "Fredoka", "Nunito", system-ui, Arial, sans-serif; --sans: "Nunito", system-ui, Arial, sans-serif;
   --p1: 4pt; --p2: 8pt; --p3: 12pt; --p4: 16pt; --p5: 24pt;
 }
 @page { size: Letter; margin: 0; }
 * { box-sizing: border-box; }
 html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-body { margin: 0; background: var(--gray-1); color: var(--text); font: 400 10.5pt/1.35 var(--sans); }
+body { margin: 0; background: var(--gray-1); color: var(--text); font: 500 10.5pt/1.35 var(--sans); }
 a { color: var(--ink); text-decoration-color: var(--accent); text-underline-offset: 2px; }
 :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 h1, h2, h3 { margin: 0; color: var(--ink); }
@@ -20,59 +21,60 @@ p { margin: 0; }
 
 .toolbar { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; padding: 16px; font-size: 1rem; }
 .toolbar a, .toolbar button {
-  display: inline-flex; align-items: center; min-height: 48px; padding: 0 24px; border-radius: 2px;
-  border: 1px solid var(--gray-5); background: #fff; color: var(--ink); font: 600 1rem var(--sans); text-decoration: none; cursor: pointer;
+  display: inline-flex; align-items: center; min-height: 48px; padding: 0 24px; border-radius: 999px;
+  border: 0; background: #fff; box-shadow: inset 0 0 0 2px var(--ink), 0 3px 0 rgba(58, 31, 61, .18); color: var(--ink); font: 600 1rem var(--display); text-decoration: none; cursor: pointer;
 }
-.toolbar a:hover { border-color: var(--ink); }
-.toolbar button { background: var(--accent); border-color: var(--accent); color: #fff; }
-.toolbar button:hover { background: var(--accent-strong); border-color: var(--accent-strong); }
+.toolbar a:hover { background: #ffeedd; }
+.toolbar button { background: var(--ink); box-shadow: 0 4px 0 #22102a; color: #fff; }
+.toolbar button:hover { background: #4d2a51; }
 
-.sheet { width: 8.5in; height: 11in; margin: 0 auto 32px; padding: 0.45in 0.5in; background: #fff; overflow: hidden; display: flex; flex-direction: column; border: 1px solid var(--gray-3); }
+.sheet { position: relative; width: 8.5in; height: 11in; margin: 0 auto 32px; padding: 0.45in 0.5in; background: #fff; overflow: hidden; display: flex; flex-direction: column; border-radius: 16px; box-shadow: 0 14px 30px -18px rgba(58, 31, 61, .35); }
 @media print {
   body { background: #fff; }
   .toolbar { display: none; }
   html, body { height: 11in; overflow: hidden; }
-  .sheet { margin: 0; height: 11in; border: 0; page-break-after: avoid; break-after: avoid; }
+  .sheet { margin: 0; height: 11in; border: 0; border-radius: 0; box-shadow: none; page-break-after: avoid; break-after: avoid; }
 }
 
-.ic { width: 24px; height: 24px; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: square; stroke-linejoin: miter; }
-.brand { display: flex; align-items: center; gap: 8px; color: var(--ink); font-weight: 700; font-size: 11pt; }
-.brand .ic { color: var(--accent); }
-.top { display: flex; justify-content: space-between; align-items: center; padding-bottom: var(--p3); border-bottom: 2px solid var(--ink); }
+.ic { width: 24px; height: 24px; flex: none; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.brand { display: flex; align-items: center; gap: 8px; color: var(--ink); font: 600 12pt/1.2 var(--display); }
+.brand .brand-mark { width: 13pt; height: 21pt; flex: none; }
+.top { display: flex; justify-content: space-between; align-items: center; padding-bottom: var(--p2); border-bottom: 2px dashed var(--gray-5); }
 .top .url { color: var(--muted); font-size: 9pt; }
 
 /* Checklist */
-.title { font-family: var(--display); font-weight: 600; font-size: 24pt; line-height: 1.05; margin: var(--p3) 0 var(--p1); letter-spacing: -0.01em; }
+.title { font-family: var(--display); font-weight: 600; font-size: 24pt; line-height: 1.05; margin: var(--p3) 0 var(--p1); }
 .sub { color: var(--muted); margin-bottom: var(--p2); font-size: 10.5pt; }
 .cols { display: grid; grid-template-columns: 1fr 1fr; gap: var(--p2) var(--p4); flex: 1; align-content: start; }
-.box { border: 1px solid var(--gray-3); padding: var(--p2) var(--p3) var(--p3); }
+.box { border: 1.25pt solid var(--gray-3); border-radius: 12pt; padding: var(--p2) var(--p3) var(--p3); }
 .box.blue { grid-column: 1 / -1; }
-.box h2 { display: flex; align-items: center; gap: var(--p2); font: 700 11.5pt/1.2 var(--sans); margin-bottom: var(--p1); }
-.num { display: inline-grid; place-items: center; width: 18pt; height: 18pt; background: var(--ink); color: #fff; font: 700 10pt/1 var(--sans); }
-.box.warm .num { background: var(--accent); }
+.box h2 { display: flex; align-items: center; gap: var(--p2); font: 600 12pt/1.2 var(--display); margin-bottom: var(--p1); }
+.box h2 .ic { color: var(--sky-ink); }
+.num { display: inline-grid; place-items: center; width: 18pt; height: 18pt; border-radius: 50%; background: var(--marigold); color: var(--ink); font: 600 10pt/1 var(--display); }
 .checks { list-style: none; margin: 0; padding: 0; display: grid; gap: 3pt; font-size: 10pt; }
 .checks li { position: relative; padding-left: 20pt; }
-.checks li::before { content: ""; position: absolute; left: 0; top: 1pt; width: 11pt; height: 11pt; border: 1.5pt solid var(--gray-5); background: #fff; }
+.checks li::before { content: ""; position: absolute; left: 0; top: 1pt; width: 11pt; height: 11pt; border: 1.5pt solid var(--gray-5); border-radius: 3.5pt; background: #fff; }
 .phones { list-style: none; margin: 0; padding: 0; display: grid; gap: 3pt; font-size: 9.5pt; }
-.phones li { display: flex; justify-content: space-between; gap: var(--p2); border-bottom: 1px solid var(--gray-3); padding-bottom: 3pt; }
+.phones li { display: flex; justify-content: space-between; gap: var(--p2); border-bottom: 1px dashed var(--gray-3); padding-bottom: 3pt; }
 .phones b { color: var(--ink); white-space: nowrap; }
 .box.blue .phones { grid-template-columns: 1fr 1fr; column-gap: var(--p5); }
 .hint { font-size: 9pt; color: var(--muted); margin-top: var(--p1); }
-.foot { margin-top: var(--p2); padding-top: var(--p2); border-top: 1px solid var(--gray-3); font-size: 7.5pt; line-height: 1.3; color: var(--muted); }
+.foot { margin-top: var(--p2); padding-top: var(--p2); border-top: 1px dashed var(--gray-5); font-size: 7.5pt; line-height: 1.3; color: var(--muted); }
 .foot p + p { margin-top: 3pt; }
 .foot-qr { display: flex; gap: var(--p3); align-items: center; }
 .foot-qr img { width: 0.85in; height: 0.85in; flex: none; }
-.foot-qr .scan { font-size: 9.5pt; font-weight: 600; color: var(--ink); margin-bottom: var(--p1); }
+.foot-qr .scan { font: 600 10pt/1.3 var(--display); color: var(--ink); margin-bottom: var(--p1); }
 
 /* Flyer */
-.flyer .eyebrow { display: flex; align-items: center; gap: var(--p2); margin-top: var(--p5); color: var(--accent); font-weight: 700; font-size: 12pt; letter-spacing: 0.02em; }
-.flyer .eyebrow::before { content: ""; width: 24pt; height: 2px; background: var(--accent); flex: none; }
-.flyer h1 { font-family: var(--display); font-weight: 600; font-size: 40pt; line-height: 1.02; letter-spacing: -0.015em; margin: var(--p2) 0 var(--p3); }
+.flyer .eyebrow { display: flex; align-items: center; gap: var(--p2); margin-top: var(--p5); color: var(--accent); font: 600 12.5pt/1.25 var(--display); max-width: 5.4in; }
+.flyer .eyebrow::before { content: ""; width: 9pt; height: 9pt; border-radius: 50%; background: var(--mint-d); flex: none; }
+.flyer h1 { font-family: var(--display); font-weight: 600; font-size: 40pt; line-height: 1.04; margin: var(--p2) 0 var(--p3); max-width: 5.6in; }
+.flyer-art { position: absolute; right: 0.45in; top: 0.95in; width: 1.75in; height: auto; }
 .flyer .lead { font-size: 14pt; line-height: 1.45; color: var(--text); max-width: 6.4in; }
 .flyer-facts { list-style: none; margin: var(--p4) 0 0; padding: 0; display: grid; gap: var(--p2); font-size: 12.5pt; }
 .flyer-facts li { display: flex; gap: var(--p3); align-items: flex-start; }
-.flyer-facts .ic { color: var(--accent); margin-top: 2pt; }
-.flyer-qr { display: flex; gap: var(--p5); align-items: center; margin-top: auto; padding: var(--p4); border: 2px solid var(--ink); }
+.flyer-facts .ic { box-sizing: content-box; width: 12pt; height: 12pt; padding: 3pt; border-radius: 50%; background: var(--mint-d); color: #fff; stroke-width: 3.2; margin-top: 0; }
+.flyer-qr { display: flex; gap: var(--p5); align-items: center; margin-top: auto; padding: var(--p4); border: 2pt solid var(--ink); border-radius: 16pt; }
 .flyer-qr img { width: 2.1in; height: 2.1in; background: #fff; flex: none; }
 .flyer-qr h2 { font-family: var(--display); font-weight: 600; font-size: 24pt; line-height: 1.1; margin-bottom: var(--p2); }
 .flyer-qr p { font-size: 12pt; }
@@ -86,4 +88,6 @@ p { margin: 0; }
   .phones li { flex-wrap: wrap; }
   .foot-qr { flex-direction: column; align-items: flex-start; }
   .flyer-qr { flex-direction: column; text-align: center; }
+  .flyer-art { position: static; display: block; width: 1.4in; margin: 8px 0 0 auto; }
+  .flyer .eyebrow, .flyer h1 { max-width: none; }
 }
