@@ -20,14 +20,16 @@ DEFS = (
     f'<g id="bd-body"><g clip-path="url(#bd-clip)"><use href="#bd-tooth" fill="{SHADE}"/>'
     f'<use href="#bd-tooth" fill="{WHITE}" transform="translate(-16 -8)"/></g>'
     # plum outline so the warm shade side never melts into a pale disc behind it
-    f'<use href="#bd-tooth" fill="none" stroke="{PLUM}" stroke-width="5" stroke-linejoin="round"/>'
+    f'<use href="#bd-tooth" fill="none" stroke="{PLUM}" stroke-width="3.5" stroke-linejoin="round"/>'
     '<circle cx="94" cy="130" r="10" fill="#ffb3a1"/><circle cx="146" cy="130" r="10" fill="#ffb3a1"/></g>'
 )
 
 
 # ---------- buddy parts (buddy space) ----------
 def arm(d, w=16):
-    return f'<path d="{d}" fill="none" stroke="{WHITE}" stroke-width="{w}" stroke-linecap="round"/>'
+    # plum edge under the cream stroke, matching the body outline, so arms don't fade into pale discs
+    return (f'<path d="{d}" fill="none" stroke="{PLUM}" stroke-width="{w + 3.5}" stroke-linecap="round"/>'
+            f'<path d="{d}" fill="none" stroke="{WHITE}" stroke-width="{w}" stroke-linecap="round"/>')
 
 
 def line(d, w=6, c=PLUM):
@@ -142,7 +144,8 @@ MYTHS = {
         + ''.join(f'<ellipse cx="96" cy="{86 - i * 7}" rx="12" ry="4.5" fill="{MARIGOLD}" stroke="#c98a12" stroke-width="1.5"/>' for i in range(5))
         + bubble(84, 8, "?"),
         buddy(48, 92, .36,
-              arm("M74 122q-22 4-26 30") + arm("M168 112q26-10 24-46") + f'<circle cx="194" cy="58" r="12" fill="{WHITE}"/><path d="M190 50v-14" stroke="{WHITE}" stroke-width="9" stroke-linecap="round"/>'
+              f'<circle cx="194" cy="58" r="13.75" fill="{PLUM}"/><path d="M190 50v-14" stroke="{PLUM}" stroke-width="12.5" stroke-linecap="round"/>'
+              + arm("M74 122q-22 4-26 30") + arm("M168 112q26-10 24-46") + f'<circle cx="194" cy="58" r="12" fill="{WHITE}"/><path d="M190 50v-14" stroke="{WHITE}" stroke-width="9" stroke-linecap="round"/>'
               + BODY + face("happy", "beam"))
         + ''.join(f'<ellipse cx="96" cy="{86 - i * 7}" rx="12" ry="4.5" fill="{MARIGOLD}" stroke="#c98a12" stroke-width="1.5"/>' for i in range(3))
         + check(98, 52, 10) + star(14, 24, 7, MARIGOLD) + star(108, 20, 5, BERRY),
