@@ -1,6 +1,20 @@
 /* Smiles Start with Medi-Cal. All page text lives in the HTML (English and Spanish);
    this file only shows and hides parts of it and fills in numbers.
-   Nothing is stored (no cookies, no localStorage) and nothing is sent anywhere. */
+   Nothing is stored (no cookies, no localStorage) and nothing is sent anywhere. The only exception
+   is a sessionStorage flag, set by the inline script in <head>, so the splash plays once per visit. */
+
+/* ---------- Splash (v4.5): the tooth draws in once over the page, then fades ----------
+   CSS runs the whole thing (styles.css .splash). This only takes the overlay out of the DOM
+   when it has faded, or right away when it isn't playing (JS off never shows it at all). */
+(function () {
+  "use strict";
+  var s = document.querySelector(".splash");
+  if (!s) return;
+  if (!document.documentElement.classList.contains("splash-on")) { s.remove(); return; }
+  function done() { if (s.parentNode) s.remove(); }
+  s.addEventListener("animationend", function (e) { if (e.target === s) done(); });
+  setTimeout(done, 1700);
+})();
 
 /* ---------- Guided flow: county, household size, who needs coverage ---------- */
 (function () {
@@ -316,7 +330,12 @@ document.addEventListener("click", function (e) {
   document.querySelectorAll(".flip").forEach(function (card) {
     var front = card.querySelector(".front");
     var back = card.querySelector(".back");
+    var inner = card.querySelector(".flip-inner"), tid = 0;
+    // .flipping turns on will-change (styles.css) only while the card is turning.
+    function settle() { clearTimeout(tid); card.classList.remove("flipping"); }
+    if (inner) inner.addEventListener("transitionend", function (e) { if (e.target === inner && e.propertyName === "transform") settle(); });
     function set(flipped) {
+      card.classList.add("flipping"); clearTimeout(tid); tid = setTimeout(settle, 700);
       card.classList.toggle("flipped", flipped);
       front.inert = flipped;
       back.inert = !flipped;
@@ -437,7 +456,7 @@ document.addEventListener("click", function (e) {
   });
 })();
 
-/* ---------- Wow pass (v4.4): hero parallax, one-time interaction hints, count-ups ----------
+/* ---------- Wow pass (v4.4): one-time interaction hints, count-ups ----------
    Decoration only, on top of everything above. With prefers-reduced-motion: reduce none of it
    runs (the page sits in its final state). Hints play once per widget, the first time it scrolls
    into view, and stop for good on the first interaction with that widget. */
@@ -457,8 +476,9 @@ document.addEventListener("click", function (e) {
     }, { threshold: [ratio] });
     io.observe(el);
   }
-  // Hints wait for the hero intro (~1.4 s) and for the block's own scroll reveal to finish.
-  function later(fn, ms) { setTimeout(fn, Math.max(ms, 1500 - (window.performance ? performance.now() : 0))); }
+  // Hints wait for the hero intro (~1.5 s, ~2.6 s with the splash) and for the block's own scroll reveal to finish.
+  var introEnd = document.documentElement.classList.contains("splash-on") ? 2600 : 1500;
+  function later(fn, ms) { setTimeout(fn, Math.max(ms, introEnd - (window.performance ? performance.now() : 0))); }
   // A widget's hint stops on the first pointer, key or focus inside it.
   function onFirstTouch(root, fn, types) {
     var done = false;
@@ -480,33 +500,6 @@ document.addEventListener("click", function (e) {
     t.style.top = y + "px";
     setTimeout(function () { t.remove(); }, 2700);
     return t;
-  }
-
-  // 4. Hero parallax (wide screens only): text, tooth and disc trail the scroll at different speeds.
-  var hero = document.querySelector(".hero");
-  var copy = hero && hero.querySelector(".hero-copy");
-  var back = hero && hero.querySelector(".hero-art .ha-back");
-  var front = hero && hero.querySelector(".hero-art .ha-front");
-  if (copy && back && front) {
-    var wide = matchMedia("(min-width: 1024px)"), ticking = false, moved = false;
-    var paint = function () {
-      ticking = false;
-      var y = window.pageYOffset || 0;
-      if (!wide.matches) {
-        if (moved) { copy.style.transform = back.style.transform = front.style.transform = ""; moved = false; }
-        return;
-      }
-      if (y > hero.offsetTop + hero.offsetHeight) return; // hero is off screen: leave it where it is
-      moved = y > 0;
-      copy.style.transform = moved ? "translate3d(0," + (y * 0.06).toFixed(1) + "px,0)" : "";
-      // relative to the text: the tooth trails a little more, the disc behind it more again
-      front.style.transform = moved ? "translate(0," + (y * 0.07).toFixed(1) + "px)" : "";
-      back.style.transform = moved ? "translate(0," + (y * 0.14).toFixed(1) + "px)" : "";
-    };
-    var queue = function () { if (!ticking) { ticking = true; requestAnimationFrame(paint); } };
-    window.addEventListener("scroll", queue, { passive: true });
-    window.addEventListener("resize", queue, { passive: true });
-    paint();
   }
 
   // 3a. County map: one soft wave of color sweeps down California.

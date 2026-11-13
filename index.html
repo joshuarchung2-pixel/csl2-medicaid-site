@@ -6,6 +6,7 @@
 <title>Smiles Start with Medi-Cal</title>
 <meta name="description" content="A plain guide for California families without insurance. Answer 3 questions to see if your children can get Medi-Cal, what dental care it covers, and where to get help.">
 <script>document.documentElement.classList.add("js");</script>
+<script>try{if(!matchMedia("(prefers-reduced-motion: reduce)").matches&&!sessionStorage.getItem("csl2-splash")){sessionStorage.setItem("csl2-splash","1");document.documentElement.classList.add("splash-on")}}catch(e){}</script>
 <link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/sourceserif4-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css">
@@ -13,6 +14,17 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230B6E4F' stroke-width='2' stroke-linejoin='round'%3E%3Cpath d='M7 3C4.8 3 3 4.8 3 7.5c0 2.4 1 3.8 1.6 6 .6 2.5 1 6.5 2.9 6.5 1.7 0 1.6-4.5 4.5-4.5s2.8 4.5 4.5 4.5c1.9 0 2.3-4 2.9-6.5.6-2.2 1.6-3.6 1.6-6C21 4.8 19.2 3 17 3c-1.8 0-3 1-5 1S8.8 3 7 3z'/%3E%3C/svg%3E">
 </head>
 <body>
+<div class="splash" aria-hidden="true">
+  <svg class="splash-art" viewBox="0 0 280 240" focusable="false">
+    <g class="ha-layer ha-back"><circle class="ha-disc" cx="140" cy="122" r="94"/><circle class="ha-ring" cx="140" cy="122" r="110"/></g>
+    <g class="ha-layer ha-front">
+      <g transform="translate(44 30) scale(8)"><path class="ha-tooth" pathLength="1" d="M7 3C4.8 3 3 4.8 3 7.5c0 2.4 1 3.8 1.6 6 .6 2.5 1 6.5 2.9 6.5 1.7 0 1.6-4.5 4.5-4.5s2.8 4.5 4.5 4.5c1.9 0 2.3-4 2.9-6.5.6-2.2 1.6-3.6 1.6-6C21 4.8 19.2 3 17 3c-1.8 0-3 1-5 1S8.8 3 7 3z"/><path class="ha-shine" pathLength="1" d="M5.7 9.6c-.2-2 .8-3.7 2.7-4.1"/></g>
+      <path class="ha-spark s1" d="M238 40v22M227 51h22"/>
+      <path class="ha-spark s2" d="M38 62v16M30 70h16"/>
+      <path class="ha-spark s3" d="M236 176v14M229 183h14"/>
+    </g>
+  </svg>
+</div>
 <svg class="sprite" aria-hidden="true" focusable="false">
   <symbol id="i-tooth" viewBox="0 0 24 24"><path pathLength="1" d="M7 3C4.8 3 3 4.8 3 7.5c0 2.4 1 3.8 1.6 6 .6 2.5 1 6.5 2.9 6.5 1.7 0 1.6-4.5 4.5-4.5s2.8 4.5 4.5 4.5c1.9 0 2.3-4 2.9-6.5.6-2.2 1.6-3.6 1.6-6C21 4.8 19.2 3 17 3c-1.8 0-3 1-5 1S8.8 3 7 3z"/></symbol>
   <symbol id="i-phone" viewBox="0 0 24 24"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></symbol>
@@ -66,15 +78,6 @@
         <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>Children under 19 can get Medi-Cal no matter their immigration status. <a class="cite" id="c-dhcs-imm-1" href="#ref-dhcs-imm">(DHCS, 2026a)</a></span></li>
         <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>You can apply any time of year. <a class="cite" id="c-dhcs-help-1" href="#ref-dhcs-help">(DHCS, n.d.-e)</a></span></li>
       </ul>
-      <svg class="hero-art" viewBox="0 0 280 240" aria-hidden="true" focusable="false">
-        <g class="ha-layer ha-back"><circle class="ha-disc" cx="140" cy="122" r="94"/><circle class="ha-ring" cx="140" cy="122" r="110"/></g>
-        <g class="ha-layer ha-front">
-          <g transform="translate(44 30) scale(8)"><path class="ha-tooth" pathLength="1" d="M7 3C4.8 3 3 4.8 3 7.5c0 2.4 1 3.8 1.6 6 .6 2.5 1 6.5 2.9 6.5 1.7 0 1.6-4.5 4.5-4.5s2.8 4.5 4.5 4.5c1.9 0 2.3-4 2.9-6.5.6-2.2 1.6-3.6 1.6-6C21 4.8 19.2 3 17 3c-1.8 0-3 1-5 1S8.8 3 7 3z"/><path class="ha-shine" pathLength="1" d="M5.7 9.6c-.2-2 .8-3.7 2.7-4.1"/></g>
-          <path class="ha-spark s1" d="M238 40v22M227 51h22"/>
-          <path class="ha-spark s2" d="M38 62v16M30 70h16"/>
-          <path class="ha-spark s3" d="M236 176v14M229 183h14"/>
-        </g>
-      </svg>
     </div>
 
     <div class="flow" id="flow">
@@ -266,23 +269,22 @@
             <button type="button" class="seg seg-edentulous" aria-pressed="false" data-stage="edentulous">No natural teeth<small>teens and adults</small></button>
           </div>
         </div>
-      </div>
-
-      <div class="age-box" aria-live="polite">
-        <p class="age-kicker">Medi-Cal Dental, by age</p>
-        <h3 class="age-title" data-ages="baby">Every baby 0 to 3 gets</h3>
-        <h3 class="age-title" data-ages="kid">Every child 4 to 12 gets</h3>
-        <h3 class="age-title" data-ages="teen">Every teen 13 to 20 gets</h3>
-        <h3 class="age-title" data-ages="adult">Every adult 21 to 54 gets</h3>
-        <h3 class="age-title" data-ages="senior">Every adult 55 and older gets</h3>
-        <div class="when">
-          <p data-ages="baby">Exams every 3 months from birth to age 3. Cleanings and fluoride varnish every 6 months. <a class="cite" id="c-smile-hub-5" href="#ref-smile-hub">(Smile, California, n.d.-a)</a></p>
-          <p data-ages="kid">Exams, cleanings and fluoride varnish every 6 months. <a class="cite" id="c-smile-kids-2" href="#ref-smile-kids">(Smile, California, n.d.-c)</a></p>
-          <p data-ages="teen">Exams, cleanings and fluoride varnish every 6 months. <a class="cite" id="c-smile-teens-2" href="#ref-smile-teens">(Smile, California, n.d.-d)</a></p>
-          <p data-ages="adult">An exam, cleaning and fluoride varnish every 12 months. <a class="cite" id="c-smile-adults-3" href="#ref-smile-adults">(Smile, California, n.d.-b)</a></p>
-          <p data-ages="senior">An exam, cleaning and fluoride varnish every 12 months. <a class="cite" id="c-dhcs-dental-1" href="#ref-dhcs-dental">(DHCS, 2025b)</a></p>
-          <p data-ages="baby kid teen">Under 21 there's no yearly dollar limit, and children can get extra care that's medically needed. <a class="cite" id="c-dhcs-dental-2" href="#ref-dhcs-dental">(DHCS, 2025b)</a></p>
-          <p data-ages="adult senior">Medi-Cal pays up to $1,800 a year, with no limit for care that's medically needed. <a class="cite" id="c-dhcs-dental-3" href="#ref-dhcs-dental">(DHCS, 2025b)</a></p>
+        <div class="age-box" aria-live="polite">
+          <p class="age-kicker">Medi-Cal Dental, by age</p>
+          <h3 class="age-title" data-ages="baby">Every baby 0 to 3 gets</h3>
+          <h3 class="age-title" data-ages="kid">Every child 4 to 12 gets</h3>
+          <h3 class="age-title" data-ages="teen">Every teen 13 to 20 gets</h3>
+          <h3 class="age-title" data-ages="adult">Every adult 21 to 54 gets</h3>
+          <h3 class="age-title" data-ages="senior">Every adult 55 and older gets</h3>
+          <div class="when">
+            <p data-ages="baby">Exams every 3 months from birth to age 3. Cleanings and fluoride varnish every 6 months. <a class="cite" id="c-smile-hub-5" href="#ref-smile-hub">(Smile, California, n.d.-a)</a></p>
+            <p data-ages="kid">Exams, cleanings and fluoride varnish every 6 months. <a class="cite" id="c-smile-kids-2" href="#ref-smile-kids">(Smile, California, n.d.-c)</a></p>
+            <p data-ages="teen">Exams, cleanings and fluoride varnish every 6 months. <a class="cite" id="c-smile-teens-2" href="#ref-smile-teens">(Smile, California, n.d.-d)</a></p>
+            <p data-ages="adult">An exam, cleaning and fluoride varnish every 12 months. <a class="cite" id="c-smile-adults-3" href="#ref-smile-adults">(Smile, California, n.d.-b)</a></p>
+            <p data-ages="senior">An exam, cleaning and fluoride varnish every 12 months. <a class="cite" id="c-dhcs-dental-1" href="#ref-dhcs-dental">(DHCS, 2025b)</a></p>
+            <p data-ages="baby kid teen">Under 21 there's no yearly dollar limit, and children can get extra care that's medically needed. <a class="cite" id="c-dhcs-dental-2" href="#ref-dhcs-dental">(DHCS, 2025b)</a></p>
+            <p data-ages="adult senior">Medi-Cal pays up to $1,800 a year, with no limit for care that's medically needed. <a class="cite" id="c-dhcs-dental-3" href="#ref-dhcs-dental">(DHCS, 2025b)</a></p>
+          </div>
         </div>
       </div>
 
