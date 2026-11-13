@@ -563,23 +563,6 @@ document.addEventListener("click", function (e) {
     });
   }
 
-  // 3d. Check, steps 2 and 3: the first time each step opens, its tiles ripple once from the first tile.
-  Array.prototype.forEach.call(document.querySelectorAll('.step[data-step="2"], .step[data-step="3"]'), function (step) {
-    var tiles = step.querySelector(".tiles");
-    if (!tiles) return;
-    Array.prototype.forEach.call(tiles.children, function (t, i) { t.style.setProperty("--ti", i); });
-    // (no focusin here: opening a step moves focus to its question, which is not an interaction)
-    var touch = onFirstTouch(step, function () { tiles.classList.remove("hint"); }, ["pointerdown", "keydown"]);
-    var mo = new MutationObserver(function () {
-      if (step.hidden) return;
-      mo.disconnect();
-      if (touch.done) return;
-      tiles.classList.add("hint");
-      setTimeout(function () { tiles.classList.remove("hint"); }, 1600);
-    });
-    mo.observe(step, { attributes: true, attributeFilter: ["hidden"] });
-  });
-
   // 5. Count-ups on the stat numbers (~800 ms), drawn on an aria-hidden copy over the real text.
   Array.prototype.forEach.call(document.querySelectorAll(".stat-num"), function (p) {
     whenSeen(p, 0.6, function () {
