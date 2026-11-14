@@ -422,6 +422,7 @@ document.addEventListener("click", function (e) {
   document.querySelectorAll("details").forEach(function (d) {
     var sum = d.firstElementChild;
     if (!sum || sum.tagName !== "SUMMARY") return;
+    if (d.classList.contains("county-list")) return; // swaps with the map in one frame (styles.css)
     var group = d.getAttribute("name");
     if (group) { d.setAttribute("data-group", group); d.removeAttribute("name"); }
     var anim = null, closing = false;

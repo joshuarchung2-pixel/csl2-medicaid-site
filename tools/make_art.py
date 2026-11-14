@@ -27,8 +27,8 @@ DEFS = (
 
 # ---------- buddy parts (buddy space) ----------
 def arm(d, w=16):
-    # plum edge under the cream stroke, matching the body outline, so arms don't fade into pale discs
-    return (f'<path d="{d}" fill="none" stroke="{PLUM}" stroke-width="{w + 3.5}" stroke-linecap="round"/>'
+    # plum edge under the cream stroke, 3.5 showing on each side so it reads as thick as the body's 3.5 ring
+    return (f'<path d="{d}" fill="none" stroke="{PLUM}" stroke-width="{w + 7}" stroke-linecap="round"/>'
             f'<path d="{d}" fill="none" stroke="{WHITE}" stroke-width="{w}" stroke-linecap="round"/>')
 
 
@@ -144,7 +144,7 @@ MYTHS = {
         + ''.join(f'<ellipse cx="96" cy="{86 - i * 7}" rx="12" ry="4.5" fill="{MARIGOLD}" stroke="#c98a12" stroke-width="1.5"/>' for i in range(5))
         + bubble(84, 8, "?"),
         buddy(48, 92, .36,
-              f'<circle cx="194" cy="58" r="13.75" fill="{PLUM}"/><path d="M190 50v-14" stroke="{PLUM}" stroke-width="12.5" stroke-linecap="round"/>'
+              f'<circle cx="194" cy="58" r="15.5" fill="{PLUM}"/><path d="M190 50v-14" stroke="{PLUM}" stroke-width="16" stroke-linecap="round"/>'
               + arm("M74 122q-22 4-26 30") + arm("M168 112q26-10 24-46") + f'<circle cx="194" cy="58" r="12" fill="{WHITE}"/><path d="M190 50v-14" stroke="{WHITE}" stroke-width="9" stroke-linecap="round"/>'
               + BODY + face("happy", "beam"))
         + ''.join(f'<ellipse cx="96" cy="{86 - i * 7}" rx="12" ry="4.5" fill="{MARIGOLD}" stroke="#c98a12" stroke-width="1.5"/>' for i in range(3))
@@ -239,8 +239,7 @@ def spot_help():
 
 
 # ---------- people (hero scene space; the buddy there is drawn at scale .84) ----------
-SW = 3  # scene-space outline: the buddy's 3.5 at its .84 hero scale
-CHEEK = "#ffb3a1"
+SW = 2.94  # scene-space outline: the buddy's 3.5 body ring at its .84 hero scale (the two SVGs scale alike: 31.48%/170 = 1/540)
 
 
 def toned(key, shape, lit, shade, dx, dy):
@@ -255,14 +254,15 @@ def toned(key, shape, lit, shade, dx, dy):
 
 
 def limb(d, c, w, dash=""):
-    """Like arm(): a coloured stroke over a plum stroke SW wider."""
+    """Like arm(): a coloured stroke over a plum stroke 2*SW wider, so SW of plum shows on each side."""
     da = f' stroke-dasharray="{dash}"' if dash else ""
-    return (f'<path d="{d}" fill="none" stroke="{PLUM}" stroke-width="{w + SW}" stroke-linecap="round"{da}/>'
+    return (f'<path d="{d}" fill="none" stroke="{PLUM}" stroke-width="{w + 2 * SW}" stroke-linecap="round"{da}/>'
             f'<path d="{d}" fill="none" stroke="{c}" stroke-width="{w}" stroke-linecap="round"{da}/>')
 
 
-def hand(cx, cy, r, c):
-    return f'<circle cx="{cx}" cy="{cy}" r="{r}" fill="{c}" stroke="{PLUM}" stroke-width="{SW}"/>'
+def flat(shape, c):
+    """A plain shape in one colour with the plum outline (shoes); `shape` uses %A like toned()."""
+    return shape.replace("%A", f' fill="{c}" stroke="{PLUM}" stroke-width="{SW}" stroke-linejoin="round"')
 
 
 def eyes(xs, y):
@@ -271,18 +271,27 @@ def eyes(xs, y):
             + ''.join(f'<circle cx="{x + 1.9}" cy="{y - 2.4}" r="1.9" fill="#fff"/>' for x in xs) + '</g>')
 
 
+MOM_NEAR = "M198 250q26 16 46 42"
+
+
+def mom_near_arm():
+    return limb(MOM_NEAR, "#c46f45", 18) + limb(MOM_NEAR, "#bf3466", 22, "22 200")
+
+
+def mom_body(key):
+    return toned(key, '<rect x="112" y="206" width="94" height="132" rx="46"%A/>', BERRY, "#bf3466", -11, -7)
+
+
 def parent():
     skin, skin_d, hair, hair_d, hair_l = "#c46f45", "#a65934", "#4a2c34", "#2b1a1f", "#7b5560"
-    pants, pants_d, shoe, shoe_d, top_d = "#4b3c7d", "#3b2e66", "#5a3a5e", "#46294b", "#bf3466"
+    pants, pants_d, shoe, top_d = "#4b3c7d", "#3b2e66", "#5a3a5e", "#bf3466"
     return ('<g>'
             + limb("M140 328V376", pants, 24) + limb("M176 328V376", pants_d, 24)
-            + toned("hp-s1", '<ellipse cx="140" cy="388" rx="18" ry="9"%A/>', shoe, shoe_d, -5, -3)
-            + toned("hp-s2", '<ellipse cx="178" cy="388" rx="18" ry="9"%A/>', shoe, shoe_d, -5, -3)
-            # arms tuck behind the torso; a short sleeve edge where each leaves the body
-            + limb("M118 246q-30 30-22 78", skin, 18) + hand(96, 325, 10, skin)
-            + limb("M198 248q30 34 52 52", skin, 18)
-            + limb("M118 246q-30 30-22 78", BERRY, 22, "38 200") + limb("M198 248q28 32 44 46", top_d, 22, "34 200")
-            + toned("hp-b", '<rect x="112" y="206" width="94" height="132" rx="46"%A/>', BERRY, top_d, -11, -7)
+            + flat('<ellipse cx="140" cy="388" rx="18" ry="9"%A/>', shoe) + flat('<ellipse cx="178" cy="388" rx="18" ry="9"%A/>', shoe)
+            # arms tuck behind the torso; a short sleeve edge where each leaves the body. The hand is the round end of
+            # the arm. Her near arm rests on the child's shoulder, so it is drawn after him in hero_scene()
+            + limb("M118 246q-30 30-22 80", skin, 18) + limb("M118 246q-30 30-22 80", BERRY, 22, "38 200")
+            + mom_body("hp-b")
             # neck with a scooped collar line, then bun, head and hair
             + f'<path d="M146 192h26v20q-13 9-26 0z" fill="{skin_d}" stroke="{PLUM}" stroke-width="{SW}" stroke-linejoin="round"/>'
             + toned("hp-bun", '<circle cx="166" cy="122" r="17"%A/>', hair, hair_d, -4, -3)
@@ -290,20 +299,19 @@ def parent():
             + toned("hp-hr", '<path d="M123 166c0-30 18-42 37-42s35 12 35 42c-10-14-30-20-46-18-12 2-22 8-26 18z"%A/>', hair, hair_d, -6, -4)
             + line("M133 150q6-15 22-19", 3, hair_l) + line("M158 116q4-5 10-5", 2.5, hair_l)
             + eyes((146, 174), 169)
-            + f'<circle cx="137" cy="182" r="6.2" fill="{CHEEK}" opacity=".85"/><circle cx="181" cy="182" r="6.2" fill="{CHEEK}" opacity=".85"/>'
             + f'<path d="M149 181q10 13 20 0z" fill="{PLUM}" stroke="{PLUM}" stroke-width="1.5" stroke-linejoin="round"/>'
             + '</g>')
 
 
 def child():
     skin, skin_d, hair, hair_d, hair_l = "#8d5a3b", "#74482e", "#3b2328", "#1f1418", "#6b4a52"
-    pants, pants_d, top_d, shoe_d = "#4a5aa0", "#3c4a88", "#e8604a", "#e0604a"
+    pants, pants_d, top_d = "#4a5aa0", "#3c4a88", "#e8604a"
     return ('<g>'
             + limb("M256 354V378", pants, 20) + limb("M284 354V378", pants_d, 20)
-            + toned("hc-s1", '<ellipse cx="256" cy="388" rx="15" ry="8"%A/>', CORAL, shoe_d, -4, -3)
-            + toned("hc-s2", '<ellipse cx="284" cy="388" rx="15" ry="8"%A/>', CORAL, shoe_d, -4, -3)
-            + limb("M244 300q-8 2-10 4", skin, 15) + hand(233, 304, 8.5, skin)
-            + limb("M300 300q22 6 28-18", skin, 14) + hand(328, 281, 8, skin)
+            + flat('<ellipse cx="256" cy="388" rx="15" ry="8"%A/>', CORAL) + flat('<ellipse cx="284" cy="388" rx="15" ry="8"%A/>', CORAL)
+            # the arm by mom hangs at his side like hers; the other waves
+            + limb("M242 300q-15 15-11 40", skin, 14) + limb("M242 300q-15 15-11 40", top_d, 19, "14 200")
+            + limb("M300 300q22 6 28-20", skin, 14)
             + limb("M298 299q8 2 14 3", top_d, 19)
             + toned("hc-b", '<rect x="236" y="276" width="68" height="80" rx="32"%A/>', CORAL, top_d, -8, -6)
             + f'<path d="M262 266h16v14q-8 7-16 0z" fill="{skin_d}" stroke="{PLUM}" stroke-width="{SW}" stroke-linejoin="round"/>'
@@ -311,7 +319,6 @@ def child():
             + toned("hc-hr", '<path d="M238 244c0-26 14-38 32-38s34 12 32 34c-8-10-16-14-26-12-6-8-18-6-24 0-6 0-10 6-14 16z"%A/>', hair, hair_d, -5, -4)
             + line("M247 228q6-12 18-15", 3, hair_l)
             + eyes((258, 284), 249)
-            + f'<circle cx="249" cy="262" r="6" fill="{CHEEK}" opacity=".8"/><circle cx="293" cy="262" r="6" fill="{CHEEK}" opacity=".8"/>'
             + f'<path d="M259 260q12 15 24 0z" fill="{PLUM}" stroke="{PLUM}" stroke-width="1.5" stroke-linejoin="round"/>'
             + line("M261.5 261.6h19", 3, "#fff")
             + '</g>')
@@ -328,9 +335,12 @@ def hero_scene():
          + '<rect x="40" y="200" width="70" height="26" rx="13" fill="#fff" opacity=".85"/><rect x="60" y="186" width="40" height="26" rx="13" fill="#fff" opacity=".85"/>'
          f'<path d="M0 352C120 316 280 330 540 360V410H0Z" fill="{MINT}"/><path d="M0 392C160 372 320 382 540 390V410H0Z" fill="#46b393"/>'
          # people, drawn in the buddy's language: plum outline, two-tone shapes lit from the upper left, limbs as a
-         # coloured stroke over a plum stroke, plum eyes with a white glint, rosy cheeks, plum mouths
+         # coloured stroke over a plum stroke, plum eyes with a white glint, plum mouths
          + f'<ellipse cx="159" cy="392" rx="46" ry="8" fill="{MINT_D}" opacity=".55"/><ellipse cx="270" cy="392" rx="36" ry="7" fill="{MINT_D}" opacity=".55"/>'
          + parent() + child()
+         # mom's hand on the child's shoulder: her near arm over him, then her torso again on top so the arm still
+         # tucks behind it (the torso doesn't touch the child, so redrawing it changes nothing else)
+         + mom_near_arm() + mom_body("hp-b2")
          + f'<ellipse cx="432" cy="376" rx="46" ry="9" fill="{MINT_D}" opacity=".55"/>')
     scene = svg("0 60 540 350", b, "hero-scene")
     bud = buddy(432, 372, .84,

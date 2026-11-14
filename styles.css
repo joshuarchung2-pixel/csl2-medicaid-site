@@ -243,6 +243,9 @@ html:not(.js) .flow-hint { display: none; }
 .map-box::before { content: ""; position: absolute; left: -8%; right: -8%; top: 6%; bottom: 2%; border-radius: 50%; background: radial-gradient(closest-side, #fff2dc, rgba(255, 242, 220, 0)); pointer-events: none; }
 .ca-map { position: relative; }
 .county-map:has(.county-list[open]) .map-box { display: none; }
+/* The list replaces the map, so it opens and closes in one frame: no height animation, or the map would show
+   above a still-collapsing list (and vanish above a still-growing one), then the page below would jump. */
+.county-list::details-content { transition: none; }
 .ca-map { display: block; width: 100%; height: auto; overflow: visible; -webkit-tap-highlight-color: transparent; }
 .ca-map .cty { fill: #fff; stroke: #c3b0bd; stroke-width: 1; stroke-linejoin: round; vector-effect: non-scaling-stroke; cursor: pointer; transition: fill .15s ease; outline: none; }
 .ca-map .cty:hover, .ca-map .cty:focus-visible, .ca-map .cty.chosen { fill: var(--accent-tint); }
