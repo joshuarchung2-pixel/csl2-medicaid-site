@@ -286,7 +286,8 @@ def parent():
     skin, skin_d, hair, hair_d, hair_l = "#c46f45", "#a65934", "#4a2c34", "#2b1a1f", "#7b5560"
     pants, pants_d, shoe, top_d = "#4b3c7d", "#3b2e66", "#5a3a5e", "#bf3466"
     return ('<g>'
-            + limb("M140 328V376", pants, 24) + limb("M176 328V376", pants_d, 24)
+            + toned("hp-l1", '<rect x="128" y="316" width="24" height="72" rx="12"%A/>', pants, pants_d, -5, -4)
+            + toned("hp-l2", '<rect x="164" y="316" width="24" height="72" rx="12"%A/>', pants, pants_d, -5, -4)
             + flat('<ellipse cx="140" cy="388" rx="18" ry="9"%A/>', shoe) + flat('<ellipse cx="178" cy="388" rx="18" ry="9"%A/>', shoe)
             # arms tuck behind the torso; a short sleeve edge where each leaves the body. The hand is the round end of
             # the arm. Her near arm rests on the child's shoulder, so it is drawn after him in hero_scene()
@@ -307,7 +308,8 @@ def child():
     skin, skin_d, hair, hair_d, hair_l = "#8d5a3b", "#74482e", "#3b2328", "#1f1418", "#6b4a52"
     pants, pants_d, top_d = "#4a5aa0", "#3c4a88", "#e8604a"
     return ('<g>'
-            + limb("M256 354V378", pants, 20) + limb("M284 354V378", pants_d, 20)
+            + toned("hc-l1", '<rect x="246" y="344" width="20" height="44" rx="10"%A/>', pants, pants_d, -4, -3)
+            + toned("hc-l2", '<rect x="274" y="344" width="20" height="44" rx="10"%A/>', pants, pants_d, -4, -3)
             + flat('<ellipse cx="256" cy="388" rx="15" ry="8"%A/>', CORAL) + flat('<ellipse cx="284" cy="388" rx="15" ry="8"%A/>', CORAL)
             # the arm by mom hangs at his side like hers; the other waves
             + limb("M242 300q-15 15-11 40", skin, 14) + limb("M242 300q-15 15-11 40", top_d, 19, "14 200")
