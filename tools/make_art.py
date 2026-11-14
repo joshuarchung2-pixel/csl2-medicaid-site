@@ -238,6 +238,85 @@ def spot_help():
     return svg("0 0 120 104", body, "spot spot-help")
 
 
+# ---------- people (hero scene space; the buddy there is drawn at scale .84) ----------
+SW = 3  # scene-space outline: the buddy's 3.5 at its .84 hero scale
+CHEEK = "#ffb3a1"
+
+
+def toned(key, shape, lit, shade, dx, dy):
+    """A shape filled like the buddy body: shade colour, with a lit copy nudged up-left (dx, dy < 0) and clipped to the
+    shape, so the shade shows as a crescent on the lower right; then a plum outline. `shape` is element markup with %A
+    where the fill attributes go."""
+    sh, li = f' fill="{shade}"', f' fill="{lit}"'
+    ol = f' fill="none" stroke="{PLUM}" stroke-width="{SW}" stroke-linejoin="round"'
+    return (f'<clipPath id="{key}">{shape.replace("%A", "")}</clipPath>'
+            f'<g clip-path="url(#{key})">{shape.replace("%A", sh)}<g transform="translate({dx} {dy})">{shape.replace("%A", li)}</g></g>'
+            + shape.replace("%A", ol))
+
+
+def limb(d, c, w, dash=""):
+    """Like arm(): a coloured stroke over a plum stroke SW wider."""
+    da = f' stroke-dasharray="{dash}"' if dash else ""
+    return (f'<path d="{d}" fill="none" stroke="{PLUM}" stroke-width="{w + SW}" stroke-linecap="round"{da}/>'
+            f'<path d="{d}" fill="none" stroke="{c}" stroke-width="{w}" stroke-linecap="round"{da}/>')
+
+
+def hand(cx, cy, r, c):
+    return f'<circle cx="{cx}" cy="{cy}" r="{r}" fill="{c}" stroke="{PLUM}" stroke-width="{SW}"/>'
+
+
+def eyes(xs, y):
+    """Buddy eyes at the people's size: plum ovals with the buddy's glint ratio (r .375 of the width, up and right)."""
+    return ('<g class="blink">' + ''.join(f'<ellipse cx="{x}" cy="{y}" rx="5" ry="6" fill="{PLUM}"/>' for x in xs)
+            + ''.join(f'<circle cx="{x + 1.9}" cy="{y - 2.4}" r="1.9" fill="#fff"/>' for x in xs) + '</g>')
+
+
+def parent():
+    skin, skin_d, hair, hair_d, hair_l = "#c46f45", "#a65934", "#4a2c34", "#2b1a1f", "#7b5560"
+    pants, pants_d, shoe, shoe_d, top_d = "#4b3c7d", "#3b2e66", "#5a3a5e", "#46294b", "#bf3466"
+    return ('<g>'
+            + limb("M140 328V376", pants, 24) + limb("M176 328V376", pants_d, 24)
+            + toned("hp-s1", '<ellipse cx="140" cy="388" rx="18" ry="9"%A/>', shoe, shoe_d, -5, -3)
+            + toned("hp-s2", '<ellipse cx="178" cy="388" rx="18" ry="9"%A/>', shoe, shoe_d, -5, -3)
+            # arms tuck behind the torso; a short sleeve edge where each leaves the body
+            + limb("M118 246q-30 30-22 78", skin, 18) + hand(96, 325, 10, skin)
+            + limb("M198 248q30 34 52 52", skin, 18)
+            + limb("M118 246q-30 30-22 78", BERRY, 22, "38 200") + limb("M198 248q28 32 44 46", top_d, 22, "34 200")
+            + toned("hp-b", '<rect x="112" y="206" width="94" height="132" rx="46"%A/>', BERRY, top_d, -11, -7)
+            # neck with a scooped collar line, then bun, head and hair
+            + f'<path d="M146 192h26v20q-13 9-26 0z" fill="{skin_d}" stroke="{PLUM}" stroke-width="{SW}" stroke-linejoin="round"/>'
+            + toned("hp-bun", '<circle cx="166" cy="122" r="17"%A/>', hair, hair_d, -4, -3)
+            + toned("hp-h", '<circle cx="159" cy="166" r="36"%A/>', skin, skin_d, -8, -5)
+            + toned("hp-hr", '<path d="M123 166c0-30 18-42 37-42s35 12 35 42c-10-14-30-20-46-18-12 2-22 8-26 18z"%A/>', hair, hair_d, -6, -4)
+            + line("M133 150q6-15 22-19", 3, hair_l) + line("M158 116q4-5 10-5", 2.5, hair_l)
+            + eyes((146, 174), 169)
+            + f'<circle cx="137" cy="182" r="6.2" fill="{CHEEK}" opacity=".85"/><circle cx="181" cy="182" r="6.2" fill="{CHEEK}" opacity=".85"/>'
+            + f'<path d="M149 181q10 13 20 0z" fill="{PLUM}" stroke="{PLUM}" stroke-width="1.5" stroke-linejoin="round"/>'
+            + '</g>')
+
+
+def child():
+    skin, skin_d, hair, hair_d, hair_l = "#8d5a3b", "#74482e", "#3b2328", "#1f1418", "#6b4a52"
+    pants, pants_d, top_d, shoe_d = "#4a5aa0", "#3c4a88", "#e8604a", "#e0604a"
+    return ('<g>'
+            + limb("M256 354V378", pants, 20) + limb("M284 354V378", pants_d, 20)
+            + toned("hc-s1", '<ellipse cx="256" cy="388" rx="15" ry="8"%A/>', CORAL, shoe_d, -4, -3)
+            + toned("hc-s2", '<ellipse cx="284" cy="388" rx="15" ry="8"%A/>', CORAL, shoe_d, -4, -3)
+            + limb("M244 300q-8 2-10 4", skin, 15) + hand(233, 304, 8.5, skin)
+            + limb("M300 300q22 6 28-18", skin, 14) + hand(328, 281, 8, skin)
+            + limb("M298 299q8 2 14 3", top_d, 19)
+            + toned("hc-b", '<rect x="236" y="276" width="68" height="80" rx="32"%A/>', CORAL, top_d, -8, -6)
+            + f'<path d="M262 266h16v14q-8 7-16 0z" fill="{skin_d}" stroke="{PLUM}" stroke-width="{SW}" stroke-linejoin="round"/>'
+            + toned("hc-h", '<circle cx="270" cy="244" r="32"%A/>', skin, skin_d, -7, -5)
+            + toned("hc-hr", '<path d="M238 244c0-26 14-38 32-38s34 12 32 34c-8-10-16-14-26-12-6-8-18-6-24 0-6 0-10 6-14 16z"%A/>', hair, hair_d, -5, -4)
+            + line("M247 228q6-12 18-15", 3, hair_l)
+            + eyes((258, 284), 249)
+            + f'<circle cx="249" cy="262" r="6" fill="{CHEEK}" opacity=".8"/><circle cx="293" cy="262" r="6" fill="{CHEEK}" opacity=".8"/>'
+            + f'<path d="M259 260q12 15 24 0z" fill="{PLUM}" stroke="{PLUM}" stroke-width="1.5" stroke-linejoin="round"/>'
+            + line("M261.5 261.6h19", 3, "#fff")
+            + '</g>')
+
+
 def hero_scene():
     """Parent, child, sun and hill. The tooth buddy is a separate SVG on top (.hero-buddy) so its idle bounce is
     a composited transform on an HTML box, not an SVG repaint."""
@@ -248,30 +327,11 @@ def hero_scene():
          + star(84, 104, 10, BERRY) + star(512, 300, 8, BERRY)
          + '<rect x="40" y="200" width="70" height="26" rx="13" fill="#fff" opacity=".85"/><rect x="60" y="186" width="40" height="26" rx="13" fill="#fff" opacity=".85"/>'
          f'<path d="M0 352C120 316 280 330 540 360V410H0Z" fill="{MINT}"/><path d="M0 392C160 372 320 382 540 390V410H0Z" fill="#46b393"/>'
-         # parent
-         '<g><rect x="128" y="316" width="24" height="70" rx="12" fill="#4b3c7d"/><rect x="164" y="316" width="24" height="70" rx="12" fill="#4b3c7d"/>'
-         f'<ellipse cx="140" cy="388" rx="18" ry="9" fill="{PLUM}"/><ellipse cx="178" cy="388" rx="18" ry="9" fill="{PLUM}"/>'
-         f'<rect x="112" y="206" width="94" height="132" rx="46" fill="{BERRY}"/>'
-         '<path d="M120 250q-22 40-6 70" fill="none" stroke="#c46f45" stroke-width="18" stroke-linecap="round"/>'
-         '<path d="M198 248q30 34 52 52" fill="none" stroke="#c46f45" stroke-width="18" stroke-linecap="round"/>'
-         f'<path d="M198 248q28 32 44 46" fill="none" stroke="{BERRY}" stroke-width="22" stroke-linecap="round" stroke-dasharray="30 200"/>'
-         '<rect x="146" y="188" width="26" height="28" rx="10" fill="#c46f45"/><circle cx="159" cy="166" r="36" fill="#c46f45"/>'
-         '<path d="M123 166c0-30 18-42 37-42s35 12 35 42c-10-14-30-20-46-18-12 2-22 8-26 18z" fill="#2b1a1f"/><circle cx="166" cy="122" r="17" fill="#2b1a1f"/>'
-         '<g class="blink"><circle cx="146" cy="170" r="4.5" fill="#2b1a1f"/><circle cx="174" cy="170" r="4.5" fill="#2b1a1f"/></g>'
-         '<path d="M150 184q10 9 20 0" fill="none" stroke="#2b1a1f" stroke-width="4" stroke-linecap="round"/>'
-         f'<circle cx="138" cy="182" r="6" fill="{BERRY}" opacity=".35"/><circle cx="182" cy="182" r="6" fill="{BERRY}" opacity=".35"/></g>'
-         # child
-         f'<g><rect x="246" y="342" width="20" height="44" rx="10" fill="{PLUM}"/><rect x="274" y="342" width="20" height="44" rx="10" fill="{PLUM}"/>'
-         f'<ellipse cx="256" cy="388" rx="15" ry="8" fill="{CORAL}"/><ellipse cx="284" cy="388" rx="15" ry="8" fill="{CORAL}"/>'
-         f'<rect x="236" y="276" width="68" height="80" rx="32" fill="{CORAL}"/>'
-         '<path d="M244 300q-8 2-10 4" fill="none" stroke="#8d5a3b" stroke-width="15" stroke-linecap="round"/>'
-         '<path d="M300 300q22 6 28-18" fill="none" stroke="#8d5a3b" stroke-width="14" stroke-linecap="round"/>'
-         '<circle cx="270" cy="244" r="32" fill="#8d5a3b"/>'
-         '<path d="M238 244c0-26 14-38 32-38s34 12 32 34c-8-10-16-14-26-12-6-8-18-6-24 0-6 0-10 6-14 16z" fill="#1f1418"/>'
-         '<g class="blink"><circle cx="258" cy="250" r="4.5" fill="#1f1418"/><circle cx="284" cy="250" r="4.5" fill="#1f1418"/></g>'
-         '<path d="M260 262q11 12 22 0z" fill="#fff" stroke="#1f1418" stroke-width="3.5" stroke-linejoin="round"/>'
-         f'<circle cx="250" cy="262" r="6" fill="{CORAL}" opacity=".45"/><circle cx="292" cy="262" r="6" fill="{CORAL}" opacity=".45"/></g>'
-         f'<ellipse cx="432" cy="376" rx="46" ry="9" fill="{MINT_D}" opacity=".55"/>')
+         # people, drawn in the buddy's language: plum outline, two-tone shapes lit from the upper left, limbs as a
+         # coloured stroke over a plum stroke, plum eyes with a white glint, rosy cheeks, plum mouths
+         + f'<ellipse cx="159" cy="392" rx="46" ry="8" fill="{MINT_D}" opacity=".55"/><ellipse cx="270" cy="392" rx="36" ry="7" fill="{MINT_D}" opacity=".55"/>'
+         + parent() + child()
+         + f'<ellipse cx="432" cy="376" rx="46" ry="9" fill="{MINT_D}" opacity=".55"/>')
     scene = svg("0 60 540 350", b, "hero-scene")
     bud = buddy(432, 372, .84,
                 f'<g class="wave">{arm("M168 118q34-6 42-44")}</g>' + arm("M72 122q-24 12-22 40") + BODY + face("open", "smile", "", True))
